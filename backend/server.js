@@ -15,10 +15,14 @@ if (!db_user || !db_password) {
   console.error('MONGODB_INIT_USER and/or MONGODB_INIT_PASSWORD are not set or .env file is missing.');
   process.exit(1);
 }
-const database_uri = `mongodb://${db_user}:${db_password}@localhost:27010/pennywise_db?authSource=admin`;
+const database_uri = `mongodb://localhost:27010/pennywise_db?`;
 
 mongoose
-  .connect(database_uri)
+  .connect(database_uri, {
+    authSource: 'admin',
+    user: db_user,
+    pass: db_password,
+  })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
