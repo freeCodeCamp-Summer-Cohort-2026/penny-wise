@@ -11,11 +11,11 @@ app.use(express.json());
 //Connect to MongoDB
 const db_user = process.env.MONGODB_INIT_USER;
 const db_password = process.env.MONGODB_INIT_PASSWORD;
-const database_uri = `mongodb://${db_user}:${db_password}@localhost:27010/pennywise_db?authSource=admin`;
 if (!db_user || !db_password) {
   console.error('MONGODB_INIT_USER and/or MONGODB_INIT_PASSWORD are not set or .env file is missing.');
   process.exit(1);
 }
+const database_uri = `mongodb://${db_user}:${db_password}@localhost:27010/pennywise_db?authSource=admin`;
 
 mongoose
   .connect(database_uri)
