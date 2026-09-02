@@ -2,15 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 //Connect to MongoDB
+const db_user = process.env.MONGODB_INIT_USER;
+const db_password = process.env.MONGODB_INIT_PASSWORD;
+const database_uri = `mongodb://${db_user}:${db_password}@localhost:27010/pennywise_db?authSource=admin`;
+
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(database_uri)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 

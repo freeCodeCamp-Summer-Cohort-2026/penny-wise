@@ -2,8 +2,11 @@ services:
   mongo:
     image: mongo:8.2
     restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_INIT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_INIT_PASSWORD}
     ports:
-      - "27010:27017"
+      - "127.0.0.1:27010:27017"
     volumes:
       - pennywise_db:/data/db
 
