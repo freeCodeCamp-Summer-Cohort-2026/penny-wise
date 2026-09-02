@@ -1,7 +1,5 @@
 # penny-wise
 
-
-
 ### Original Git Readme
 
 ```
@@ -27,9 +25,10 @@ git push -u origin main
 ```
 
 ### Folder structure
+
 ```
 
-///// Folder structure 
+///// Folder structure
 penny-wise/
 ├── frontend/          # React + Tailwind
 │   ├── src/
@@ -47,6 +46,7 @@ penny-wise/
 │   ├── .env
 │   └── package.json
 │
+├── docker-compose.yml
 └── README.md
 ```
 
@@ -88,6 +88,7 @@ module.exports = {
 ```
 
 ### Creating Backend
+
 ```
 //Create a backend folder
 mkdir backend
@@ -104,7 +105,7 @@ npm install --save-dev nodemon
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const app = express();
 app.use(cors());
@@ -116,13 +117,21 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(Server running on port ${PORT}));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 ```
 
 ## Install and Run Mongo DB
+
 - It will be setup in Docker
 
 ## Create Mongo DB
+
+This requires docker installed on the system. [A guide on installing Docker can be found here](https://docs.docker.com/get-started/get-docker/).
+
+before starting the backend service, run this command to start the MongoDB container:
+
+```bash
+docker compose up -d
 ```
-mongo pennywise
-```
+
+It will start the MongoDB on the port 27010, which the Backend service will connect to.
