@@ -135,3 +135,12 @@ docker compose up -d
 ```
 
 It will start the MongoDB on the port 27010, which the Backend service will connect to.
+
+## Run the project
+
+// Note: this is work in progress
+
+```bash
+docker compose -f docker-compose.prod.yml up --build -d
+```
+

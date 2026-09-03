@@ -1,0 +1,37 @@
+services:
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - pennywise_db:/data/db
+
+  backend:
+    build:
+      context: ./backend
+      target: prod
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - PORT=27017
+      - MONGO_URI=mongodb://mongo:27017/pennywise_db
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-change-me}
+
+  frontend:
+    build:
+      context: ./frontend
+      target: runner
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:4000
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
+volumes:
+  pennywise_db:
