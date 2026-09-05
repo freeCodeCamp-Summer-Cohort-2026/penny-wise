@@ -2,29 +2,29 @@ import React from "react";
 
 const user = {
     display_name: "Nicholas Lee",
-    username: "tickolas6969",
+    username: "nickmeister123",
     email: "cindylee@example.com",
-    level: 15,
+    level: 10,
 };
 
 const levelTitlePicker = (level) => {
-    switch (level) {
+    switch (true) {
         case (level <= 0):
-            return "Buck Baby";
-        case (level > 0 && level <= 3):
+            return "Loot Learner";
+        case (0 < level && level <= 3):
             return "Nickel Knower";
-        case (level > 3 && level <= 6):
+        case (3 < level && level <= 6):
             return "Dollar Dweller"; 
-        case (level > 6 && level <= 9):
+        case (6 < level && level <= 9):
             return "Currency Crusher";
-        case (level > 10 && level <= 14):
+        case (10 < level && level <= 14):
             return "Cash Cultivator"; 
-        case (level > 14 && level <= 19):
+        case (14 < level && level <= 19):
             return "Money Master";
         case (level == 20):
             return "Penny Wise"; 
         default:
-            return "Buck Baby";
+            return "Loot Learner";
     }
 }
 
