@@ -17,7 +17,7 @@ const levelTitlePicker = (level) => {
             return "Dollar Dweller"; 
         case (6 < level && level <= 9):
             return "Currency Crusher";
-        case (10 < level && level <= 14):
+        case (9 < level && level <= 14):
             return "Cash Cultivator"; 
         case (14 < level && level <= 19):
             return "Money Master";
