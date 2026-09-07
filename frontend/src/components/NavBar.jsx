@@ -1,11 +1,17 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
-const NavBar = () => {
+export default function NavBar() {
   return (
-    <div>
-     <h1>This is the NavBar</h1>
-    </div>
-  )
-}
+    <nav className="navbar grid grid-cols-3 p-4">
 
-export default NavBar
+      <Link to="/" className="col-span-1 text-left">Home</Link>
+      {/* <Link to="/dashboard" className="text-xl font-bold col-span-1">Penny Wise</Link> */}
+      <h2 className="text-xl font-bold col-span-1">Penny Wise</h2>
+      <div className="auth-links flex gap-4 col-span-1 justify-end">
+        <Link to="/profile">Profile</Link>
+        <Link to="/signup">Sign Up</Link>
+        <Link to="/login">Log In</Link>
+      </div>
+    </nav>
+  );
+}
