@@ -1,13 +1,28 @@
-// DELETE ME LATER
-// page layout should be very basic, keeping in line w/ skeleton concept
-// go off of this for inspo: https://res.cloudinary.com/time2hack/image/upload/layout.png
-// top has a greyed "banner" to act as an image placeholder
-// h1 for title below
-// grey rounded body w/ flexbox trio of boxes largely labelled "1 2 3" for brief sections (likely about penny-wise's goals)
-
 function AboutPage() {
     return (
-        <></>
+        <>
+        {/* NavBar would go here */}
+            <main>
+                <h1>About Us</h1>
+                <section>
+                    <p>The pennies behind the wisdom.</p>
+                    <div>
+                        <div>
+                            <h2>1</h2>
+                            <p>Lorem</p>
+                        </div>
+                        <div>
+                            <h2>2</h2>
+                            <p>Ipsum</p>
+                        </div>
+                        <div>
+                            <h2>3</h2>
+                            <p>Dolor</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </>
     )
 }
 
