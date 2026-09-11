@@ -1,0 +1,211 @@
+{
+  "modules": [
+    {
+      "_id": "6aa349f3f2a568d5c90e3e05",
+      "name": "Money Master",
+      "description": "Identify and count different denominations and calculate totals.",
+      "icon": "💵",
+      "lessons": [
+        {
+          "title": "Know Your Coins & Notes",
+          "content": "Money comes in coins and notes, and each one carries a value you can read from the number printed on it. Pennies, nickels, dimes, and quarters are coins; notes come in $1, $5, $10, $20, $50, and $100.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "How much is a coin marked \"25\" worth?",
+              "image": "/images/lesson/quarter.png",
+              "answer": "25 cents",
+              "_id": "6aa349f3f2a568d5c90e3e07"
+            },
+            {
+              "question": "Which note is worth the most: $5, $20, or $100?",
+              "image": "/images/lesson/notes.png",
+              "answer": "$100",
+              "_id": "6aa349f3f2a568d5c90e3e08"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e06"
+        },
+        {
+          "title": "Counting Total Value",
+          "content": "To find a total, group matching coins and notes, then add them. Start with the largest values first — it keeps the adding simple and fast.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "Two quarters and three dimes equal how many cents?",
+              "image": "/images/lesson/quarters-dimes.png",
+              "answer": "80 cents",
+              "_id": "6aa349f3f2a568d5c90e3e0a"
+            },
+            {
+              "question": "A $20 note, a $10 note, and a $5 note total how much?",
+              "image": "/images/lesson/notes-bundle.png",
+              "answer": "$35",
+              "_id": "6aa349f3f2a568d5c90e3e0b"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e09"
+        },
+        {
+          "title": "The Quick Total",
+          "content": "Practice adding a mixed handful: count the notes first, then the coins, then combine the two.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "A $1 note, three quarters, and a nickel add up to how much?",
+              "image": "/images/lesson/mixed.png",
+              "answer": "$1.80",
+              "_id": "6aa349f3f2a568d5c90e3e0d"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e0c"
+        }
+      ],
+      "labs": [
+        {
+          "name": "Count & Conquer",
+          "description": "Sort a messy money tray and total every denomination quickly.",
+          "intro": "You are running the money table at the school fair. Coins and notes are all mixed up — sort them, count them, and make change for happy customers.",
+          "state": "published",
+          "steps": [
+            {
+              "type": "earn",
+              "task": "Sort the tray by putting each coin with its matching value group. Which order works best?",
+              "image": "/images/lab/money-tray.png",
+              "choices": [
+                "Largest to smallest value",
+                "Smallest to largest only",
+                "Any order is fine"
+              ],
+              "_id": "6aa349f3f2a568d5c90e3e0f"
+            },
+            {
+              "type": "save",
+              "task": "The fair booth earned two $5 notes, three $1 notes, and a quarter. What is the total?",
+              "image": "/images/lab/fair-booth.png",
+              "choices": ["$13.25", "$11.25", "$12.25"],
+              "_id": "6aa349f3f2a568d5c90e3e10"
+            },
+            {
+              "type": "spend",
+              "task": "You buy a lemonade for 95¢ and pay with a $1 note and a nickel. How much change do you get?",
+              "image": "/images/lab/lemonade.png",
+              "choices": ["10¢", "5¢", "15¢"],
+              "_id": "6aa349f3f2a568d5c90e3e11"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e0e"
+        }
+      ],
+      "__v": 0
+    },
+    {
+      "_id": "6aa349f3f2a568d5c90e3e12",
+      "name": "Make the Change",
+      "description": "Run a simulated shop and give customers the correct change.",
+      "icon": "🧮",
+      "lessons": [
+        {
+          "title": "Change Is a Difference",
+          "content": "Change is what you get back when you pay more than a price. Work it out as: amount paid − price.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "You pay $5 for a $3 toy. How much change do you get?",
+              "image": "/images/lesson/toyshop.png",
+              "answer": "$2",
+              "_id": "6aa349f3f2a568d5c90e3e14"
+            },
+            {
+              "question": "The price is $1.25 and you pay $2. How much change?",
+              "image": "/images/lesson/register.png",
+              "answer": "75 cents",
+              "_id": "6aa349f3f2a568d5c90e3e15"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e13"
+        },
+        {
+          "title": "Counting Back, Up and Up",
+          "content": "Count the change UP from the price to the amount paid. Starting low and climbing to the paid amount is the fastest way to stay correct.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "From 35¢ up to $1, which coins do you count back first?",
+              "image": "/images/lesson/counting-up.png",
+              "answer": "A quarter, then two dimes, then a nickel",
+              "_id": "6aa349f3f2a568d5c90e3e17"
+            },
+            {
+              "question": "From $4.50 up to $5, what do you hand back?",
+              "image": "/images/lesson/handing-back.png",
+              "answer": "Two quarters (50¢)",
+              "_id": "6aa349f3f2a568d5c90e3e18"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e16"
+        },
+        {
+          "title": "Hand-Over & Smile",
+          "content": "Give change using the fewest coins and notes when you can. Your customers will thank you — and your till will stay neater too.",
+          "state": "published",
+          "interactive_section": [
+            {
+              "question": "What is 30¢ of change using the fewest coins?",
+              "image": "/images/lesson/change-30c.png",
+              "answer": "A quarter and a nickel",
+              "_id": "6aa349f3f2a568d5c90e3e1a"
+            },
+            {
+              "question": "What is $3 of change using the fewest notes?",
+              "image": "/images/lesson/change-3.png",
+              "answer": "Three $1 notes",
+              "_id": "6aa349f3f2a568d5c90e3e1b"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e19"
+        }
+      ],
+      "labs": [
+        {
+          "name": "Penny Pals Shop",
+          "description": "Run the corner shop register and give every customer the correct change.",
+          "intro": "Welcome to your own shop counter! Customers will hand you cash — count the change carefully so everyone walks away happy.",
+          "state": "published",
+          "steps": [
+            {
+              "type": "spend",
+              "task": "A pencil costs 30¢. The customer hands you $1. How much change do you give?",
+              "image": "/images/lab/shop-pencil.png",
+              "choices": ["70¢", "30¢", "60¢"],
+              "_id": "6aa349f3f2a568d5c90e3e1d"
+            },
+            {
+              "type": "spend",
+              "task": "A toy car costs $2.50. The customer pays with a $5 note. Count back the change.",
+              "image": "/images/lab/shop-toy.png",
+              "choices": ["$2.50", "$1.50", "$3.50"],
+              "_id": "6aa349f3f2a568d5c90e3e1e"
+            },
+            {
+              "type": "earn",
+              "task": "Ring up three items: $1.20, 85¢, and $1.95. What is the total?",
+              "image": "/images/lab/shop-register.png",
+              "choices": ["$4.00", "$3.75", "$4.25"],
+              "_id": "6aa349f3f2a568d5c90e3e1f"
+            },
+            {
+              "type": "save",
+              "task": "A $10 note covers a $6.85 order. How much change goes back to the customer?",
+              "image": "/images/lab/shop-cash.png",
+              "choices": ["$3.15", "$4.15", "$3.85"],
+              "_id": "6aa349f3f2a568d5c90e3e20"
+            }
+          ],
+          "_id": "6aa349f3f2a568d5c90e3e1c"
+        }
+      ],
+      "__v": 0
+    }
+  ]
+}
