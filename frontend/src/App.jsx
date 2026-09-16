@@ -26,7 +26,7 @@ function App() {
         <Route path='/modules' element={<ModulesPage />} />
         <Route path='/modules/:moduleId' element={<ModulesPage />} />
         <Route path='/modules/:moduleId/course/:courseId' element={<CoursePage />} />
-        <Route path='/CourseCatalog' element={<CourseCatalog />} />
+        <Route path='/coursecatalog' element={<CourseCatalog />} />
         <Route path='/errorpage' element={<ErrorPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
