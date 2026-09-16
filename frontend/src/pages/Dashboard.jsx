@@ -95,7 +95,7 @@ const Dashboard = () => {
             {topics &&
               topics.map((topic) => {
                 return (
-                  <Link key={topic.id} to={`/course`}>
+                  <Link key={topic.id} to={`/modules/${topic.id}`}>
                     <div className='topicCard p-6 m-2 rounded shadow-md text-left bg-[var(--accent-bg)] hover:shadow-lg transition-shadow duration-300 cursor-pointer hover:scale-105'>
                       <img
                         src={topic.icon}
