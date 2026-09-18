@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { LoaderCircle } from 'lucide-react';
 
 export default function AuthSplit({
@@ -16,12 +15,6 @@ export default function AuthSplit({
     <div className='relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-clip text-left'>
       <div className='mx-auto grid min-h-[calc(100svh-80px)] w-full max-w-6xl lg:grid-cols-2'>
         <aside className='relative hidden overflow-hidden border-r border-[var(--border)] bg-[var(--code-bg)] px-10 py-12 lg:flex lg:flex-col lg:justify-center'>
-          <Link to='/' className='text-lg font-bold text-[var(--text-h)]'>
-            <span aria-hidden='true' className='mr-2'>
-              $
-            </span>
-            Penny Wise
-          </Link>
           <h2 className='mt-8 max-w-sm text-[32px] leading-tight font-semibold tracking-tight text-[var(--text-h)]'>
             {panelTitle}
           </h2>
