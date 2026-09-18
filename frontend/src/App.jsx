@@ -25,7 +25,10 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/modules' element={<ModulesPage />} />
         <Route path='/modules/:moduleId' element={<ModulesPage />} />
-        <Route path='/modules/:moduleId/course/:courseId' element={<CoursePage />} />
+        <Route
+          path='/modules/:moduleId/course/:courseId'
+          element={<CoursePage />}
+        />
         <Route path='/coursecatalog' element={<CourseCatalog />} />
         <Route path='/errorpage' element={<ErrorPage />} />
         <Route path='*' element={<ErrorPage />} />

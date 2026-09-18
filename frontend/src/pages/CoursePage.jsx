@@ -136,8 +136,7 @@ const modules = [
   {
     id: 4,
     name: 'Earning & Work',
-    description:
-      'Explore ways to earn and understand what your time is worth.',
+    description: 'Explore ways to earn and understand what your time is worth.',
     lessons: [
       {
         id: 1,
@@ -182,11 +181,11 @@ const CoursePage = () => {
   const { moduleId, courseId } = useParams();
 
   const selectedModule = modules.find(
-    (module) => module.id === Number(moduleId)
+    (module) => module.id === Number(moduleId),
   );
 
   const selectedCourse = selectedModule?.lessons.find(
-    (lesson) => lesson.id === Number(courseId)
+    (lesson) => lesson.id === Number(courseId),
   );
 
   if (!selectedModule || !selectedCourse) {
@@ -219,9 +218,7 @@ const CoursePage = () => {
 
         <p className='text-gray-600'>{selectedCourse.description}</p>
 
-        <p className='font-bold mt-2'>
-          {selectedCourse.duration} minutes
-        </p>
+        <p className='font-bold mt-2'>{selectedCourse.duration} minutes</p>
       </section>
 
       <section className='courseContent'>
