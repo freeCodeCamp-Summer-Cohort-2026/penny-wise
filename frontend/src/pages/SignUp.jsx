@@ -1,102 +1,169 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import AuthSplit, {
+  FormStatus,
+  SubmitButton,
+  TextField,
+} from '../components/AuthSplit';
+import Hero from '../assets/illustrations/svg/7 - BANK DEAL.svg';
+import Faint from '../assets/illustrations/svg/9 - ECONOMY ANALYSIS.svg';
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    checkpassword: '',
-    checkbox: false,
-  });
-  const handleChange = (e) => {
-    const { name, type, value, checked } = e.target;
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [status, setStatus] = useState(null);
+  const timer = useRef(null);
 
-    let newValue;
+  useEffect(() => () => clearTimeout(timer.current), []);
 
-    if (type === 'checkbox') {
-      newValue = checked;
-    } else {
-      newValue = value;
-    }
+  const loading = status?.state === 'loading';
+  const mismatch =
+    password !== '' && confirmPassword !== '' && password !== confirmPassword;
 
-    setFormData({
-      ...formData,
-      [name]: newValue,
-    });
-  };
-  let submit = (e) => {
+  const submit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.checkpassword) {
-      return; // surface an error and return early
+    if (loading) return;
+    if (mismatch) {
+      setStatus({ state: 'error', message: 'Passwords do not match.' });
+      return;
     }
+    setStatus({ state: 'loading', message: 'Creating your account…' });
+    timer.current = setTimeout(() => {
+      setStatus({
+        state: 'success',
+        message: `Account created for ${username.trim()}. Welcome aboard!`,
+      });
+    }, 900);
   };
+
+  const eyeButton = (show, setShow) => (
+    <button
+      type='button'
+      onClick={() => setShow((v) => !v)}
+      aria-label={show ? 'Hide password' : 'Show password'}
+      aria-pressed={show}
+      className='absolute top-1/2 right-3 -translate-y-1/2 text-[var(--text)] opacity-70 transition-opacity hover:opacity-100'
+    >
+      {show ? <EyeOff size={18} /> : <Eye size={18} />}
+    </button>
+  );
 
   return (
-    <>
-      <form onSubmit={submit}>
-        <h1>SignUp</h1>
-        <label htmlFor='username'>Username</label>
-        <input
-          type='text'
+    <AuthSplit
+      heroSrc={Hero}
+      heroAlt='Handshake over a bank counter'
+      faintSrc={Faint}
+      panelTitle='Start smart with Penny Wise'
+      panelSub='Create an account to learn money skills and grow savings.'
+      chips={[
+        { title: 'Free to start', sub: 'No card needed' },
+        { title: 'Learn by doing', sub: 'Bite-size lessons' },
+      ]}
+      mobileTitle='Sign up'
+      mobileSub='Hi! Create your account'
+    >
+      <div className='mb-6 hidden lg:block'>
+        <h1 className='m-0 text-[28px] font-semibold tracking-tight text-[var(--text-h)]'>
+          Sign up
+        </h1>
+        <p className='mt-2 text-[15px] text-[var(--text)]'>
+          Hi! Create your account.
+        </p>
+      </div>
+
+      <form onSubmit={submit} className='space-y-4'>
+        <TextField
           id='username'
+          label='Username'
+          type='text'
           name='username'
-          pattern='[A-Za-z]{3,9}'
-          minLength='3'
-          maxLength='9'
-          onChange={handleChange}
-          value={formData.username}
+          placeholder='Choose a username'
+          autoComplete='username'
+          minLength={3}
+          maxLength={20}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          icon={User}
           required
         />
-
-        <label htmlFor='e-mail'>E-mail</label>
-        <input
+        <TextField
+          id='email'
+          label='Email'
           type='email'
-          pattern=''
-          id='e-mail'
           name='email'
-          onChange={handleChange}
-          value={formData.email}
+          placeholder='Enter your email'
+          autoComplete='email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          icon={Mail}
           required
         />
-
-        <label htmlFor='Password'>Password</label>
-        <input
-          type='password'
+        <TextField
           id='password'
+          label='Password'
+          type={showPassword ? 'text' : 'password'}
           name='password'
-          minLength='8'
-          maxLength='20'
-          pattern='(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}'
-          onChange={handleChange}
-          value={formData.password}
+          placeholder='Enter your password'
+          autoComplete='new-password'
+          minLength={8}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          icon={Lock}
           required
+          rightSlot={eyeButton(showPassword, setShowPassword)}
         />
-        <input
-          type='password'
-          id='checkpassword'
-          name='checkpassword'
-          onChange={handleChange}
-          value={formData.checkpassword}
+        <TextField
+          id='confirm-password'
+          label='Confirm password'
+          type={showConfirm ? 'text' : 'password'}
+          name='confirmPassword'
+          placeholder='Confirm your password'
+          autoComplete='new-password'
+          minLength={8}
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          icon={Lock}
           required
+          error={mismatch ? 'Passwords do not match.' : undefined}
+          rightSlot={eyeButton(showConfirm, setShowConfirm)}
         />
 
-        {formData.password !== '' &&
-          formData.password !== formData.checkpassword && (
-            <p>Passwords do not match</p>
-          )}
+        <label
+          htmlFor='terms'
+          className='flex cursor-pointer items-start gap-2 text-sm text-[var(--text)]'
+        >
+          <input
+            type='checkbox'
+            id='terms'
+            name='terms'
+            required
+            className='mt-0.5 h-4 w-4 shrink-0 rounded accent-[var(--accent-bold)]'
+          />
+          I agree to the Terms and Privacy Policy
+        </label>
 
-        <label htmlFor='checkbox'>CheckBox</label>
-        <input
-          type='checkbox'
-          id='checkbox'
-          name='checkbox'
-          checked={formData.checkbox}
-          onChange={handleChange}
-          required
-        />
-        <button type='submit'>Sign Up</button>
+        <SubmitButton loading={loading}>
+          {loading ? 'Creating account…' : 'Sign up'}
+        </SubmitButton>
+        <FormStatus status={status} />
       </form>
-    </>
+
+      <p className='mt-6 text-center text-sm text-[var(--text)]'>
+        Already have an account?{' '}
+        <Link
+          to='/login'
+          className='font-semibold text-[var(--accent)] hover:underline'
+        >
+          Log in
+        </Link>
+      </p>
+    </AuthSplit>
   );
 };
+
 export default SignUp;
