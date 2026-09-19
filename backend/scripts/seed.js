@@ -1403,8 +1403,16 @@ async function seed({ mongoUri } = {}) {
     await course.save();
     courses.push(course);
 
-    // creator.coursesCreated.push(course._id);
-    // await creator.save();
+    creator.coursesCreated.push(course._id);
+    await creator.save();
+  }
+
+  const learners = SEED_USERS.filter((u) => u.role === 'learner').map(
+    (u) => usersByEmail[u.email],
+  );
+  for (const learner of learners) {
+    learner.coursesEnrolled = courses.map((c) => c._id);
+    await learner.save();
   }
 
   for (const walletData of WALLETS) {
