@@ -1403,8 +1403,8 @@ async function seed({ mongoUri } = {}) {
     await course.save();
     courses.push(course);
 
-    creator.coursesCreated.push(course._id);
-    await creator.save();
+    // creator.coursesCreated.push(course._id);
+    // await creator.save();
   }
 
   const learners = SEED_USERS.filter((u) => u.role === 'learner').map(
