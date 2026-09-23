@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import { registerUser } from '../lib/api/penny-wise';
 import AuthSplit, {
   FormStatus,
   SubmitButton,
@@ -10,35 +11,44 @@ import Hero from '../assets/illustrations/svg/7 - BANK DEAL.svg';
 import Faint from '../assets/illustrations/svg/9 - ECONOMY ANALYSIS.svg';
 
 const SignUp = () => {
-  const [username, setUsername] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [status, setStatus] = useState(null);
-  const timer = useRef(null);
-
-  useEffect(() => () => clearTimeout(timer.current), []);
 
   const loading = status?.state === 'loading';
   const mismatch =
     password !== '' && confirmPassword !== '' && password !== confirmPassword;
 
-  const submit = (e) => {
-    e.preventDefault();
-    if (loading) return;
-    if (mismatch) {
-      setStatus({ state: 'error', message: 'Passwords do not match.' });
-      return;
-    }
-    setStatus({ state: 'loading', message: 'Creating your account…' });
-    timer.current = setTimeout(() => {
+  const submit = async (e) => {
+    try {
+      e.preventDefault();
+      if (loading) return;
+      if (mismatch) {
+        setStatus({ state: 'error', message: 'Passwords do not match.' });
+        return;
+      }
+      setStatus({ state: 'loading', message: 'Creating your account…' });
+      await registerUser({ displayName, email, password });
       setStatus({
         state: 'success',
-        message: `Account created for ${username.trim()}. Welcome aboard!`,
+        message: 'Account created successfully! Redirecting to login…',
       });
-    }, 900);
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 2000);
+    } catch (error) {
+      setStatus({
+        state: 'error',
+        message:
+          error?.error ||
+          'An error occurred while creating your account. Please try again.',
+      });
+      console.error('Error creating account:', error);
+    }
   };
 
   const eyeButton = (show, setShow) => (
@@ -86,8 +96,8 @@ const SignUp = () => {
           autoComplete='username'
           minLength={3}
           maxLength={20}
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
           icon={User}
           required
         />

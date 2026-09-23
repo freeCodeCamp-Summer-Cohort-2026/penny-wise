@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
     },
     passwordHash: { type: String, required: true },
-    profilePic: { type: String, default: 'default-profile.png' },
+    profilePic: {
+      type: String,
+      default: () =>
+        `https://api.dicebear.com/10.x/avataaars/svg?seed=${crypto.randomUUID()}`,
+    },
     country: { type: String, trim: true },
   },
   baseOptions,

@@ -3,8 +3,8 @@ import ThemeToggle from './ThemeToggle';
 import Dollar from '../assets/dollar.png';
 import { cn } from '../utils/utils';
 import { useState } from 'react';
-
-import { CircleUser, House, Menu } from 'lucide-react';
+import { useAuth } from '../lib/useAuth';
+import { CircleUser, House, Menu, LogOut } from 'lucide-react';
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,32 +69,60 @@ export default function NavBar() {
 }
 
 function MenuElements({ onNavigate }) {
+  const { auth, signOut } = useAuth();
   return (
     <>
       <ThemeToggle
         label='Change Theme'
         className='max-md:w-full max-md:justify-start max-md:gap-2 max-md:rounded-lg max-md:px-3 max-md:hover:bg-gray-100 max-md:dark:hover:bg-gray-800'
       />
-      <Link
-        to='/profile'
-        onClick={onNavigate}
-        className='flex items-center max-md:w-full max-md:gap-2 max-md:rounded-lg max-md:px-3 max-md:py-2 max-md:hover:bg-gray-100 max-md:dark:hover:bg-gray-800'
-      >
-        <span className='flex h-9 w-9 items-center justify-center'>
-          <CircleUser />
-        </span>
-        <span className='hidden text-sm max-md:inline'>Profile</span>
-      </Link>
-      <Link to='/signup' className='max-md:w-full' onClick={onNavigate}>
-        <button className='px-4 py-2 max-md:w-full max-md:rounded-lg bg-[var(--accent-bold)] text-white transition-colors hover:bg-gray-500 dark:hover:bg-gray-800'>
-          Sign Up
-        </button>
-      </Link>
-      <Link to='/login' className='max-md:w-full' onClick={onNavigate}>
-        <button className='px-4 py-2 max-md:w-full max-md:rounded-lg bg-[var(--accent-bg)] text-[var(--text)] transition-colors hover:bg-gray-100 dark:hover:bg-gray-800'>
-          Log In
-        </button>
-      </Link>
+      {auth ? (
+        <>
+          <Link
+            to='/profile'
+            onClick={onNavigate}
+            className='flex items-center max-md:w-full max-md:gap-2 max-md:rounded-lg max-md:px-3 max-md:py-2 max-md:hover:bg-gray-100 max-md:dark:hover:bg-gray-800'
+          >
+            <span className='flex h-9 w-9 items-center justify-center'>
+              {auth.user.avatar ? (
+                <img
+                  src={auth.user.avatar}
+                  alt='avatar'
+                  className='rounded-full w-6'
+                />
+              ) : (
+                <CircleUser />
+              )}
+            </span>
+            <span className='hidden text-sm max-md:inline'>Profile</span>
+          </Link>
+          <button
+            onClick={() => {
+              signOut();
+              onNavigate();
+            }}
+            className='flex cursor-pointer items-center max-md:w-full max-md:gap-2 max-md:rounded-lg max-md:px-3 max-md:py-2 max-md:hover:bg-gray-100 max-md:dark:hover:bg-gray-800'
+          >
+            <span className='flex h-9 w-9 items-center justify-center'>
+              <LogOut />
+            </span>
+            <span className='hidden text-sm max-md:inline'>Log Out</span>
+          </button>
+        </>
+      ) : (
+        <>
+          <Link to='/signup' className='max-md:w-full' onClick={onNavigate}>
+            <button className='px-4 py-2 max-md:w-full max-md:rounded-lg bg-[var(--accent-bold)] text-white transition-colors hover:bg-gray-500 dark:hover:bg-gray-800'>
+              Sign Up
+            </button>
+          </Link>
+          <Link to='/login' className='max-md:w-full' onClick={onNavigate}>
+            <button className='px-4 py-2 max-md:w-full max-md:rounded-lg bg-[var(--accent-bg)] text-[var(--text)] transition-colors hover:bg-gray-100 dark:hover:bg-gray-800'>
+              Log In
+            </button>
+          </Link>
+        </>
+      )}
     </>
   );
 }

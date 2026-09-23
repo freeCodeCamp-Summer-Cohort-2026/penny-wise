@@ -8,8 +8,11 @@ import AuthSplit, {
 } from '../components/AuthSplit';
 import Hero from '../assets/illustrations/svg/4 - BUDGETTING.svg';
 import Faint from '../assets/illustrations/svg/6 - FINANCES.svg';
+import { loginUser } from '../lib/api/penny-wise';
+import { useAuth } from '../lib/useAuth';
 
 const LoginPage = () => {
+  const { signIn } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false);
@@ -75,6 +78,8 @@ const LoginPage = () => {
           id='email'
           label='Email'
           type='email'
+          pattern=''
+          id='e-mail'
           name='email'
           placeholder='Enter your email'
           autoComplete='email'

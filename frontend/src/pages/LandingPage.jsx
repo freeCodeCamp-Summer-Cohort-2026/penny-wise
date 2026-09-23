@@ -1,8 +1,6 @@
 const LandingPage = () => {
   return (
     <>
-      {/*This is where NavBar is going to be
-      with the Header and the NavLinks for Sign-up and Log-in*/}
       <main>
         <section>
           <h1>Title</h1>
@@ -18,8 +16,6 @@ const LandingPage = () => {
           <button>Sign Up</button>
         </section>
       </main>
-
-      {/*This is where the Footer is going to be*/}
     </>
   );
 };
