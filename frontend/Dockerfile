@@ -3,6 +3,9 @@ FROM node:22-slim AS builder
 WORKDIR /app
 
 COPY package*.json ./
+
+RUN npm install -g npm@12.1.0
+
 RUN npm install
 
 COPY . .
@@ -24,6 +27,8 @@ FROM node:22-slim AS dev
 WORKDIR /app
 
 COPY package*.json ./
+
+RUN npm install -g npm@12.1.0
 
 RUN npm install
 

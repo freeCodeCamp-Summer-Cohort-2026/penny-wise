@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
+RUN npm install -g npm@12.1.0
+
 RUN npm install --omit=dev
 
 COPY . .
@@ -19,6 +21,8 @@ WORKDIR /src
 ENV PORT=5000
 
 COPY package*.json ./
+
+RUN npm install -g npm@12.1.0
 
 RUN npm install
 
