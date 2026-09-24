@@ -78,8 +78,6 @@ const LoginPage = () => {
           id='email'
           label='Email'
           type='email'
-          pattern=''
-          id='e-mail'
           name='email'
           placeholder='Enter your email'
           autoComplete='email'
