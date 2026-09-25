@@ -1,10 +1,10 @@
-const request = require('supertest')
-const { createApp } = require('../app')
-const { setupTestDB, teardownTestDB, clearTestDB } = require('./setup')
-const User = require('../models/User')
-const authRoutes = require('../routes/auth')
+const request = require('supertest');
+const { createApp } = require('../app');
+const { setupTestDB, teardownTestDB, clearTestDB } = require('./setup');
+const User = require('../models/User');
+const authRoutes = require('../routes/auth');
 
-const app = createApp()
+const app = createApp();
 
 beforeAll(async () => {
   await setupTestDB();
@@ -77,22 +77,22 @@ it('registers author with the correct invite code', async () => {
     password: 'fake1234',
     displayName: 'Testy',
     authorInviteCode: process.env.AUTHOR_SECRET_CODE,
-  })
+  });
 
   expect(res.status).toBe(201);
   expect(res.body.user.role).toBe('author');
-})
+});
 
 it('returns error with incorrect author invite code', async () => {
   const res = await request(app).post('/api/auth/register').send({
     email: 'test2@gmail.com',
     password: 'fake1234',
     displayName: 'Testy',
-    authorInviteCode: 'FAKECODE'
-  })
+    authorInviteCode: 'FAKECODE',
+  });
 
-  expect(res.status).toBe(400)
-})
+  expect(res.status).toBe(400);
+});
 
 it('rejects displayName longer than 100 characters', async () => {
   const longName = 'A'.repeat(101);
@@ -104,9 +104,7 @@ it('rejects displayName longer than 100 characters', async () => {
   });
 
   expect(res.status).toBe(400);
-  expect(res.body.error).toBe(
-    'display name must be 100 characters or less',
-  );
+  expect(res.body.error).toBe('display name must be 100 characters or less');
 });
 
 describe('POST /api/auth/login', () => {
@@ -136,5 +134,4 @@ describe('POST /api/auth/login', () => {
 
     expect(res.status).toBe(401);
   });
-
 });
