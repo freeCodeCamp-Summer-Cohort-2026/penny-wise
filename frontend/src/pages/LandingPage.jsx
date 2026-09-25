@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const LandingPage = () => {
   return (
     <>
@@ -13,7 +15,12 @@ const LandingPage = () => {
 
         <section>
           <h2>Get Started Today</h2>
-          <button>Sign Up</button>
+          <Link
+            to='/signup'
+            className='mt-4 inline-flex bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
+          >
+            Sign up
+          </Link>
         </section>
       </main>
     </>

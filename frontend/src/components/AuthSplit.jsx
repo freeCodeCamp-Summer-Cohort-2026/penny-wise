@@ -15,13 +15,11 @@ export default function AuthSplit({
   return (
     <div className='relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-clip text-left'>
       <div className='mx-auto grid min-h-[calc(100svh-80px)] w-full max-w-6xl lg:grid-cols-2'>
-        <aside className='relative hidden overflow-hidden border-r border-[var(--border)] bg-[var(--code-bg)] px-10 py-12 lg:flex lg:flex-col lg:justify-center'>
-          <h2 className='mt-8 max-w-sm text-[32px] leading-tight font-semibold tracking-tight text-[var(--text-h)]'>
+        <aside className='relative hidden overflow-hidden border-r border-(--border) bg-(--code-bg) px-10 py-12 lg:flex lg:flex-col lg:justify-center'>
+          <h2 className='mt-8 max-w-sm text-[32px] leading-tight font-semibold tracking-tight text-(--text-h)'>
             {panelTitle}
           </h2>
-          <p className='mt-3 max-w-sm text-[15px] text-[var(--text)]'>
-            {panelSub}
-          </p>
+          <p className='mt-3 max-w-sm text-[15px] text-(--text)'>{panelSub}</p>
           <img
             src={heroSrc}
             alt={heroAlt}
@@ -32,12 +30,12 @@ export default function AuthSplit({
               {chips.map((chip) => (
                 <div
                   key={chip.title}
-                  className='rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4'
+                  className='rounded-xl border border-(--border) bg-(--bg) p-4'
                 >
-                  <p className='text-sm font-semibold text-[var(--text-h)]'>
+                  <p className='text-sm font-semibold text-(--text-h)'>
                     {chip.title}
                   </p>
-                  <p className='mt-1 text-sm text-[var(--text)]'>{chip.sub}</p>
+                  <p className='mt-1 text-sm text-(--text)'>{chip.sub}</p>
                 </div>
               ))}
             </div>
@@ -50,18 +48,18 @@ export default function AuthSplit({
           />
         </aside>
 
-        <section className='relative flex items-center justify-center bg-[var(--bg)] px-5 py-10 sm:px-10'>
+        <section className='relative flex items-center justify-center bg-(--bg) px-5 py-10 sm:px-10'>
           <div className='w-full max-w-sm'>
-            <div className='mb-8 overflow-hidden rounded-2xl bg-[var(--accent-bg)] p-6 text-center lg:hidden'>
+            <div className='mb-8 overflow-hidden rounded-2xl bg-(--accent-bg) p-6 text-center lg:hidden'>
               <img
                 src={heroSrc}
                 alt={heroAlt}
                 className='mx-auto h-36 w-auto object-contain'
               />
-              <p className='mt-4 text-xl font-semibold text-[var(--text-h)]'>
+              <p className='mt-4 text-xl font-semibold text-(--text-h)'>
                 {mobileTitle}
               </p>
-              <p className='mt-1 text-sm text-[var(--text)]'>{mobileSub}</p>
+              <p className='mt-1 text-sm text-(--text)'>{mobileSub}</p>
             </div>
             {children}
           </div>
@@ -89,7 +87,7 @@ export function TextField({
     <div>
       <label
         htmlFor={id}
-        className='mb-1.5 block text-sm font-medium text-[var(--text-h)]'
+        className='mb-1.5 block text-sm font-medium text-(--text-h)'
       >
         {label}
       </label>
@@ -98,23 +96,20 @@ export function TextField({
           <Icon
             size={18}
             aria-hidden='true'
-            className='pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-[var(--text)] opacity-60'
+            className='pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-(--text) opacity-60'
           />
         )}
         <input
           id={id}
           {...inputProps}
-          className={`w-full border border-[var(--border)] bg-[var(--code-bg)] py-2.5 pr-3 pl-10 text-[15px] text-[var(--text-h)] transition-colors outline-none placeholder:text-[var(--text)] placeholder:opacity-70 focus:border-[var(--accent-border)] focus:ring-2 focus:ring-[var(--accent-border)] ${
+          className={`w-full border border-(--border) bg-(--code-bg) py-2.5 pr-3 pl-10 text-[15px] text-(--text-h) transition-colors outline-none placeholder:opacity-70 focus:ring-2 focus:ring-(--accent-border) ${
             rightSlot ? 'pr-10' : ''
           }`}
         />
         {rightSlot}
       </div>
       {error ? (
-        <p
-          role='alert'
-          className='mt-1.5 text-sm text-red-600 dark:text-red-400'
-        >
+        <p role='alert' className='mt-1.5 text-sm text-red-600'>
           {error}
         </p>
       ) : null}
@@ -140,7 +135,7 @@ export function SubmitButton({ loading, children }) {
   }, []);
   return (
     <div ref={dropDownRef} className='relative'>
-      <div className='flex items-stretch bg-[var(--accent-bold)] text-[15px] font-semibold text-white transition hover:brightness-110 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70'>
+      <div className='flex items-stretch bg-(--accent-bold) text-[15px] font-semibold text-white transition hover:brightness-110 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70'>
         <button
           type='submit'
           disabled={loading}
@@ -177,7 +172,7 @@ export function SubmitButton({ loading, children }) {
                   setSelectedRole('User');
                 }}
                 className='block px-4 py-2 text-sm text-gray-700
-                                 hover:bg-gray-100 flex justify-between items-center'
+                                 hover:bg-gray-100 justify-between items-center'
                 role='menuitem'
               >
                 <span>User</span>
@@ -190,7 +185,7 @@ export function SubmitButton({ loading, children }) {
                 setSelectedRole('Author');
               }}
               className='block px-4 py-2 text-sm text-gray-700
-                                 hover:bg-gray-100 flex justify-between items-center'
+                                 hover:bg-gray-100 justify-between items-center'
               role='menuitem'
             >
               <span>Author</span>
@@ -207,10 +202,10 @@ export function FormStatus({ status }) {
   if (!status) return <div aria-live='polite' className='min-h-6' />;
   const color =
     status.state === 'error'
-      ? 'text-red-600 dark:text-red-400'
+      ? 'text-red-600'
       : status.state === 'success'
-        ? 'text-green-700 dark:text-green-400'
-        : 'text-[var(--text)]';
+        ? 'text-green-700'
+        : 'text-(--text)';
   return (
     <div aria-live='polite' className='min-h-6'>
       <p className={`text-sm ${color}`}>{status.message}</p>

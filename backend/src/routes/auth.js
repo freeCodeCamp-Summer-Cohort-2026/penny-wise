@@ -3,6 +3,10 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const rateLimit = require('express-rate-limit');
 const { User, Learner, Author } = require('../models/User');
+const Course = require('../models/Course');
+const Lesson = require('../models/Lesson');
+const LessonProgress = require('../models/LessonProgress');
+const { requireAuth } = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -15,6 +19,112 @@ const sanitizeUser = (user) => ({
   avatar: user.profilePic,
   country: user.country,
 });
+
+const serializeCurrentUser = (user) => ({
+  ...sanitizeUser(user),
+  ...(user.role === 'learner'
+    ? {
+        experience: user.experience,
+        currentStreak: user.currentStreak,
+        longestStreak: user.longestStreak,
+        currentLives: user.currentLives,
+        coursesEnrolled: user.coursesEnrolled,
+        completedLessons: user.completedLessons,
+      }
+    : {}),
+});
+
+async function getLearningOverview(user) {
+  if (user.role !== 'learner') {
+    return {
+      resume: null,
+      enrolledCourseIds: [],
+      completedCourseIds: [],
+      completedLessons: [],
+    };
+  }
+
+  const [progress, enrolledCourses] = await Promise.all([
+    LessonProgress.find({ learner: user._id }).sort({ updatedAt: -1 }).lean(),
+    Course.find({ _id: { $in: user.coursesEnrolled }, published: true }).lean(),
+  ]);
+  const completedPairs = new Set(
+    progress
+      .filter((item) => item.state === 'completed')
+      .map(
+        (item) =>
+          `${item.learner.toString()}:${item.course.toString()}:${item.lesson.toString()}`,
+      ),
+  );
+  const completedCourseIds = enrolledCourses
+    .filter((course) =>
+      course.lessons.every((lessonId) =>
+        completedPairs.has(
+          `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`,
+        ),
+      ),
+    )
+    .map((course) => course._id);
+  const activeProgress = progress.find((item) => item.state === 'in_progress');
+  let resumeCourseId = activeProgress?.course || null;
+  let resumeLessonId = activeProgress?.lesson || null;
+  let resumePageIndex = activeProgress?.currentPage || 0;
+
+  if (!resumeLessonId) {
+    const nextCourse = enrolledCourses.find((course) =>
+      course.lessons.some(
+        (lessonId) =>
+          !completedPairs.has(
+            `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`,
+          ),
+      ),
+    );
+    resumeCourseId = nextCourse?._id || null;
+    resumeLessonId =
+      nextCourse?.lessons.find(
+        (lessonId) =>
+          !completedPairs.has(
+            `${user._id.toString()}:${nextCourse._id.toString()}:${lessonId.toString()}`,
+          ),
+      ) || null;
+  }
+
+  const resumeCourse = enrolledCourses.find(
+    (course) => course._id.toString() === resumeCourseId?.toString(),
+  );
+  const resumeLesson = resumeLessonId
+    ? await Lesson.findById(resumeLessonId).lean()
+    : null;
+  const pageId = resumeLesson?.pages[resumePageIndex] || null;
+  let resume = null;
+
+  if (resumeCourse && resumeLesson && pageId) {
+    resume = {
+      courseId: resumeCourse._id,
+      courseName: resumeCourse.name,
+      lessonId: resumeLesson._id,
+      lessonName: resumeLesson.name,
+      pageId,
+      pageNumber: resumePageIndex + 1,
+      totalPages: resumeLesson.pages.length,
+      updatedAt:
+        activeProgress?.updatedAt ||
+        progress.find(
+          (item) =>
+            item.course.toString() === resumeCourse._id.toString() &&
+            item.lesson.toString() === resumeLesson._id.toString(),
+        )?.updatedAt ||
+        null,
+    };
+  }
+
+  return {
+    resume,
+    enrolledCourseIds: user.coursesEnrolled,
+    completedCourseIds,
+    completedLessons: user.completedLessons,
+  };
+}
 
 const registerLimiter =
   process.env.NODE_ENV === 'test'
@@ -54,6 +164,22 @@ function signToken(user) {
     },
   );
 }
+
+router.get('/me', requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const learning = await getLearningOverview(user);
+    return res.json({ user: serializeCurrentUser(user), learning });
+  } catch (err) {
+    console.log({ err });
+    return res.status(500).json({ error: 'Failed to load current user' });
+  }
+});
 
 // POST /api/auth/register
 router.post('/register', registerLimiter, async (req, res) => {

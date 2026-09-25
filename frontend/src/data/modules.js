@@ -1,176 +1,109 @@
+import { fallbackBriefLessons } from './briefLessons';
+
 export const modules = [
   {
     id: 1,
     name: 'Money Basics',
     description:
       'Learn what money does, where it goes, and how to stay in charge.',
+    briefLesson: fallbackBriefLessons.money,
     lessons: [
       {
         id: 1,
-        title: 'What is Money?',
-        description:
-          'Learn what classifies a currency and where the idea of currency came from.',
+        title: 'What Is Money?',
+        description: 'See the shared idea behind coins, notes, and payments.',
         duration: 5,
       },
       {
         id: 2,
-        title: 'Why do we use Money?',
-        description:
-          'Understand the purposes and benefits of using money in daily life.',
+        title: 'Coins & Notes',
+        description: 'Spot value even when the shape of money changes.',
         duration: 6,
       },
       {
         id: 3,
-        title: 'Where does it come from?',
-        description:
-          "Learn where money comes from, including how it's created and circulated in the economy.",
-        duration: 4,
-      },
-      {
-        id: 4,
-        title: 'Where does it go?',
-        description:
-          'Understand where money goes, including common expenses and how to manage your spending.',
-        duration: 4,
-      },
-      {
-        id: 5,
-        title: 'How do we stay in Charge?',
-        description:
-          'Learn how to take control of your finances, set goals, and make informed decisions.',
-        duration: 10,
+        title: 'Counting Total Value',
+        description: 'Group, add, and check a money total without guessing.',
+        duration: 8,
       },
     ],
   },
-
   {
     id: 2,
     name: 'Smart Spending',
-    description:
-      'Spot trade-offs, compare choices, and spend without the regret.',
+    description: 'Spot trade-offs, compare choices, and spend without regret.',
+    briefLesson: fallbackBriefLessons.spending,
     lessons: [
       {
         id: 1,
-        title: 'Smart Spending1',
-        description:
-          'Learn what classifies a currency and where the idea of currency came from.',
+        title: 'Needs vs Wants',
+        description: 'Sort choices by the job they do in your life.',
         duration: 5,
       },
       {
         id: 2,
-        title: 'Smart Spending2',
-        description:
-          'Understand the purposes and benefits of using money in daily life.',
+        title: 'Making Change',
+        description: 'Calculate and check the change after a purchase.',
         duration: 6,
       },
       {
         id: 3,
-        title: 'Smart Spending3',
-        description:
-          "Learn where money comes from, including how it's created and circulated in the economy.",
-        duration: 4,
-      },
-      {
-        id: 4,
-        title: 'Smart Spending4',
-        description:
-          'Understand where money goes, including common expenses and how to manage your spending.',
-        duration: 4,
-      },
-      {
-        id: 5,
-        title: 'Smart Spending5',
-        description:
-          'Learn how to take control of your finances, set goals, and make informed decisions.',
-        duration: 10,
+        title: 'Save or Spend?',
+        description: 'Make a small budget that leaves room for joy.',
+        duration: 8,
       },
     ],
   },
-
   {
     id: 3,
     name: 'Saving Goals',
     description:
       'Turn big dreams into small steps you can actually stick with.',
+    briefLesson: fallbackBriefLessons.saving,
     lessons: [
       {
         id: 1,
-        title: 'Saving Goals1',
-        description:
-          'Learn what classifies a currency and where the idea of currency came from.',
+        title: 'Set a Savings Target',
+        description: 'Give a wish an amount, a date, and a finish line.',
         duration: 5,
       },
       {
         id: 2,
-        title: 'Saving Goals2',
-        description:
-          'Understand the purposes and benefits of using money in daily life.',
+        title: 'Build a Tiny Habit',
+        description: 'Choose a small deposit that is easy to repeat.',
         duration: 6,
       },
       {
         id: 3,
-        title: 'Saving Goals3',
-        description:
-          "Learn where money comes from, including how it's created and circulated in the economy.",
-        duration: 4,
-      },
-      {
-        id: 4,
-        title: 'Saving Goals4',
-        description:
-          'Understand where money goes, including common expenses and how to manage your spending.',
-        duration: 4,
-      },
-      {
-        id: 5,
-        title: 'Saving Goals5',
-        description:
-          'Learn how to take control of your finances, set goals, and make informed decisions.',
-        duration: 10,
+        title: 'The Three Buckets',
+        description: 'Give every money intention its own place.',
+        duration: 8,
       },
     ],
   },
-
   {
     id: 4,
     name: 'Earning & Work',
-    description:
-      'Explore ways to earn and understand what your time is worth.',
+    description: 'Explore ways to earn and understand what your time is worth.',
+    briefLesson: fallbackBriefLessons.work,
     lessons: [
       {
         id: 1,
-        title: 'Earning & Work1',
-        description:
-          'Learn what classifies a currency and where the idea of currency came from.',
+        title: 'Your Time Has Value',
+        description: 'Find the time and effort behind a price.',
         duration: 5,
       },
       {
         id: 2,
-        title: 'Earning & Work2',
-        description:
-          'Understand the purposes and benefits of using money in daily life.',
+        title: 'More Than a Paycheck',
+        description: 'Compare the whole reward of a job.',
         duration: 6,
       },
       {
         id: 3,
-        title: 'Earning & Work3',
-        description:
-          "Learn where money comes from, including how it's created and circulated in the economy.",
-        duration: 4,
-      },
-      {
-        id: 4,
-        title: 'Earning & Work4',
-        description:
-          'Understand where money goes, including common expenses and how to manage your spending.',
-        duration: 4,
-      },
-      {
-        id: 5,
-        title: 'Earning & Work5',
-        description:
-          'Learn how to take control of your finances, set goals, and make informed decisions.',
-        duration: 10,
+        title: 'Grow Your Skills',
+        description: 'Build a useful skill with small, visible practice.',
+        duration: 8,
       },
     ],
   },

@@ -1,5 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from 'react-router-dom';
 import NavBar from './components/NavBar';
+import RequireAuth from './components/RequireAuth';
 import LandingPage from './pages/LandingPage';
 import ProfilePage from './pages/ProfilePage';
 import Dashboard from './pages/Dashboard';
@@ -8,33 +14,60 @@ import LoginPage from './pages/LoginPage';
 import CourseCatalog from './pages/CourseCatalog';
 import ErrorPage from './pages/ErrorPage';
 import CoursePage from './pages/CoursePage';
-import ModulesPage from './pages/ModulesPage';
-
+import LessonPage from './pages/LessonPage';
 import './App.css';
 
-function App() {
+export function AppRoutes() {
   return (
-    <Router>
+    <>
       <NavBar />
-
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LoginPage />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/modules' element={<ModulesPage />} />
-        <Route path='/modules/:moduleId' element={<ModulesPage />} />
+        <Route path='/courses' element={<CourseCatalog />} />
+        <Route
+          path='/courses/:courseId/lessons/:lessonId'
+          element={
+            <RequireAuth allowedRole='learner'>
+              <LessonPage />
+            </RequireAuth>
+          }
+        />
+        <Route path='/courses/:courseId' element={<CoursePage />} />
+        <Route
+          path='/dashboard'
+          element={
+            <RequireAuth allowedRole='learner'>
+              <Dashboard />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path='/coursecatalog'
+          element={<Navigate to='/courses' replace />}
+        />
+        <Route path='/modules' element={<Navigate to='/courses' replace />} />
         <Route
           path='/modules/:moduleId/course/:courseId'
-          element={<CoursePage />}
+          element={<Navigate to='/courses' replace />}
         />
-        <Route path='/coursecatalog' element={<CourseCatalog />} />
+        <Route
+          path='/modules/:moduleId'
+          element={<Navigate to='/courses' replace />}
+        />
         <Route path='/errorpage' element={<ErrorPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+}

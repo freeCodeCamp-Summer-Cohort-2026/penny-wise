@@ -1,43 +1,30 @@
-import { createContext, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import {
+  AUTH_CHANGE_EVENT,
+  AUTH_STORAGE_KEY,
+  clearAuth,
+  readAuth,
+  saveAuth,
+} from '../lib/authStorage';
+import { AuthContext } from './auth-context';
 
-const STORAGE_KEY = 'penny-wise.auth';
-const AUTH_EVENT = 'penny-wise.auth-changed';
-
-function readAuth() {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-}
-
-function notifyAuthChanged() {
-  window.dispatchEvent(new Event(AUTH_EVENT));
-}
-
-// eslint-disable-next-line
-export const AuthContext = createContext(null);
-
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [auth, setAuth] = useState(() => readAuth());
 
   const signIn = useCallback(({ token, user }) => {
     const value = { token, user };
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    saveAuth(value);
     setAuth(value);
-    notifyAuthChanged();
   }, []);
 
   const signOut = useCallback(() => {
-    window.localStorage.removeItem(STORAGE_KEY);
+    clearAuth();
     setAuth(null);
-    notifyAuthChanged();
   }, []);
 
   useEffect(() => {
-    const onStorage = (e) => {
-      if (e.key !== null && e.key !== STORAGE_KEY) return;
+    const onStorage = (event) => {
+      if (event.key !== null && event.key !== AUTH_STORAGE_KEY) return;
       setAuth(readAuth());
     };
     window.addEventListener('storage', onStorage);
@@ -46,8 +33,8 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const resync = () => setAuth(readAuth());
-    window.addEventListener(AUTH_EVENT, resync);
-    return () => window.removeEventListener(AUTH_EVENT, resync);
+    window.addEventListener(AUTH_CHANGE_EVENT, resync);
+    return () => window.removeEventListener(AUTH_CHANGE_EVENT, resync);
   }, []);
 
   return (
@@ -55,4 +42,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
