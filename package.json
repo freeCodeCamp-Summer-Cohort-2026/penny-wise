@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lefthook": "lefthook",
-    "start": "docker compose up --build -d",
+    "start": "docker compose -f docker-compose-atlas.yml up --build -d",
     "stop": "docker compose down -v",
-    "seed_n_test": "docker exec penny-wise_backend_1 node scripts/seed && docker exec penny-wise_backend_1 npm run test"
+    "seed_n_test": "docker exec penny-wise-backend-1 node scripts/seed && cd backend && npm run test"
   },
   "repository": {
     "type": "git",
