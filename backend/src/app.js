@@ -34,9 +34,9 @@ function createApp() {
   app.use('/api/courses', coursesRouter);
   app.use('/api/countries', countriesRouter);
 
-  const connection = mongoose.createConnection(
-    'mongodb://service_mongo:27017/pennywise_db',
-  );
+  const connectionURI = process.env.MONGODB_URI;
+
+  const connection = mongoose.createConnection(connectionURI);
   // 3. Mount Mongoose Studio UI and API handlers
   // Note: Wrap the setup in an async context or mount via a custom wrapper route since studio() returns a Promise
   app.use('/studio', async (req, res, next) => {
