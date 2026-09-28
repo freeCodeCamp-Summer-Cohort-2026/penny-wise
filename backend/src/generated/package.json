@@ -1,0 +1,47 @@
+{
+  "name": "penny-wise-economy-literacy-helper",
+  "version": "1.0.0",
+  "description": "This is a project created during the Summer Cohort in 20226 from [https://freecodecamp.org](https://freecodecamp.org). It is aimed for preteens and teenagers, and the goal is to teach basic economy literacy in a interactive way, which we hope to be a pleasant experience. Because the users are children we advise the parents or tutors to be side by side, with the learners.",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node index.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint --no-warn-ignored ."
+  },
+  "keywords": [
+    "openapi-generator",
+    "openapi"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "camelcase": "^5.3.1",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-openapi-validator": "^4.13.8",
+    "js-yaml": "^3.3.0",
+    "ono": "^5.0.1",
+    "openapi-sampler": "^1.0.0-beta.15",
+    "swagger-ui-express": "^4.0.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^10.11.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "mocha": "^7.1.1",
+    "prettier": "^3.9.9"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    }
+  }
+}

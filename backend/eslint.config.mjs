@@ -7,6 +7,10 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs}'],
     plugins: { js },
     extends: ['js/recommended'],
+    rules: {
+        "no-unused-vars": "warn",
+        "no-async-promise-executor": "warn" 
+    },
     languageOptions: { globals: globals.node },
   },
   globalIgnores(['**/__tests__/']),

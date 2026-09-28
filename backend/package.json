@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint --no-warn-ignored .",
-    "to_swagger": "node scripts/mongo-to-swagger.js > src/docs/generated_openapi.json"
+    "to_swagger": "node scripts/mongo-to-swagger.js > src/docs/generated_openapi.json",
+    "generate" : "npx openapi-generator-cli generate -i src/docs/openapi.json -g nodejs-express-server -o src/generated/"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@openapitools/openapi-generator-cli": "^2.41.0",
     "cross-env": "^7.0.3",
     "eslint": "^10.10.0",
     "globals": "^17.12.0",

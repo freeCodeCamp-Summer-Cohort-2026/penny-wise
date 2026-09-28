@@ -1863,26 +1863,28 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        }
       },
       "put" : {
         "tags" : [ "user" ],
         "summary" : "Update user resource.",
         "description" : "This can only be done by the logged in user.",
-        "operationId" : "updateUser",
+        "operationId" : "updateUserByName",
         "parameters" : [ {
           "name" : "username",
           "in" : "path",
-          "description" : "name that need to be deleted",
+          "description" : "name that need to be updated",
           "required" : true,
           "style" : "simple",
           "explode" : false,
           "schema" : {
             "type" : "string"
           }
+        } ],
+        "security" : [ {
+          "api_key" : [ ]
+        }, {
+          "pennywise_auth" : [ "write:users", "read:users" ]
         } ],
         "requestBody" : {
           "description" : "Update an existent user in the store",
@@ -1924,16 +1926,13 @@
               }
             }
           }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        }
       },
       "delete" : {
         "tags" : [ "user" ],
         "summary" : "Delete user resource.",
         "description" : "This can only be done by the logged in user.",
-        "operationId" : "deleteUser",
+        "operationId" : "deleteUserByName",
         "parameters" : [ {
           "name" : "username",
           "in" : "path",
@@ -1965,39 +1964,32 @@
               }
             }
           }
-        }
-      },
+        },
         "security" : [ {
+          "api_key" : [ ]
+        }, {
           "pennywise_auth" : [ "write:users", "read:users" ]
         } ]
+      }
     },
-    "/wallet" : {
+    "/wallet/{walletId}" : {
       "get" : {
         "tags" : [ "wallet" ],
         "summary" : "Find wallet by ID.",
         "description" : "Returns an user wallet.",
         "operationId" : "getWallet",
-        "requestBody" : {
-          "description" : "Returns an user wallet.",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
-              }
-            }
-          },
-          "required" : true
-        },
+        "parameters" : [ {
+          "name" : "walletId",
+          "in" : "path",
+          "description" : "The id of the wallet known for the user",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "responses" : {
           "200" : {
             "description" : "successful operation",
@@ -2037,13 +2029,25 @@
           "pennywise_auth" : [ "write:users", "read:users" ]
         } ]
       },
-      "post" : {
+      "put" : {
         "tags" : [ "wallet" ],
         "summary" : "Updates a Wallet with form data.",
         "description" : "Updates a Wallet resource based on the form data.",
         "operationId" : "updateWalletWithForm",
+        "parameters" : [ {
+          "name" : "walletId",
+          "in" : "path",
+          "description" : "The id of the wallet known for the user",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "requestBody" : {
-          "description" : "Returns an user wallet.",
+          "description" : "Updates an user wallet.",
           "content" : {
             "application/json" : {
               "schema" : {
@@ -2094,6 +2098,8 @@
           }
         },
         "security" : [ {
+          "api_key" : [ ]
+        }, {
           "pennywise_auth" : [ "write:users", "read:users" ]
         } ]
       },
@@ -2102,6 +2108,18 @@
         "summary" : "Deletes a Wallet.",
         "description" : "Delete a Wallet.",
         "operationId" : "deleteWallet",
+        "parameters" : [ {
+          "name" : "walletId",
+          "in" : "path",
+          "description" : "The id of the wallet known for the user",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer",
+            "format" : "int64"
+          }
+        } ],
         "requestBody" : {
           "description" : "Deletes an user wallet.",
           "content" : {
@@ -2142,6 +2160,8 @@
           }
         },
         "security" : [ {
+          "api_key" : [ ]
+        }, {
           "pennywise_auth" : [ "write:users", "read:users" ]
         } ]
       }
@@ -2176,7 +2196,7 @@
     "coursesCreated": {
       "type": "array",
       "items": {
-        "type": "schemaobjectid"
+        "type": "object"
       }
     },
     "profilePicUrl": {
@@ -2235,7 +2255,7 @@
   ],
   "properties": {
     "creatorId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "name": {
       "type": "string"
@@ -2243,7 +2263,7 @@
     "lessons": {
       "type": "array",
       "items": {
-        "type": "schemaobjectid"
+        "type": "object"
       }
     },
     "published": {
@@ -2270,7 +2290,7 @@
   ],
   "properties": {
     "courseId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "name": {
       "type": "string"
@@ -2281,7 +2301,7 @@
     "pages": {
       "type": "array",
       "items": {
-        "type": "schemaobjectid"
+        "type": "object"
       }
     },
     "estimatedDurationOfCompletionInMinutes": {
@@ -2349,7 +2369,7 @@
       }
     },
     "country": {
-      "type": "schemaobjectid"
+      "type": "object"
     }
 }
 },
@@ -2361,7 +2381,7 @@
   ],
   "properties": {
     "lessonId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "text": {
       "type": "string"
@@ -2388,7 +2408,7 @@
   ],
   "properties": {
     "lessonId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "text": {
       "type": "string"
@@ -2432,7 +2452,7 @@
   ],
   "properties": {
     "lessonId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "text": {
       "type": "string"
@@ -2478,7 +2498,7 @@
   ],
   "properties": {
     "lessonId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "text": {
       "type": "string"
@@ -2529,7 +2549,7 @@
   ],
   "properties": {
     "lessonId": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "text": {
       "type": "string"
@@ -2597,13 +2617,13 @@
     "coursesEnrolled": {
       "type": "array",
       "items": {
-        "type": "schemaobjectid"
+        "type": "object"
       }
     },
     "coursesCreated": {
       "type": "array",
       "items": {
-        "type": "schemaobjectid"
+        "type": "object"
       }
     },
     "currentStreak": {
@@ -2625,7 +2645,7 @@
       "type": "number"
     },
     "country": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "createdAt": {
       "type": "string",
@@ -2650,16 +2670,16 @@
   ],
   "properties": {
     "user": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "total": {
       "type": "number"
     },
     "country": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "denominations": {
-      "type": "schemaobjectid"
+      "type": "object"
     },
     "type": {
       "type": "string",
@@ -2667,9 +2687,9 @@
         "immediate",
         "long-term"
       ]
-}
-        }
-      },
+    }
+    }
+    },
       "ApiResponse" : {
         "type" : "object",
         "properties" : {
