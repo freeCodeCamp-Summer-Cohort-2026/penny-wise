@@ -1,0 +1,2131 @@
+openapi: 3.0.4
+info:
+  contact:
+    email: pennywise@example.com
+  description:
+    "This is a project created during the Summer Cohort in 20226 from [https://freecodecamp.org](https://freecodecamp.org).\
+    \ It is aimed for preteens and teenagers, and the goal is to teach basic economy\
+    \ literacy in a interactive way, which we hope to be a pleasant experience. Because\
+    \ the users are children we advise the parents or tutors to be side by side, with\
+    \ the learners."
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: https://freecodecamp.org/terms/
+  title: Penny Wise - Economy Literacy Helper
+  version: 1.0.0
+externalDocs:
+  description: Find out more about FreeCodeCamp
+  url: https://freecodecamp.org
+servers:
+  - url: http://localhost:5000/api/
+tags:
+  - description: 'Special user to create and publish courses, modules and lessons'
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Author
+  - description: Country to use as example for currency
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Country
+  - description: Collection of modules
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Course
+  - description: Content about economy literacy
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Lesson
+  - description: Description of the currency related to Country
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Money
+  - description: Content for Lesson
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Page
+  - description: Component to allow input of multiple options
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: multiple_choice
+  - description: Component to validate response
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: matching
+  - description: Component to allow simulating budgeting
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: budgeting
+  - description: Component to allow simulating wants vs needs
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: wants_needs
+  - description: User definition and state save
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: User
+  - description: Wallet discriminating money content for User or Lesson
+    externalDocs:
+      description: Find out more
+      url: http://localhost:5000/docs
+    name: Wallet
+paths:
+  /author:
+    post:
+      description: Add a new author.
+      operationId: addAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+        description: Create a new Author
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Add a new author.
+      tags:
+        - author
+      x-eov-operation-handler: controllers/AuthorController
+    put:
+      description: Update an existing author by Id.
+      operationId: updateAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Author'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Author'
+        description: Update an existent author
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Author'
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Author not found
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Update an existing author.
+      tags:
+        - author
+      x-eov-operation-handler: controllers/AuthorController
+  /authorinvite/{email}:
+    get:
+      description: Returns the Author invitation by email.
+      operationId: getAuthorInvite
+      parameters:
+        - description: Email of Author invitation to return
+          explode: false
+          in: path
+          name: email
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorInvite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AuthorInvite'
+          description: Successful operation
+        '400':
+          description: Invalid email supplied
+        '404':
+          description: Author invitation not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Get Author invitation by email.
+      tags:
+        - authorinvite
+      x-eov-operation-handler: controllers/AuthorinviteController
+    post:
+      description: Generate an invitation to register an Author.
+      operationId: authorInvite
+      parameters:
+        - description: Email of Author to invite.
+          explode: false
+          in: path
+          name: email
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorInvite'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AuthorInvite'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthorInvite'
+        description: Generate an invitation code
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorInvite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AuthorInvite'
+          description: Successful generated
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Generate an invitation to register an Author.
+      tags:
+        - authorinvite
+      x-eov-operation-handler: controllers/AuthorinviteController
+  /country:
+    post:
+      description: Create a country to reference its currency.
+      operationId: createCountry
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Country'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Country'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Country'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a country.
+      tags:
+        - country
+      x-eov-operation-handler: controllers/CountryController
+  /course:
+    post:
+      description: Create a course to contain lessons.
+      operationId: createCourse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Course'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a course.
+      tags:
+        - course
+      x-eov-operation-handler: controllers/CourseController
+  /course/{courseId}:
+    delete:
+      description: Delete Course by identifier
+      operationId: deleteCourse
+      parameters:
+        - description: ID of the Course that needs to be deleted
+          explode: false
+          in: path
+          name: courseId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          description: Course deleted
+        '400':
+          description: Invalid Course ID supplied
+        '404':
+          description: Course not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Delete Course by identifier.
+      tags:
+        - course
+      x-eov-operation-handler: controllers/CourseController
+    get:
+      description: Find Course by ID.
+      operationId: getCourseById
+      parameters:
+        - description: ID of Course
+          explode: false
+          in: path
+          name: courseId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: successful operation
+        '400':
+          description: Invalid Course ID supplied
+        '404':
+          description: Course not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Find Course by ID.
+      tags:
+        - course
+      x-eov-operation-handler: controllers/CourseController
+  /course/catalog:
+    get:
+      description: Returns a list of published courses.
+      operationId: getCoursesCatalog
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  format: int32
+                  type: integer
+                type: object
+          description: successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+      summary: Returns list of published courses.
+      tags:
+        - course
+      x-eov-operation-handler: controllers/CourseController
+  /course/{courseId}/lesson:
+    post:
+      description: Create a lesson in the course.
+      operationId: createLesson
+      parameters:
+        - description: ID of Course containing the Lesson
+          explode: false
+          in: path
+          name: courseId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lesson'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Lesson'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Lesson'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lesson'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a lesson.
+      tags:
+        - lesson
+      x-eov-operation-handler: controllers/LessonController
+  /course/{courseId}/lesson/{lessonId}:
+    delete:
+      description:
+        For valid response try integer IDs with value < 1000. Anything
+        above 1000 or nonintegers will generate API errors.
+      operationId: deleteLesson
+      parameters:
+        - description: ID of Course containing the Lesson
+          explode: false
+          in: path
+          name: courseId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+        - description: ID of the Lesson that needs to be deleted
+          explode: false
+          in: path
+          name: lessonId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          description: Lesson deleted
+        '400':
+          description: Invalid Lesson ID supplied
+        '404':
+          description: Lesson not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Delete Lesson by identifier.
+      tags:
+        - lesson
+      x-eov-operation-handler: controllers/LessonController
+    get:
+      description: Find Lesson by ID in Course.
+      operationId: getLessonById
+      parameters:
+        - description: ID of Course containing the Lesson
+          explode: false
+          in: path
+          name: courseId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+        - description: ID of Lesson that needs to be fetched
+          explode: false
+          in: path
+          name: lessonId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lesson'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Lesson'
+          description: successful operation
+        '400':
+          description: Invalid Lesson ID supplied
+        '404':
+          description: Order not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Find Lesson by ID.
+      tags:
+        - lesson
+      x-eov-operation-handler: controllers/LessonController
+  /money:
+    post:
+      description: Add new Money.
+      operationId: addMoney
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Money'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Money'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Money'
+        description: Create new Money
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Money'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Money'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Add new Money definition.
+      tags:
+        - money
+      x-eov-operation-handler: controllers/MoneyController
+    put:
+      description: Update existing money by Id.
+      operationId: updateMoney
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Money'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Money'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Money'
+        description: Update existent money
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Money'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Money'
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Money not found
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Update existing money.
+      tags:
+        - money
+      x-eov-operation-handler: controllers/MoneyController
+  /page:
+    post:
+      description: Create a page in the lesson.
+      operationId: createPage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Page'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a page.
+      tags:
+        - page
+      x-eov-operation-handler: controllers/PageController
+  /multiplechoicepage:
+    post:
+      description: Create a MultipleChoicePage in the lesson.
+      operationId: createMultipleChoicePage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultipleChoicePage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MultipleChoicePage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MultipleChoicePage'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultipleChoicePage'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a MultipleChoicePage.
+      tags:
+        - page
+      x-eov-operation-handler: controllers/PageController
+  /matchingpage:
+    post:
+      description: Create a MatchingPage in the lesson.
+      operationId: createMatchingPage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatchingPage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/MatchingPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MatchingPage'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchingPage'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a MatchingPage.
+      tags:
+        - page
+      x-eov-operation-handler: controllers/PageController
+  /budgetingpage:
+    post:
+      description: Create a BudgetingPage in the lesson.
+      operationId: createBudgetingPage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BudgetingPage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BudgetingPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BudgetingPage'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BudgetingPage'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a BudgetingPage.
+      tags:
+        - page
+      x-eov-operation-handler: controllers/PageController
+  /wantsneedspage:
+    post:
+      description: Create a WantsNeedsPage in the lesson.
+      operationId: createWantsNeedsPage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WantsNeedsPage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/WantsNeedsPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WantsNeedsPage'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WantsNeedsPage'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Create a WantsNeedsPage.
+      tags:
+        - page
+      x-eov-operation-handler: controllers/PageController
+  /user:
+    post:
+      description: Add a new user.
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Create a new user
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successful operation
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Add a new user.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    put:
+      description: Update an existing user by Id.
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Update an existent user
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        '422':
+          description: Validation exception
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Update an existing user.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/findByStatus:
+    get:
+      description: Multiple status values can be provided with comma separated strings.
+      operationId: findUsersByStatus
+      parameters:
+        - description: Status values that need to be considered for filter
+          explode: true
+          in: query
+          name: status
+          required: false
+          schema:
+            default: active
+            enum:
+              - registered
+              - active
+              - disabled
+            type: string
+          style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: successful operation
+        '400':
+          description: Invalid status value
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Finds Users by status.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/findByTags:
+    get:
+      description:
+        "Multiple tags can be provided with comma separated strings. Use\
+        \ tag1, tag2, tag3 for testing."
+      operationId: findUsersByTags
+      parameters:
+        - description: Tags to filter by
+          explode: true
+          in: query
+          name: tags
+          required: false
+          schema:
+            items:
+              type: string
+            type: array
+          style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/User'
+                type: array
+          description: successful operation
+        '400':
+          description: Invalid tag value
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Finds Users by tags.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/{userId}:
+    delete:
+      description: Delete a user.
+      operationId: deleteUser
+      parameters:
+        - description: ''
+          explode: false
+          in: header
+          name: api_key
+          required: false
+          schema:
+            type: string
+          style: simple
+        - description: User id to delete
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          description: User deleted
+        '400':
+          description: Invalid user value
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Deletes a user.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    get:
+      description: Returns a single user.
+      operationId: getUserById
+      parameters:
+        - description: ID of user to return
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: User not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Find user by ID.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    post:
+      description: Updates a user resource based on the form data.
+      operationId: updateUserWithForm
+      parameters:
+        - description: ID of user that needs to be updated
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+        - description: Name of user that needs to be updated
+          explode: true
+          in: query
+          name: name
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Status of user that needs to be updated
+          explode: true
+          in: query
+          name: status
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+        '400':
+          description: Invalid input
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Updates a user with form data.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/{userId}/uploadImage:
+    post:
+      description: Upload image of the user.
+      operationId: uploadFile
+      parameters:
+        - description: ID of user to update
+          explode: false
+          in: path
+          name: userId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+        - description: Additional Metadata
+          explode: true
+          in: query
+          name: additionalMetadata
+          required: false
+          schema:
+            type: string
+          style: form
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: successful operation
+        '400':
+          description: No file uploaded
+        '404':
+          description: User not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Uploads an image.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/login:
+    get:
+      description: Log into the system.
+      operationId: loginUser
+      parameters:
+        - description: The user name for login
+          explode: true
+          in: query
+          name: username
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: The password for login in clear text
+          explode: true
+          in: query
+          name: password
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        '200':
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              explode: false
+              schema:
+                format: int32
+                type: integer
+              style: simple
+            X-Expires-After:
+              description: date in UTC when token expires
+              explode: false
+              schema:
+                format: date-time
+                type: string
+              style: simple
+        '400':
+          description: Invalid username/password supplied
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Logs user into the system.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/logout:
+    get:
+      description: Log user out of the system.
+      operationId: logoutUser
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Logs out current logged in user session.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /user/{username}:
+    delete:
+      description: This can only be done by the logged in user.
+      operationId: deleteUserByName
+      parameters:
+        - description: The name that needs to be deleted
+          explode: false
+          in: path
+          name: username
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          description: User deleted
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Delete user resource.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    get:
+      description: Get user detail based on username.
+      operationId: getUserByName
+      parameters:
+        - description: The name that needs to be fetched. Use user1 for testing
+          explode: false
+          in: path
+          name: username
+          required: true
+          schema:
+            type: string
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: successful operation
+        '400':
+          description: Invalid username supplied
+        '404':
+          description: User not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      summary: Get user by user name.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    put:
+      description: This can only be done by the logged in user.
+      operationId: updateUserByName
+      parameters:
+        - description: name that need to be updated
+          explode: false
+          in: path
+          name: username
+          required: true
+          schema:
+            type: string
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Update an existent user in the store
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: bad request
+        '404':
+          description: user not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Update user resource.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+  /wallet/{walletId}:
+    delete:
+      description: Delete a Wallet.
+      operationId: deleteWallet
+      parameters:
+        - description: The id of the wallet known for the user
+          explode: false
+          in: path
+          name: walletId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+        description: Deletes an user wallet.
+        required: true
+      responses:
+        '200':
+          description: Wallet deleted
+        '400':
+          description: Invalid Wallet value
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Deletes a Wallet.
+      tags:
+        - user
+      x-eov-operation-handler: controllers/UserController
+    get:
+      description: Returns an user wallet.
+      operationId: getWallet
+      parameters:
+        - description: The id of the wallet known for the user
+          explode: false
+          in: path
+          name: walletId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: successful operation
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Wallet not found
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Find wallet by ID.
+      tags:
+        - wallet
+      x-eov-operation-handler: controllers/WalletController
+    put:
+      description: Updates a Wallet resource based on the form data.
+      operationId: updateWalletWithForm
+      parameters:
+        - description: The id of the wallet known for the user
+          explode: false
+          in: path
+          name: walletId
+          required: true
+          schema:
+            format: int64
+            type: integer
+          style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Wallet'
+        description: Updates an user wallet.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Wallet'
+          description: successful operation
+        '400':
+          description: Invalid input
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unexpected error
+      security:
+        - api_key: []
+        - pennywise_auth:
+            - write:users
+            - read:users
+      summary: Updates a Wallet with form data.
+      tags:
+        - wallet
+      x-eov-operation-handler: controllers/WalletController
+components:
+  requestBodies:
+    Lesson:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Lesson'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Lesson'
+      description: Lesson object that needs to be added to a Course
+    CourseArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/Course'
+            type: array
+      description: List of Course object
+    LessonArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/Lesson'
+            type: array
+      description: List of Lesson object
+    UserArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/User'
+            type: array
+      description: List of user object
+  schemas:
+    Author:
+      example:
+        email: author@pennywise.app
+        displayName: Ama Author
+        passwordHash: 0102030405060708090a0b0c0d0e0f
+        role: author
+        coursesCreated:
+          - '{}'
+          - '{}'
+        profilePicUrl: path/to/photo.jpg
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        email:
+          example: author@pennywise.app
+          type: string
+        displayName:
+          example: Ama Author
+          type: string
+        passwordHash:
+          example: 0102030405060708090a0b0c0d0e0f
+          type: string
+        role:
+          example: author
+          type: string
+        coursesCreated:
+          items:
+            type: object
+          type: array
+        profilePicUrl:
+          example: path/to/photo.jpg
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - displayName
+        - email
+        - passwordHash
+      type: object
+    AuthorInvite:
+      example:
+        email: author@pennywise.app
+        expiringDate: 2000-01-23T04:56:07.000+00:00
+        code: 0102030405060708090a0b0c0d0e0f
+      properties:
+        email:
+          example: author@pennywise.app
+          type: string
+        expiringDate:
+          format: date-time
+          type: string
+        code:
+          example: 0102030405060708090a0b0c0d0e0f
+          type: string
+      required:
+        - email
+        - expiringDate
+      type: object
+    Country:
+      example:
+        name: United States of America
+      properties:
+        name:
+          example: United States of America
+          type: string
+      required:
+        - name
+      type: object
+    Course:
+      example:
+        creatorId: '{}'
+        name: name
+        lessons:
+          - '{}'
+          - '{}'
+        published: true
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        creatorId:
+          type: object
+        name:
+          type: string
+        lessons:
+          items:
+            type: object
+          type: array
+        published:
+          type: boolean
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - creatorId
+        - name
+      type: object
+    Lesson:
+      example:
+        courseId: '{}'
+        name: name
+        experience: 0.8008281904610115
+        pages:
+          - '{}'
+          - '{}'
+        estimatedDurationOfCompletionInMinutes: 6.027456183070403
+        description: description
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        courseId:
+          type: object
+        name:
+          type: string
+        experience:
+          type: number
+        pages:
+          items:
+            type: object
+          type: array
+        estimatedDurationOfCompletionInMinutes:
+          type: number
+        description:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - courseId
+        - description
+        - name
+      type: object
+    Money:
+      example:
+        name: name
+        coins:
+          - value: 0.8008281904610115
+            image: image
+          - value: 0.8008281904610115
+            image: image
+        notes:
+          - value: 0.8008281904610115
+            image: image
+          - value: 0.8008281904610115
+            image: image
+        country: '{}'
+      properties:
+        name:
+          type: string
+        coins:
+          items:
+            $ref: '#/components/schemas/Money_coins_inner'
+          type: array
+        notes:
+          items:
+            $ref: '#/components/schemas/Money_coins_inner'
+          type: array
+        country:
+          type: object
+      required:
+        - country
+        - name
+      type: object
+    Page:
+      example:
+        lessonId: '{}'
+        text: text
+        imageUrl: imageUrl
+        audioUrl: audioUrl
+        incorrectMessage: incorrectMessage
+        type: type
+      properties:
+        lessonId:
+          type: object
+        text:
+          type: string
+        imageUrl:
+          type: string
+        audioUrl:
+          type: string
+        incorrectMessage:
+          type: string
+        type:
+          type: string
+      required:
+        - lessonId
+        - text
+      type: object
+    MultipleChoicePage:
+      example:
+        lessonId: '{}'
+        text: text
+        imageUrl: imageUrl
+        audioUrl: audioUrl
+        incorrectMessage: incorrectMessage
+        type: type
+        options:
+          - answerText: answerText
+            isCorrect: true
+          - answerText: answerText
+            isCorrect: true
+      properties:
+        lessonId:
+          type: object
+        text:
+          type: string
+        imageUrl:
+          type: string
+        audioUrl:
+          type: string
+        incorrectMessage:
+          type: string
+        type:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/MultipleChoicePage_options_inner'
+          type: array
+      required:
+        - lessonId
+        - text
+      type: object
+    MatchingPage:
+      example:
+        lessonId: '{}'
+        text: text
+        imageUrl: imageUrl
+        audioUrl: audioUrl
+        incorrectMessage: incorrectMessage
+        type: type
+        pairs:
+          - word: word
+            definition: definition
+          - word: word
+            definition: definition
+      properties:
+        lessonId:
+          type: object
+        text:
+          type: string
+        imageUrl:
+          type: string
+        audioUrl:
+          type: string
+        incorrectMessage:
+          type: string
+        type:
+          type: string
+        pairs:
+          items:
+            $ref: '#/components/schemas/MatchingPage_pairs_inner'
+          type: array
+      required:
+        - lessonId
+        - text
+      type: object
+    BudgetingPage:
+      example:
+        lessonId: '{}'
+        text: text
+        imageUrl: imageUrl
+        audioUrl: audioUrl
+        incorrectMessage: incorrectMessage
+        type: type
+        startingAmount: 0.8008281904610115
+        targetSavings: 6.027456183070403
+        availableItems:
+          - name: name
+            cost: 1.4658129805029452
+          - name: name
+            cost: 1.4658129805029452
+      properties:
+        lessonId:
+          type: object
+        text:
+          type: string
+        imageUrl:
+          type: string
+        audioUrl:
+          type: string
+        incorrectMessage:
+          type: string
+        type:
+          type: string
+        startingAmount:
+          type: number
+        targetSavings:
+          type: number
+        availableItems:
+          items:
+            $ref: '#/components/schemas/BudgetingPage_availableItems_inner'
+          type: array
+      required:
+        - lessonId
+        - startingAmount
+        - text
+      type: object
+    WantsNeedsPage:
+      example:
+        lessonId: '{}'
+        text: text
+        imageUrl: imageUrl
+        audioUrl: audioUrl
+        incorrectMessage: incorrectMessage
+        type: type
+        itemsToSort:
+          - name: name
+            correctCategory: want
+          - name: name
+            correctCategory: want
+      properties:
+        lessonId:
+          type: object
+        text:
+          type: string
+        imageUrl:
+          type: string
+        audioUrl:
+          type: string
+        incorrectMessage:
+          type: string
+        type:
+          type: string
+        itemsToSort:
+          items:
+            $ref: '#/components/schemas/WantsNeedsPage_itemsToSort_inner'
+          type: array
+      required:
+        - lessonId
+        - text
+      type: object
+    User:
+      example:
+        email: email
+        displayName: displayName
+        passwordHash: passwordHash
+        role: learner
+        coursesEnrolled:
+          - '{}'
+          - '{}'
+        coursesCreated:
+          - '{}'
+          - '{}'
+        currentStreak: 0.8008281904610115
+        longestStreak: 6.027456183070403
+        profilePicUrl: profilePicUrl
+        level: 1.4658129805029452
+        experience: 5.962133916683182
+        currentLives: 5.637376656633329
+        country: '{}'
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        email:
+          type: string
+        displayName:
+          type: string
+        passwordHash:
+          type: string
+        role:
+          enum:
+            - learner
+            - author
+          type: string
+        coursesEnrolled:
+          items:
+            type: object
+          type: array
+        coursesCreated:
+          items:
+            type: object
+          type: array
+        currentStreak:
+          type: number
+        longestStreak:
+          type: number
+        profilePicUrl:
+          type: string
+        level:
+          type: number
+        experience:
+          type: number
+        currentLives:
+          type: number
+        country:
+          type: object
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+        - displayName
+        - email
+        - passwordHash
+      type: object
+    Wallet:
+      example:
+        user: '{}'
+        total: 0.8008281904610115
+        country: '{}'
+        denominations: '{}'
+        type: immediate
+      properties:
+        user:
+          type: object
+        total:
+          type: number
+        country:
+          type: object
+        denominations:
+          type: object
+        type:
+          enum:
+            - immediate
+            - long-term
+          type: string
+      required:
+        - country
+        - denominations
+        - total
+        - type
+        - user
+      type: object
+    ApiResponse:
+      example:
+        code: 0
+        type: type
+        message: message
+      properties:
+        code:
+          format: int32
+          type: integer
+        type:
+          type: string
+        message:
+          type: string
+      type: object
+      xml:
+        name: '##default'
+    Error:
+      example:
+        code: code
+        message: message
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+      type: object
+    Money_coins_inner:
+      example:
+        value: 0.8008281904610115
+        image: image
+      properties:
+        value:
+          type: number
+        image:
+          type: string
+      required:
+        - image
+        - value
+      type: object
+    MultipleChoicePage_options_inner:
+      example:
+        answerText: answerText
+        isCorrect: true
+      properties:
+        answerText:
+          type: string
+        isCorrect:
+          type: boolean
+      required:
+        - answerText
+      type: object
+    MatchingPage_pairs_inner:
+      example:
+        word: word
+        definition: definition
+      properties:
+        word:
+          type: string
+        definition:
+          type: string
+      required:
+        - definition
+        - word
+      type: object
+    BudgetingPage_availableItems_inner:
+      example:
+        name: name
+        cost: 1.4658129805029452
+      properties:
+        name:
+          type: string
+        cost:
+          type: number
+      required:
+        - cost
+        - name
+      type: object
+    WantsNeedsPage_itemsToSort_inner:
+      example:
+        name: name
+        correctCategory: want
+      properties:
+        name:
+          type: string
+        correctCategory:
+          enum:
+            - want
+            - need
+          type: string
+      required:
+        - correctCategory
+        - name
+      type: object
+  securitySchemes:
+    pennywise_auth:
+      flows:
+        implicit:
+          authorizationUrl: https://pennywise.freecodecamp.org/oauth/authorize
+          scopes:
+            write:users: update user info
+            read:users: read user info
+      type: oauth2
+    api_key:
+      in: header
+      name: api_key
+      type: apiKey

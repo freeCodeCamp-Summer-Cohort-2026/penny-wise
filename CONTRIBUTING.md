@@ -61,6 +61,7 @@ The `develop` branch contains some tools to help the development of Penny Wise.
 - [Mongoose Studio](https://github.com/Automattic/mongoose#mongoose-studio) access with [http://localhost:5000/studio](http://localhost:5000/studio).
 - [Swagger Editor, UI and Codegen](https://swagger.io/docs/open-source-tools/swagger-editor/) For the moment configured with `pet-shop` project.
 - [Mongoose to Swagger](https://www.npmjs.com/package/mongoose-to-swagger) Node module to export from mongoose to swagger/openapi.
+- [OpenAPI Generator](https://openapi-generator.tech/) Produces code from an OpenAPI/Swagger document.
 
 ### Swagger Editor
 Pre-built DockerHub image
@@ -71,6 +72,21 @@ SwaggerEditor is available as a pre-built docker image hosted on docker.swagger.
 $ docker pull docker.io/swaggerapi/swagger-editor:latest
 $ docker run -d -p 8080:80 --name swagger-editor docker.io/swaggerapi/swagger-editor:latest
 ```
+
+### OpenAPI Generator
+Generate NodeJS+Express code from our OpenAPI/Swagger document, at `backend/src/docs/openapi.json`.
+
+We already have a first run of the tool at `backend/src/generated` but we should try to keep it updated whenever the spec changes.
+
+You can run `npm run generate` in the `backend` directory. Then you can start the server with:
+
+```
+$ cd generated
+$ npm start
+```
+The current `config.json` defines port 8090. You can see the OpenAPI/Swagger docs by browsing to `http://localhost:8090/api-docs`.
+```
+
 ---
 
 If anything here is still unclear, please reach out to the team's Discord channel.
