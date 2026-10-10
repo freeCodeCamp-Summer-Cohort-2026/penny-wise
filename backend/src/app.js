@@ -3,6 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const coursesRouter = require('./routes/courses');
+const countriesRouter = require('./routes/countries');
 const authRoutes = require('./routes/auth');
 
 const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
@@ -29,6 +30,7 @@ function createApp() {
 
   app.use('/api/auth', authRoutes);
   app.use('/api/courses', coursesRouter);
+  app.use('/api/countries', countriesRouter);
 
   app.use((req, res) => {
     res.status(404).json({ error: 'Not found' });

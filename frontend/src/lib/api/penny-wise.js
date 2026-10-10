@@ -54,6 +54,9 @@ export const getCurrentUser = (signal) =>
 
 export const getCourses = (signal) => getData('/courses', getSignal(signal));
 
+export const getCountries = (signal) =>
+  getData('/countries', getSignal(signal));
+
 export const getCourse = (courseId, signal) =>
   getData(`/courses/${courseId}`, getSignal(signal));
 

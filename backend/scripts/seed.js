@@ -1280,6 +1280,7 @@ async function seed({ mongoUri } = {}) {
     { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
   );
 
+  /* eslint-disable no-unused-vars */
   try {
     country = await Country.findOneAndUpdate(
       { name: USD_COUNTRY },
