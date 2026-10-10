@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CircleUser, Globe, Mail, User } from 'lucide-react';
+import { getCountries } from '../lib/api/penny-wise';
 import { useAuth } from '../lib/useAuth';
 
 const levelTitlePicker = (level) => {
@@ -83,7 +84,43 @@ const ProfileForm = ({ user }) => {
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
   const [country, setCountry] = useState(user.country ?? '');
   const [bio, setBio] = useState(user.bio ?? '');
-  const [status, setStatus] = useState(null);
+  const [countries, setCountries] = useState([]);
+  const [status, setStatus] = useState('loading');
+  const [error, setError] = useState(null);
+
+  const loadCountries = useCallback(async (signal) => {
+    setStatus('loading');
+    setError(null);
+
+    try {
+      const data = await getCountries(signal);
+      // console.log(data);
+      setCountries(
+        Array.isArray(data?.countries)
+          ? data.countries.map((x) => x.name)
+          : COUNTRY_SUGGESTIONS,
+      );
+      setStatus('ready');
+    } catch (loadError) {
+      if (signal?.aborted || loadError?.code === 'ERR_CANCELED') return;
+      setError(loadError);
+      setStatus('error');
+      if (process.env.NODE_ENV === 'development') {
+        console.log(error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      loadCountries(controller.signal);
+    }, 0);
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [loadCountries]);
 
   const stats = useMemo(() => {
     if (!user) return [];
@@ -373,7 +410,7 @@ const ProfileForm = ({ user }) => {
                     className={`${inputClass} pl-10`}
                   />
                   <datalist id='country-suggestions'>
-                    {COUNTRY_SUGGESTIONS.map((c) => (
+                    {countries.map((c) => (
                       <option key={c} value={c} />
                     ))}
                   </datalist>
