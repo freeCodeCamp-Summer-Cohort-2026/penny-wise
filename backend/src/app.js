@@ -8,7 +8,10 @@ const userRouter = require('./routes/user');
 const authRoutes = require('./routes/auth');
 const imagesRouter = require('./routes/images');
 
-const clientOrigin = process.env.CLIENT_ORIGIN || 'http://localhost:5173';
+const clientOrigin = [
+  process.env.CLIENT_ORIGIN || /localhost:.*/,
+  /192\.168.*:.*/,
+]; // To allow from swagger
 
 function createApp() {
   const app = express();
