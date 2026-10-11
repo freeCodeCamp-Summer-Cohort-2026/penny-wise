@@ -266,12 +266,16 @@ const ProfileForm = ({ user }) => {
           </div>
           {stats.length > 0 && (
             <dl className='mt-4 space-y-2 border-t border-(--border) pt-4 text-left text-sm'>
-              {stats.map((row) => (
-                <div key={row.label} className='flex justify-between gap-3'>
-                  <dt className='text-(--text)'>{row.label}</dt>
-                  <dd className='font-semibold text-(--text-h)'>{row.value}</dd>
-                </div>
-              ))}
+              {stats.map((row) =>
+                row.label !== 'Lives' ? (
+                  <div key={row.label} className='flex justify-between gap-3'>
+                    <dt className='text-(--text)'>{row.label}</dt>
+                    <dd className='font-semibold text-(--text-h)'>
+                      {row.value}
+                    </dd>
+                  </div>
+                ) : null,
+              )}
             </dl>
           )}
         </aside>
@@ -313,7 +317,7 @@ const ProfileForm = ({ user }) => {
               <button
                 type='button'
                 disabled
-                title='Avatar upload is not yet available'
+                title='Avatar upload is not yet available.'
                 className='cursor-not-allowed border border-(--accent-border) px-5 py-2 text-sm font-semibold text-(--accent-bold) opacity-50'
               >
                 Remove
@@ -321,7 +325,7 @@ const ProfileForm = ({ user }) => {
             </div>
           </div>
           <p className='mt-2 text-xs text-(--text)'>
-            Avatar upload is not yet available.
+            Avatar upload will be available soon.
           </p>
 
           <form onSubmit={handleSubmit} className='mt-6 space-y-5'>
