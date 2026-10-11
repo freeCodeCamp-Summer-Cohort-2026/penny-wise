@@ -1,987 +1,474 @@
 {
-"openapi" : "3.0.4",
-  "info" : {
-    "title" : "Penny Wise - Economy Literacy Helper",
-    "description" : "This is a project created during the Summer Cohort in 20226 from [https://freecodecamp.org](https://freecodecamp.org). It is aimed for preteens and teenagers, and the goal is to teach basic economy literacy in a interactive way, which we hope to be a pleasant experience. Because the users are children we advise the parents or tutors to be side by side, with the learners.",
-    "termsOfService" : "https://freecodecamp.org/terms/",
-    "contact" : {
-      "email" : "pennywise@example.com"
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Penny Wise - Economy Literacy Helper",
+    "description": "This is a project created during the Summer Cohort in 20226 from [https://freecodecamp.org](https://freecodecamp.org). It is aimed for preteens and teenagers, and the goal is to teach basic economy literacy in a interactive way, which we hope to be a pleasant experience. Because the users are children we advise the parents or tutors to be side by side, with the learners.",
+    "termsOfService": "https://freecodecamp.org/terms/",
+    "contact": {
+      "email": "pennywise@example.com"
     },
-    "license" : {
-      "name" : "Apache 2.0",
-      "url" : "https://www.apache.org/licenses/LICENSE-2.0.html"
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version" : "1.0.0"
+    "version": "1.0.0"
   },
-  "externalDocs" : {
-    "description" : "Find out more about FreeCodeCamp",
-    "url" : "https://freecodecamp.org"
+  "externalDocs": {
+    "description": "Find out more about FreeCodeCamp",
+    "url": "https://freecodecamp.org"
   },
-  "servers" : [ {
-    "url" : "http://localhost:5000/api/"
-  } ],
-  "tags" : [ 
-{
-    "name" : "Author",
-    "description" : "Special user to create and publish courses, modules and lessons",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
+  "servers": [
+    {
+      "url": "http://localhost:5000/api/"
+    },
+    {
+      "url": "http://192.168.4.182:5000/api/"
     }
-},
-{
-    "name" : "Country",
-    "description" : "Country to use as example for currency",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
+  ],
+  "tags": [
+    {
+      "name": "Author",
+      "description": "Special user to create and publish courses, modules and lessons",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Country",
+      "description": "Country to use as example for currency",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Course",
+      "description": "Collection of modules",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Lesson",
+      "description": "Content about economy literacy",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Money",
+      "description": "Description of the currency related to Country",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Page",
+      "description": "Content for Lesson",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "multiple_choice",
+      "description": "Component to allow input of multiple options",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "matching",
+      "description": "Component to validate response",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "budgeting",
+      "description": "Component to allow simulating budgeting",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "wants_needs",
+      "description": "Component to allow simulating wants vs needs",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "User",
+      "description": "User definition and state save",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
+    },
+    {
+      "name": "Wallet",
+      "description": "Wallet discriminating money content for User or Lesson",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://localhost:5000/docs"
+      }
     }
-},
-{
-    "name" : "Course",
-    "description" : "Collection of modules",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "Lesson",
-    "description" : "Content about economy literacy",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "Money",
-    "description" : "Description of the currency related to Country",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "Page",
-    "description" : "Content for Lesson",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "multiple_choice",
-    "description" : "Component to allow input of multiple options",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "matching",
-    "description" : "Component to validate response",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "budgeting",
-    "description" : "Component to allow simulating budgeting",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "wants_needs",
-    "description" : "Component to allow simulating wants vs needs",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "User",
-    "description" : "User definition and state save",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-},
-{
-    "name" : "Wallet",
-    "description" : "Wallet discriminating money content for User or Lesson",
-    "externalDocs" : {
-      "description" : "Find out more",
-      "url" : "http://localhost:5000/docs"
-    }
-}
-],
-  "paths" : {
-    "/author" : {
-      "put" : {
-        "tags" : [ "author" ],
-        "summary" : "Update an existing author.",
-        "description" : "Update an existing author by Id.",
-        "operationId" : "updateAuthor",
-        "requestBody" : {
-          "description" : "Update an existent author",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
+  ],
+  "paths": {
+    "/author": {
+      "put": {
+        "tags": [
+          "author"
+        ],
+        "summary": "Update an existing author.",
+        "description": "Update an existing author by Id.",
+        "operationId": "updateAuthor",
+        "requestBody": {
+          "description": "Update an existent author",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             }
           },
-          "required" : true
+          "required": true
         },
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Author"
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Author"
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Author"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Author"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid ID supplied"
+          "400": {
+            "description": "Invalid ID supplied"
           },
-          "404" : {
-            "description" : "Author not found"
+          "404": {
+            "description": "Author not found"
           },
-          "422" : {
-            "description" : "Validation exception"
+          "422": {
+            "description": "Validation exception"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      },
-      "post" : {
-        "tags" : [ "author" ],
-        "summary" : "Add a new author.",
-        "description" : "Add a new author.",
-        "operationId" : "addAuthor",
-        "requestBody" : {
-          "description" : "Create a new Author",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Author"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Author"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Author"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      }
-    },
-    "/authorinvite/{email}" : {
-    "post" : {
-        "tags" : [ "authorinvite" ],
-        "summary" : "Generate an invitation to register an Author.",
-        "description" : "Generate an invitation to register an Author.",
-        "operationId" : "authorInvite",
-        "parameters" : [ {
-          "name" : "email",
-          "in" : "path",
-          "description" : "Email of Author to invite.",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "requestBody" : {
-          "description" : "Generate an invitation code",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AuthorInvite"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AuthorInvite"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/AuthorInvite"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful generated",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AuthorInvite"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AuthorInvite"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      },
-      "get" : {
-        "tags" : [ "authorinvite" ],
-        "summary" : "Get Author invitation by email.",
-        "description" : "Returns the Author invitation by email.",
-        "operationId" : "getAuthorInvite",
-        "parameters" : [ {
-          "name" : "email",
-          "in" : "path",
-          "description" : "Email of Author invitation to return",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AuthorInvite"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/AuthorInvite"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid email supplied"
-          },
-          "404" : {
-            "description" : "Author invitation not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      }
-    },
-    "/country" : {
-      "post" : {
-        "tags" : [ "country" ],
-        "summary" : "Create a country.",
-        "description" : "Create a country to reference its currency.",
-        "operationId" : "createCountry",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Country"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Country"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Country"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Country"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/course" : {
-      "post" : {
-        "tags" : [ "course" ],
-        "summary" : "Create a course.",
-        "description" : "Create a course to contain lessons.",
-        "operationId" : "createCourse",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Course"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Course"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Course"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Course"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/course/{courseId}" : {
-      "get" : {
-        "tags" : [ "course" ],
-        "summary" : "Find Course by ID.",
-        "description" : "Find Course by ID.",
-        "operationId" : "getCourseById",
-        "parameters" : [ {
-          "name" : "courseId",
-          "in" : "path",
-          "description" : "ID of Course",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        }],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Course"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Course"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid Course ID supplied"
-          },
-          "404" : {
-            "description" : "Course not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "course" ],
-        "summary" : "Delete Course by identifier.",
-        "description" : "Delete Course by identifier",
-        "operationId" : "deleteCourse",
-        "parameters" : [ {
-          "name" : "courseId",
-          "in" : "path",
-          "description" : "ID of the Course that needs to be deleted",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Course deleted"
-          },
-          "400" : {
-            "description" : "Invalid Course ID supplied"
-          },
-          "404" : {
-            "description" : "Course not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/course/catalog" : {
-      "get" : {
-        "tags" : [ "course" ],
-        "summary" : "Returns list of published courses.",
-        "description" : "Returns a list of published courses.",
-        "operationId" : "getCoursesCatalog",
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "object",
-                  "additionalProperties" : {
-                    "type" : "integer",
-                    "format" : "int32"
-                  }
-                }
-              }
-            }
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        } ]
-      }
-    },
-    "/course/{courseId}/lesson" : {
-      "post" : {
-        "tags" : [ "lesson" ],
-        "summary" : "Create a lesson.",
-        "description" : "Create a lesson in the course.",
-        "operationId" : "createLesson",
-        "parameters" : [ {
-          "name" : "courseId",
-          "in" : "path",
-          "description" : "ID of Course containing the Lesson",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        }],
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Lesson"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Lesson"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Lesson"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Lesson"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/course/{courseId}/lesson/{lessonId}" : {
-      "get" : {
-        "tags" : [ "lesson" ],
-        "summary" : "Find Lesson by ID.",
-        "description" : "Find Lesson by ID in Course.",
-        "operationId" : "getLessonById",
-        "parameters" : [ {
-          "name" : "courseId",
-          "in" : "path",
-          "description" : "ID of Course containing the Lesson",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        },
+        "security": [
           {
-          "name" : "lessonId",
-          "in" : "path",
-          "description" : "ID of Lesson that needs to be fetched",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Lesson"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Lesson"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid Lesson ID supplied"
-          },
-          "404" : {
-            "description" : "Order not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
+        ]
       },
-      "delete" : {
-        "tags" : [ "lesson" ],
-        "summary" : "Delete Lesson by identifier.",
-        "description" : "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors.",
-        "operationId" : "deleteLesson",
-        "parameters" : [ {
-          "name" : "courseId",
-          "in" : "path",
-          "description" : "ID of Course containing the Lesson",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        },
-        {
-          "name" : "lessonId",
-          "in" : "path",
-          "description" : "ID of the Lesson that needs to be deleted",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "Lesson deleted"
-          },
-          "400" : {
-            "description" : "Invalid Lesson ID supplied"
-          },
-          "404" : {
-            "description" : "Lesson not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/money" : {
-      "put" : {
-        "tags" : [ "money" ],
-        "summary" : "Update existing money.",
-        "description" : "Update existing money by Id.",
-        "operationId" : "updateMoney",
-        "requestBody" : {
-          "description" : "Update existent money",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
+      "post": {
+        "tags": [
+          "author"
+        ],
+        "summary": "Add a new author.",
+        "description": "Add a new author.",
+        "operationId": "addAuthor",
+        "requestBody": {
+          "description": "Create a new Author",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
               }
             }
           },
-          "required" : true
+          "required": true
         },
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Money"
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Author"
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Money"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Author"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid ID supplied"
+          "400": {
+            "description": "Invalid input"
           },
-          "404" : {
-            "description" : "Money not found"
+          "422": {
+            "description": "Validation exception"
           },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/authorinvite/{email}": {
+      "post": {
+        "tags": [
+          "authorinvite"
+        ],
+        "summary": "Generate an invitation to register an Author.",
+        "description": "Generate an invitation to register an Author.",
+        "operationId": "authorInvite",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email of Author to invite.",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Generate an invitation code",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorInvite"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorInvite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthorInvite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorInvite"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorInvite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       },
-      "post" : {
-        "tags" : [ "money" ],
-        "summary" : "Add new Money definition.",
-        "description" : "Add new Money.",
-        "operationId" : "addMoney",
-        "requestBody" : {
-          "description" : "Create new Money",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Money"
-              }
+      "get": {
+        "tags": [
+          "authorinvite"
+        ],
+        "summary": "Get Author invitation by email.",
+        "description": "Returns the Author invitation by email.",
+        "operationId": "getAuthorInvite",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "Email of Author invitation to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
             }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Money"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorInvite"
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Money"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorInvite"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid input"
+          "400": {
+            "description": "Invalid email supplied"
           },
-          "422" : {
-            "description" : "Validation exception"
+          "404": {
+            "description": "Author invitation not found"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       }
     },
-    "/page" : {
-      "post" : {
-        "tags" : [ "page" ],
-        "summary" : "Create a page.",
-        "description" : "Create a page in the lesson.",
-        "operationId" : "createPage",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Page"
+    "/country": {
+      "post": {
+        "tags": [
+          "country"
+        ],
+        "summary": "Create a country.",
+        "description": "Create a country to reference its currency.",
+        "operationId": "createCountry",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Country"
               }
             },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Page"
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Country"
               }
             },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Page"
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Country"
               }
             }
           }
         },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Page"
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Country"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid input"
+          "400": {
+            "description": "Invalid input"
           },
-          "422" : {
-            "description" : "Validation exception"
+          "422": {
+            "description": "Validation exception"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -989,800 +476,702 @@
         }
       }
     },
-    "/multiplechoicepage" : {
-      "post" : {
-        "tags" : [ "page" ],
-        "summary" : "Create a MultipleChoicePage.",
-        "description" : "Create a MultipleChoicePage in the lesson.",
-        "operationId" : "createMultipleChoicePage",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MultipleChoicePage"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MultipleChoicePage"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MultipleChoicePage"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MultipleChoicePage"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/matchingpage" : {
-      "post" : {
-        "tags" : [ "page" ],
-        "summary" : "Create a MatchingPage.",
-        "description" : "Create a MatchingPage in the lesson.",
-        "operationId" : "createMatchingPage",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MatchingPage"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MatchingPage"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/MatchingPage"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/MatchingPage"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/budgetingpage" : {
-      "post" : {
-        "tags" : [ "page" ],
-        "summary" : "Create a BudgetingPage.",
-        "description" : "Create a BudgetingPage in the lesson.",
-        "operationId" : "createBudgetingPage",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/BudgetingPage"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/BudgetingPage"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/BudgetingPage"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/BudgetingPage"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/wantsneedspage" : {
-      "post" : {
-        "tags" : [ "page" ],
-        "summary" : "Create a WantsNeedsPage.",
-        "description" : "Create a WantsNeedsPage in the lesson.",
-        "operationId" : "createWantsNeedsPage",
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/WantsNeedsPage"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/WantsNeedsPage"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/WantsNeedsPage"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "201" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/WantsNeedsPage"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/user" : {
-      "put" : {
-        "tags" : [ "user" ],
-        "summary" : "Update an existing user.",
-        "description" : "Update an existing user by Id.",
-        "operationId" : "updateUser",
-        "requestBody" : {
-          "description" : "Update an existent user",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "User not found"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      },
-      "post" : {
-        "tags" : [ "user" ],
-        "summary" : "Add a new user.",
-        "description" : "Add a new user.",
-        "operationId" : "addUser",
-        "requestBody" : {
-          "description" : "Create a new user",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            }
-          },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "422" : {
-            "description" : "Validation exception"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      }
-    },
-    "/user/findByStatus" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Finds Users by status.",
-        "description" : "Multiple status values can be provided with comma separated strings.",
-        "operationId" : "findUsersByStatus",
-        "parameters" : [ {
-          "name" : "status",
-          "in" : "query",
-          "description" : "Status values that need to be considered for filter",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string",
-            "default" : "active",
-            "enum" : [ "registered", "active", "disabled" ]
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/User"
+    "/countries": {
+      "get": {
+        "tags": [
+          "country"
+        ],
+        "summary": "List of Countries.",
+        "description": "Returns all Countries.",
+        "operationId": "getCountries",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Country"
                   }
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/User"
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Country"
                   }
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid status value"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       }
     },
-    "/user/findByTags" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Finds Users by tags.",
-        "description" : "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
-        "operationId" : "findUsersByTags",
-        "parameters" : [ {
-          "name" : "tags",
-          "in" : "query",
-          "description" : "Tags to filter by",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
+    "/course": {
+      "post": {
+        "tags": [
+          "course"
+        ],
+        "summary": "Create a course.",
+        "description": "Create a course to contain lessons.",
+        "operationId": "createCourse",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
             }
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/User"
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course/{courseId}": {
+      "get": {
+        "tags": [
+          "course"
+        ],
+        "summary": "Find Course by ID.",
+        "description": "Find Course by ID.",
+        "operationId": "getCourseById",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "ID of Course",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Course"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Course ID supplied"
+          },
+          "404": {
+            "description": "Course not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "course"
+        ],
+        "summary": "Delete Course by identifier.",
+        "description": "Delete Course by identifier",
+        "operationId": "deleteCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "ID of the Course that needs to be deleted",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Course deleted"
+          },
+          "400": {
+            "description": "Invalid Course ID supplied"
+          },
+          "404": {
+            "description": "Course not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course/catalog": {
+      "get": {
+        "tags": [
+          "course"
+        ],
+        "summary": "Returns list of published courses.",
+        "description": "Returns a list of published courses.",
+        "operationId": "getCoursesCatalog",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/course/{courseId}/lesson": {
+      "post": {
+        "tags": [
+          "lesson"
+        ],
+        "summary": "Create a lesson.",
+        "description": "Create a lesson in the course.",
+        "operationId": "createLesson",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "ID of Course containing the Lesson",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Lesson"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/course/{courseId}/lesson/{lessonId}": {
+      "get": {
+        "tags": [
+          "lesson"
+        ],
+        "summary": "Find Lesson by ID.",
+        "description": "Find Lesson by ID in Course.",
+        "operationId": "getLessonById",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "ID of Course containing the Lesson",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "description": "ID of Lesson that needs to be fetched",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lesson"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Lesson ID supplied"
+          },
+          "404": {
+            "description": "Order not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "lesson"
+        ],
+        "summary": "Delete Lesson by identifier.",
+        "description": "For valid response try integer IDs with value < 1000. Anything above 1000 or nonintegers will generate API errors.",
+        "operationId": "deleteLesson",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "ID of Course containing the Lesson",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lessonId",
+            "in": "path",
+            "description": "ID of the Lesson that needs to be deleted",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lesson deleted"
+          },
+          "400": {
+            "description": "Invalid Lesson ID supplied"
+          },
+          "404": {
+            "description": "Lesson not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/courses": {
+      "get": {
+        "tags": [
+          "course"
+        ],
+        "summary": "List of Courses.",
+        "description": "Returns all Courses.",
+        "operationId": "getCourses",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Course"
                   }
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/User"
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Course"
                   }
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid tag value"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       }
     },
-    "/user/{userId}" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Find user by ID.",
-        "description" : "Returns a single user.",
-        "operationId" : "getUserById",
-        "parameters" : [ {
-          "name" : "userId",
-          "in" : "path",
-          "description" : "ID of user to return",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid ID supplied"
-          },
-          "404" : {
-            "description" : "User not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      },
-      "post" : {
-        "tags" : [ "user" ],
-        "summary" : "Updates a user with form data.",
-        "description" : "Updates a user resource based on the form data.",
-        "operationId" : "updateUserWithForm",
-        "parameters" : [ {
-          "name" : "userId",
-          "in" : "path",
-          "description" : "ID of user that needs to be updated",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        }, {
-          "name" : "name",
-          "in" : "query",
-          "description" : "Name of user that needs to be updated",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        },
-         {
-          "name" : "status",
-          "in" : "query",
-          "description" : "Status of user that needs to be updated",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "Invalid input"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      },
-      "delete" : {
-        "tags" : [ "user" ],
-        "summary" : "Deletes a user.",
-        "description" : "Delete a user.",
-        "operationId" : "deleteUser",
-        "parameters" : [ {
-          "name" : "api_key",
-          "in" : "header",
-          "description" : "",
-          "required" : false,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "userId",
-          "in" : "path",
-          "description" : "User id to delete",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "User deleted"
-          },
-          "400" : {
-            "description" : "Invalid user value"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      }
-    },
-    "/user/{userId}/uploadImage" : {
-      "post" : {
-        "tags" : [ "user" ],
-        "summary" : "Uploads an image.",
-        "description" : "Upload image of the user.",
-        "operationId" : "uploadFile",
-        "parameters" : [ {
-          "name" : "userId",
-          "in" : "path",
-          "description" : "ID of user to update",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        }, {
-          "name" : "additionalMetadata",
-          "in" : "query",
-          "description" : "Additional Metadata",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "requestBody" : {
-          "content" : {
-            "application/octet-stream" : {
-              "schema" : {
-                "type" : "string",
-                "format" : "binary"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/ApiResponse"
-                }
-              }
-            }
-          },
-          "400" : {
-            "description" : "No file uploaded"
-          },
-          "404" : {
-            "description" : "User not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
-      }
-    },
-    "/user/login" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Logs user into the system.",
-        "description" : "Log into the system.",
-        "operationId" : "loginUser",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "query",
-          "description" : "The user name for login",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        }, {
-          "name" : "password",
-          "in" : "query",
-          "description" : "The password for login in clear text",
-          "required" : false,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "headers" : {
-              "X-Rate-Limit" : {
-                "description" : "calls per hour allowed by the user",
-                "style" : "simple",
-                "explode" : false,
-                "schema" : {
-                  "type" : "integer",
-                  "format" : "int32"
-                }
-              },
-              "X-Expires-After" : {
-                "description" : "date in UTC when token expires",
-                "style" : "simple",
-                "explode" : false,
-                "schema" : {
-                  "type" : "string",
-                  "format" : "date-time"
-                }
+    "/money": {
+      "put": {
+        "tags": [
+          "money"
+        ],
+        "summary": "Update existing money.",
+        "description": "Update existing money by Id.",
+        "operationId": "updateMoney",
+        "requestBody": {
+          "description": "Update existent money",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
               }
             },
-            "content" : {
-              "application/xml" : {
-                "schema" : {
-                  "type" : "string"
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Money"
                 }
               },
-              "application/json" : {
-                "schema" : {
-                  "type" : "string"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Money"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid username/password supplied"
+          "400": {
+            "description": "Invalid ID supplied"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "404": {
+            "description": "Money not found"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "money"
+        ],
+        "summary": "Add new Money definition.",
+        "description": "Add new Money.",
+        "operationId": "addMoney",
+        "requestBody": {
+          "description": "Create new Money",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Money"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Money"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Money"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/page": {
+      "post": {
+        "tags": [
+          "page"
+        ],
+        "summary": "Create a page.",
+        "description": "Create a page in the lesson.",
+        "operationId": "createPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Page"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Page"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Page"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Page"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1790,23 +1179,56 @@
         }
       }
     },
-    "/user/logout" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Logs out current logged in user session.",
-        "description" : "Log user out of the system.",
-        "operationId" : "logoutUser",
-        "parameters" : [ ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation"
+    "/multiplechoicepage": {
+      "post": {
+        "tags": [
+          "page"
+        ],
+        "summary": "Create a MultipleChoicePage.",
+        "description": "Create a MultipleChoicePage in the lesson.",
+        "operationId": "createMultipleChoicePage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MultipleChoicePage"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/MultipleChoicePage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MultipleChoicePage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultipleChoicePage"
+                }
+              }
+            }
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -1814,986 +1236,1888 @@
         }
       }
     },
-    "/user/{username}" : {
-      "get" : {
-        "tags" : [ "user" ],
-        "summary" : "Get user by user name.",
-        "description" : "Get user detail based on username.",
-        "operationId" : "getUserByName",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "path",
-          "description" : "The name that needs to be fetched. Use user1 for testing",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
+    "/matchingpage": {
+      "post": {
+        "tags": [
+          "page"
+        ],
+        "summary": "Create a MatchingPage.",
+        "description": "Create a MatchingPage in the lesson.",
+        "operationId": "createMatchingPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchingPage"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchingPage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MatchingPage"
+              }
+            }
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
-                }
-              },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/User"
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchingPage"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid username supplied"
+          "400": {
+            "description": "Invalid input"
           },
-          "404" : {
-            "description" : "User not found"
+          "422": {
+            "description": "Validation exception"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         }
-      },
-      "put" : {
-        "tags" : [ "user" ],
-        "summary" : "Update user resource.",
-        "description" : "This can only be done by the logged in user.",
-        "operationId" : "updateUserByName",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "path",
-          "description" : "name that need to be updated",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ],
-        "requestBody" : {
-          "description" : "Update an existent user in the store",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses" : {
-          "200" : {
-            "description" : "successful operation"
-          },
-          "400" : {
-            "description" : "bad request"
-          },
-          "404" : {
-            "description" : "user not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete" : {
-        "tags" : [ "user" ],
-        "summary" : "Delete user resource.",
-        "description" : "This can only be done by the logged in user.",
-        "operationId" : "deleteUserByName",
-        "parameters" : [ {
-          "name" : "username",
-          "in" : "path",
-          "description" : "The name that needs to be deleted",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "string"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "User deleted"
-          },
-          "400" : {
-            "description" : "Invalid username supplied"
-          },
-          "404" : {
-            "description" : "User not found"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
       }
     },
-    "/wallet/{walletId}" : {
-      "get" : {
-        "tags" : [ "wallet" ],
-        "summary" : "Find wallet by ID.",
-        "description" : "Returns an user wallet.",
-        "operationId" : "getWallet",
-        "parameters" : [ {
-          "name" : "walletId",
-          "in" : "path",
-          "description" : "The id of the wallet known for the user",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
+    "/budgetingpage": {
+      "post": {
+        "tags": [
+          "page"
+        ],
+        "summary": "Create a BudgetingPage.",
+        "description": "Create a BudgetingPage in the lesson.",
+        "operationId": "createBudgetingPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BudgetingPage"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/BudgetingPage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BudgetingPage"
+              }
+            }
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Wallet"
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BudgetingPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wantsneedspage": {
+      "post": {
+        "tags": [
+          "page"
+        ],
+        "summary": "Create a WantsNeedsPage.",
+        "description": "Create a WantsNeedsPage in the lesson.",
+        "operationId": "createWantsNeedsPage",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WantsNeedsPage"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/WantsNeedsPage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WantsNeedsPage"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WantsNeedsPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update an existing user.",
+        "description": "Update an existing user by Id.",
+        "operationId": "updateUser",
+        "requestBody": {
+          "description": "Update an existent user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Wallet"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid ID supplied"
+          "400": {
+            "description": "Invalid ID supplied"
           },
-          "404" : {
-            "description" : "Wallet not found"
+          "404": {
+            "description": "User not found"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       },
-      "put" : {
-        "tags" : [ "wallet" ],
-        "summary" : "Updates a Wallet with form data.",
-        "description" : "Updates a Wallet resource based on the form data.",
-        "operationId" : "updateWalletWithForm",
-        "parameters" : [ {
-          "name" : "walletId",
-          "in" : "path",
-          "description" : "The id of the wallet known for the user",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
-          }
-        } ],
-        "requestBody" : {
-          "description" : "Updates an user wallet.",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Add a new user.",
+        "description": "Add a new user.",
+        "operationId": "addUser",
+        "requestBody": {
+          "description": "Create a new user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
               }
             },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
               }
             },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
               }
             }
           },
-          "required" : true
+          "required": true
         },
-        "responses" : {
-          "200" : {
-            "description" : "successful operation",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Wallet"
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               },
-              "application/xml" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Wallet"
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
-          "400" : {
-            "description" : "Invalid input"
+          "400": {
+            "description": "Invalid input"
           },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "422": {
+            "description": "Validation exception"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/findByStatus": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Finds Users by status.",
+        "description": "Multiple status values can be provided with comma separated strings.",
+        "operationId": "findUsersByStatus",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status values that need to be considered for filter",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "default": "active",
+              "enum": [
+                "registered",
+                "active",
+                "disabled"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/findByTags": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Finds Users by tags.",
+        "description": "Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+        "operationId": "findUsersByTags",
+        "parameters": [
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "Tags to filter by",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid tag value"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/{userId}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Find user by ID.",
+        "description": "Returns a single user.",
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       },
-      "delete" : {
-        "tags" : [ "user" ],
-        "summary" : "Deletes a Wallet.",
-        "description" : "Delete a Wallet.",
-        "operationId" : "deleteWallet",
-        "parameters" : [ {
-          "name" : "walletId",
-          "in" : "path",
-          "description" : "The id of the wallet known for the user",
-          "required" : true,
-          "style" : "simple",
-          "explode" : false,
-          "schema" : {
-            "type" : "integer",
-            "format" : "int64"
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Updates a user with form data.",
+        "description": "Updates a user resource based on the form data.",
+        "operationId": "updateUserWithForm",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user that needs to be updated",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of user that needs to be updated",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status of user that needs to be updated",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
           }
-        } ],
-        "requestBody" : {
-          "description" : "Deletes an user wallet.",
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
-              }
-            },
-            "application/xml" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
-              }
-            },
-            "application/x-www-form-urlencoded" : {
-              "schema" : {
-                "$ref" : "#/components/schemas/Wallet"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
               }
             }
           },
-          "required" : true
-        },
-        "responses" : {
-          "200" : {
-            "description" : "Wallet deleted"
+          "400": {
+            "description": "Invalid input"
           },
-          "400" : {
-            "description" : "Invalid Wallet value"
-          },
-          "default" : {
-            "description" : "Unexpected error",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/Error"
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
           }
         },
-        "security" : [ {
-          "api_key" : [ ]
-        }, {
-          "pennywise_auth" : [ "write:users", "read:users" ]
-        } ]
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Deletes a user.",
+        "description": "Delete a user.",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User id to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted"
+          },
+          "400": {
+            "description": "Invalid user value"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/{userId}/uploadImage": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Uploads an image.",
+        "description": "Upload image of the user.",
+        "operationId": "uploadFile",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "ID of user to update",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "additionalMetadata",
+            "in": "query",
+            "description": "Additional Metadata",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No file uploaded"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/login": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs user into the system.",
+        "description": "Log into the system.",
+        "operationId": "loginUser",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {
+              "X-Rate-Limit": {
+                "description": "calls per hour allowed by the user",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "X-Expires-After": {
+                "description": "date in UTC when token expires",
+                "style": "simple",
+                "explode": false,
+                "schema": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            },
+            "content": {
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Logs out current logged in user session.",
+        "description": "Log user out of the system.",
+        "operationId": "logoutUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{username}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Get user by user name.",
+        "description": "Get user detail based on username.",
+        "operationId": "getUserByName",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be fetched. Use user1 for testing",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Update user resource.",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateUserByName",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "name that need to be updated",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent user in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "404": {
+            "description": "user not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Delete user resource.",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUserByName",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted"
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      }
+    },
+    "/wallet/{walletId}": {
+      "get": {
+        "tags": [
+          "wallet"
+        ],
+        "summary": "Find wallet by ID.",
+        "description": "Returns an user wallet.",
+        "operationId": "getWallet",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "The id of the wallet known for the user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Wallet not found"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "wallet"
+        ],
+        "summary": "Updates a Wallet with form data.",
+        "description": "Updates a Wallet resource based on the form data.",
+        "operationId": "updateWalletWithForm",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "The id of the wallet known for the user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Updates an user wallet.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Wallet"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/Wallet"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Wallet"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Deletes a Wallet.",
+        "description": "Delete a Wallet.",
+        "operationId": "deleteWallet",
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "description": "The id of the wallet known for the user",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Wallet deleted"
+          },
+          "400": {
+            "description": "Invalid Wallet value"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          },
+          {
+            "pennywise_auth": [
+              "write:users",
+              "read:users"
+            ]
+          }
+        ]
       }
     }
   },
-  "components" : {
-    "schemas" : {
-      "Author" : {
-        "type" : "object",
-   "required": [
-    "email",
-    "displayName",
-    "passwordHash"
-  ],
-  "properties": {
-    "email": {
-      "type": "string",
-      "example" : "author@pennywise.app"
-    },
-    "displayName": {
-      "type": "string",
-      "example" : "Ama Author"
-    },
-    "passwordHash": {
-      "type": "string",
-      "example": "0102030405060708090a0b0c0d0e0f"
-    },
-    "role": {
-      "type": "string",
-      "example": "author"
-    },
-    "coursesCreated": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "profilePicUrl": {
-      "type": "string",
-      "example": "path/to/photo.jpg"
-    },
-    "createdAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    },
-    "updatedAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    }
-    }
-    },
-    "AuthorInvite" : {
-        "type" : "object",
-   "required": [
-    "email",
-    "expiringDate"
-  ],
-  "properties": {
-    "email": {
-      "type": "string",
-      "example" : "author@pennywise.app"
-    },
-    "expiringDate": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Mon, 21 Sep 2026 12:27:07 +0100"
-    },
-    "code": {
-      "type": "string",
-      "example": "0102030405060708090a0b0c0d0e0f"
-      }
-  }
-    },
-      "Country" : {
-        "type" : "object",
-        "required": [ "name" ],
-        "properties" : {
-          "name" : {
-            "type" : "string",
-            "example" : "United States of America"
+  "components": {
+    "schemas": {
+      "Author": {
+        "type": "object",
+        "required": [
+          "email",
+          "displayName",
+          "passwordHash"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "author@pennywise.app"
+          },
+          "displayName": {
+            "type": "string",
+            "example": "Ama Author"
+          },
+          "passwordHash": {
+            "type": "string",
+            "example": "0102030405060708090a0b0c0d0e0f"
+          },
+          "role": {
+            "type": "string",
+            "example": "author"
+          },
+          "coursesCreated": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "profilePicUrl": {
+            "type": "string",
+            "example": "path/to/photo.jpg"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          }
+        }
+      },
+      "AuthorInvite": {
+        "type": "object",
+        "required": [
+          "email",
+          "expiringDate"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "author@pennywise.app"
+          },
+          "expiringDate": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          },
+          "code": {
+            "type": "string",
+            "example": "0102030405060708090a0b0c0d0e0f"
+          }
+        }
+      },
+      "Country": {
+        "type": "object",
+        "required": [
+          "name",
+          "code"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "United States of America"
+          },
+          "code": {
+            "type": "string",
+            "example": "USA"
           }
         }
       },
       "Course": {
-        "type" : "object",
-        "required": [
-    "creatorId",
-    "name"
-  ],
-  "properties": {
-    "creatorId": {
-      "type": "object"
-    },
-    "name": {
-      "type": "string"
-    },
-    "lessons": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "published": {
-      "type": "boolean"
-    },
-    "createdAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    },
-    "updatedAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    }
-  }
-  },
-  "Lesson" : {
-        "type" : "object",
-  "required": [
-    "courseId",
-    "name",
-    "description"
-  ],
-  "properties": {
-    "courseId": {
-      "type": "object"
-    },
-    "name": {
-      "type": "string"
-    },
-    "experience": {
-      "type": "number"
-    },
-    "pages": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "estimatedDurationOfCompletionInMinutes": {
-      "type": "number"
-    },
-    "description": {
-      "type": "string"
-    },
-    "createdAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    },
-    "updatedAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    }
-}
-},
-"Money" : {
-    "type" : "object",
-  "required": [
-    "name",
-    "country"
-  ],
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "coins": {
-      "type": "array",
-      "items": {
         "type": "object",
+        "required": [
+          "creatorId",
+          "name"
+        ],
         "properties": {
-          "value": {
-            "type": "number"
+          "creatorId": {
+            "type": "object"
           },
-          "image": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "value",
-          "image"
-        ]
-      }
-    },
-    "notes": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "number"
-          },
-          "image": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "value",
-          "image"
-        ]
-      }
-    },
-    "country": {
-      "type": "object"
-    }
-}
-},
-"Page": {
-    "type" : "object",
-  "required": [
-    "lessonId",
-    "text"
-  ],
-  "properties": {
-    "lessonId": {
-      "type": "object"
-    },
-    "text": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "string"
-    },
-    "audioUrl": {
-      "type": "string"
-    },
-    "incorrectMessage": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    }
-}
-},
-"MultipleChoicePage": {
-    "type" : "object",
-  "required": [
-    "lessonId",
-    "text"
-  ],
-  "properties": {
-    "lessonId": {
-      "type": "object"
-    },
-    "text": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "string"
-    },
-    "audioUrl": {
-      "type": "string"
-    },
-    "incorrectMessage": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "options": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "answerText": {
-            "type": "string"
-          },
-          "isCorrect": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "answerText"
-        ]
-      }
-    }
-}
-},
-"MatchingPage": {
-    "type" : "object",
-  "required": [
-    "lessonId",
-    "text"
-  ],
-  "properties": {
-    "lessonId": {
-      "type": "object"
-    },
-    "text": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "string"
-    },
-    "audioUrl": {
-      "type": "string"
-    },
-    "incorrectMessage": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "pairs": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "word": {
-            "type": "string"
-          },
-          "definition": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "word",
-          "definition"
-        ]
-      }
-    }
-  }
-},
-"BudgetingPage" : {
-    "type" : "object",
-  "required": [
-    "lessonId",
-    "text",
-    "startingAmount"
-  ],
-  "properties": {
-    "lessonId": {
-      "type": "object"
-    },
-    "text": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "string"
-    },
-    "audioUrl": {
-      "type": "string"
-    },
-    "incorrectMessage": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "startingAmount": {
-      "type": "number"
-    },
-    "targetSavings": {
-      "type": "number"
-    },
-    "availableItems": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
           "name": {
             "type": "string"
           },
-          "cost": {
-            "type": "number"
+          "lessons": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
           }
-        },
+        }
+      },
+      "Lesson": {
+        "type": "object",
+        "required": [
+          "courseId",
+          "name",
+          "description"
+        ],
+        "properties": {
+          "courseId": {
+            "type": "object"
+          },
+          "name": {
+            "type": "string"
+          },
+          "experience": {
+            "type": "number"
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "estimatedDurationOfCompletionInMinutes": {
+            "type": "number"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          }
+        }
+      },
+      "Money": {
+        "type": "object",
         "required": [
           "name",
-          "cost"
-        ]
-      }
-    }
-  }
-},
-"WantsNeedsPage" : {
-    "type" : "object",
-  "required": [
-    "lessonId",
-    "text"
-  ],
-  "properties": {
-    "lessonId": {
-      "type": "object"
-    },
-    "text": {
-      "type": "string"
-    },
-    "imageUrl": {
-      "type": "string"
-    },
-    "audioUrl": {
-      "type": "string"
-    },
-    "incorrectMessage": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    },
-    "itemsToSort": {
-      "type": "array",
-      "items": {
-        "type": "object",
+          "country"
+        ],
         "properties": {
           "name": {
             "type": "string"
           },
-          "correctCategory": {
+          "coins": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "image"
+              ]
+            }
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "type": "number"
+                },
+                "image": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "value",
+                "image"
+              ]
+            }
+          },
+          "country": {
+            "type": "object"
+          }
+        }
+      },
+      "Page": {
+        "type": "object",
+        "required": [
+          "lessonId",
+          "text"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "incorrectMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "MultipleChoicePage": {
+        "type": "object",
+        "required": [
+          "lessonId",
+          "text"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "incorrectMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "answerText": {
+                  "type": "string"
+                },
+                "isCorrect": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "answerText"
+              ]
+            }
+          }
+        }
+      },
+      "MatchingPage": {
+        "type": "object",
+        "required": [
+          "lessonId",
+          "text"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "incorrectMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "pairs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "word": {
+                  "type": "string"
+                },
+                "definition": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "word",
+                "definition"
+              ]
+            }
+          }
+        }
+      },
+      "BudgetingPage": {
+        "type": "object",
+        "required": [
+          "lessonId",
+          "text",
+          "startingAmount"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "incorrectMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "startingAmount": {
+            "type": "number"
+          },
+          "targetSavings": {
+            "type": "number"
+          },
+          "availableItems": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "cost": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name",
+                "cost"
+              ]
+            }
+          }
+        }
+      },
+      "WantsNeedsPage": {
+        "type": "object",
+        "required": [
+          "lessonId",
+          "text"
+        ],
+        "properties": {
+          "lessonId": {
+            "type": "object"
+          },
+          "text": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "audioUrl": {
+            "type": "string"
+          },
+          "incorrectMessage": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "itemsToSort": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "correctCategory": {
+                  "type": "string",
+                  "enum": [
+                    "want",
+                    "need"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "correctCategory"
+              ]
+            }
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "email",
+          "displayName",
+          "passwordHash"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "passwordHash": {
+            "type": "string"
+          },
+          "role": {
             "type": "string",
             "enum": [
-              "want",
-              "need"
+              "learner",
+              "author"
+            ]
+          },
+          "coursesEnrolled": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "coursesCreated": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "currentStreak": {
+            "type": "number"
+          },
+          "longestStreak": {
+            "type": "number"
+          },
+          "profilePicUrl": {
+            "type": "string"
+          },
+          "level": {
+            "type": "number"
+          },
+          "experience": {
+            "type": "number"
+          },
+          "currentLives": {
+            "type": "number"
+          },
+          "country": {
+            "type": "object"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-20T12:27:07+0100"
+          }
+        }
+      },
+      "Wallet": {
+        "type": "object",
+        "required": [
+          "user",
+          "total",
+          "country",
+          "denominations",
+          "type"
+        ],
+        "properties": {
+          "user": {
+            "type": "object"
+          },
+          "total": {
+            "type": "number"
+          },
+          "country": {
+            "type": "object"
+          },
+          "denominations": {
+            "type": "object"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "immediate",
+              "long-term"
             ]
           }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
         },
+        "xml": {
+          "name": "##default"
+        }
+      },
+      "Error": {
         "required": [
-          "name",
-          "correctCategory"
-        ]
-      }
-      }
-  }
-},
-"User" : {
-    "type" : "object",
-  "required": [
-    "email",
-    "displayName",
-    "passwordHash"
-  ],
-  "properties": {
-    "email": {
-      "type": "string"
-    },
-    "displayName": {
-      "type": "string"
-    },
-    "passwordHash": {
-      "type": "string"
-    },
-    "role": {
-      "type": "string",
-      "enum": [
-        "learner",
-        "author"
-      ]
-    },
-    "coursesEnrolled": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "coursesCreated": {
-      "type": "array",
-      "items": {
-        "type": "object"
-      }
-    },
-    "currentStreak": {
-      "type": "number"
-    },
-    "longestStreak": {
-      "type": "number"
-    },
-    "profilePicUrl": {
-      "type": "string"
-    },
-    "level": {
-      "type": "number"
-    },
-    "experience": {
-      "type": "number"
-    },
-    "currentLives": {
-      "type": "number"
-    },
-    "country": {
-      "type": "object"
-    },
-    "createdAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    },
-    "updatedAt": {
-      "type": "string",
-      "format": "date-time",
-      "example": "Sun, 20 Sep 2026 12:27:07 +0100"
-    }
-}
-      },
-"Wallet" : {
-    "type" : "object",
-  "required": [
-    "user",
-    "total",
-    "country",
-    "denominations",
-    "type"
-  ],
-  "properties": {
-    "user": {
-      "type": "object"
-    },
-    "total": {
-      "type": "number"
-    },
-    "country": {
-      "type": "object"
-    },
-    "denominations": {
-      "type": "object"
-    },
-    "type": {
-      "type": "string",
-      "enum": [
-        "immediate",
-        "long-term"
-      ]
-    }
-    }
-    },
-      "ApiResponse" : {
-        "type" : "object",
-        "properties" : {
-          "code" : {
-            "type" : "integer",
-            "format" : "int32"
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
           },
-          "type" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
-          }
-        },
-        "xml" : {
-          "name" : "##default"
-        }
-      },
-      "Error" : {
-        "required" : [ "code", "message" ],
-        "type" : "object",
-        "properties" : {
-          "code" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
+          "message": {
+            "type": "string"
           }
         }
       }
     },
-    "requestBodies" : {
-    "Lesson" : {
-        "description" : "Lesson object that needs to be added to a Course",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Lesson"
+    "requestBodies": {
+      "Lesson": {
+        "description": "Lesson object that needs to be added to a Course",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Lesson"
             }
           },
-          "application/xml" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Lesson"
+          "application/xml": {
+            "schema": {
+              "$ref": "#/components/schemas/Lesson"
             }
           }
         }
       },
-      "CourseArray" : {
-        "description" : "List of Course object",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/components/schemas/Course"
+      "CourseArray": {
+        "description": "List of Course object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Course"
               }
             }
           }
         }
       },
-      "LessonArray" : {
-        "description" : "List of Lesson object",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/components/schemas/Lesson"
+      "LessonArray": {
+        "description": "List of Lesson object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Lesson"
               }
             }
           }
         }
       },
-      "UserArray" : {
-        "description" : "List of user object",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/components/schemas/User"
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/User"
               }
             }
           }
         }
       }
     },
-    "securitySchemes" : {
-      "pennywise_auth" : {
-        "type" : "oauth2",
-        "flows" : {
-          "implicit" : {
-            "authorizationUrl" : "https://pennywise.freecodecamp.org/oauth/authorize",
-            "scopes" : {
-              "write:users" : "update user info",
-              "read:users" : "read user info"
+    "securitySchemes": {
+      "pennywise_auth": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://pennywise.freecodecamp.org/oauth/authorize",
+            "scopes": {
+              "write:users": "update user info",
+              "read:users": "read user info"
             }
           }
         }
       },
-      "api_key" : {
-        "type" : "apiKey",
-        "name" : "api_key",
-        "in" : "header"
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
       }
     }
   }
