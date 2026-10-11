@@ -1,22 +1,15 @@
 services:
-  frontend:
-    build:
-      target: dev
-    command:
-      npm run dev -- --host 0.0.0.0
-    develop:
-      watch:
-        - action: sync
-          path: ./frontend
-          target: /app
-          ignore:
-            - node_modules/
-        - action: rebuild
-          path: ./frontend/package.json
-
   backend:
     build:
+      context: ./backend
       target: dev
+    mem_limit: 512m
+    mem_reservation: 256m
+    cpus: 1.0
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=${MONGODB_URI:?MONGODB_URI must be set}
     command:
       npm run dev
     develop:
@@ -28,3 +21,26 @@ services:
             - node_modules/
         - action: rebuild
           path: ./backend/package.json
+
+  frontend:
+    build:
+      context: ./frontend
+      target: dev
+    command:
+      npm run dev -- --host 0.0.0.0
+    mem_limit: 512m
+    mem_reservation: 256m
+    cpus: 1.0
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./frontend/package.json
