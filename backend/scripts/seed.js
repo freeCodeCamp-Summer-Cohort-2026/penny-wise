@@ -1321,7 +1321,7 @@ async function seed({ mongoUri } = {}) {
         displayName: seedUser.displayName,
         role: seedUser.role,
         passwordHash: passwordHash,
-        country: country._id,
+        country: country.name,
         coursesEnrolled: [],
         completedLessons: [],
         experience: 0,
@@ -1344,7 +1344,7 @@ async function seed({ mongoUri } = {}) {
         displayName: seedAuthor.displayName,
         role: seedAuthor.role,
         passwordHash: passwordHash,
-        country: country._id,
+        country: country.name,
       },
       { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
     );
