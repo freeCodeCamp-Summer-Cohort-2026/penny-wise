@@ -26,7 +26,7 @@ const levelTitlePicker = (level) => {
 };
 
 const COUNTRY_SUGGESTIONS = [
-  'United States',
+  'United States of America',
   'United Kingdom',
   'Canada',
   'Nigeria',
