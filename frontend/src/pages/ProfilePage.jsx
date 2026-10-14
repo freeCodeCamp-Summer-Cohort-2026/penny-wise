@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CircleUser, Globe, Mail, User } from 'lucide-react';
-import { getCountries } from '../lib/api/penny-wise';
+import { getCountries, submitProfile } from '../lib/api/penny-wise';
 import { useAuth } from '../lib/useAuth';
 
 const levelTitlePicker = (level) => {
@@ -189,9 +189,11 @@ const ProfileForm = ({ user }) => {
         ...(user.role === 'author' ? { bio: trimmedBio } : {}),
       },
     });
+    const controller = new AbortController();
+    submitProfile(user.id, trimmedName, trimmedCountry, controller.signal);
     setStatus({
       state: 'success',
-      message: 'Profile saved on this device. Server sync coming soon.',
+      message: 'Profile saved.',
     });
   };
 

@@ -40,6 +40,15 @@ async function postData(url, body, signal) {
   }
 }
 
+async function putData(url, body, signal) {
+  try {
+    const response = await api.put(url, body, requestConfig(signal));
+    return response.data;
+  } catch (error) {
+    throw normalizeApiError(error);
+  }
+}
+
 export const registerUser = (userData, signal) =>
   postData('/auth/register', userData, getSignal(signal));
 
@@ -74,5 +83,12 @@ export const submitLessonPage = (courseId, lessonId, pageId, answer, signal) =>
   postData(
     `/courses/${courseId}/lessons/${lessonId}/pages/${pageId}/submit`,
     { answer },
+    getSignal(signal),
+  );
+
+export const submitProfile = (userId, name, email, country, signal) =>
+  putData(
+    `/user`,
+    { displayName: name, email: email, country: country },
     getSignal(signal),
   );
