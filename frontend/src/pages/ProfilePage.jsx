@@ -190,7 +190,16 @@ const ProfileForm = ({ user }) => {
       },
     });
     const controller = new AbortController();
-    submitProfile(user.id, trimmedName, trimmedCountry, controller.signal);
+    submitProfile(
+      {
+        ...user,
+        userId: user.id,
+        displayName: trimmedName,
+        country: trimmedCountry,
+        ...(user.role === 'author' ? { bio: trimmedBio } : {}),
+      },
+      controller.signal,
+    );
     setStatus({
       state: 'success',
       message: 'Profile saved.',

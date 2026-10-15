@@ -2,7 +2,7 @@
 const express = require('express');
 // const mongoose = require('mongoose');
 // const { User, Learner, Author } = require('../models/User');
-const Learner = require('../models/User');
+const { Learner, Author } = require('../models/User');
 
 // const { requireAuth, optionalAuth, checkRole } = require('../middleware/auth');
 const { requireAuth, checkRole } = require('../middleware/auth');
@@ -16,34 +16,97 @@ class RouteError extends Error {
   }
 }
 
-router.put('/', requireAuth, checkRole('learner'), async (req, res, next) => {
-  try {
-    const user = await Learner.findById(req.user.id);
-    if (!user) {
-      return res.status(404).json({ error: 'Learner not found' });
-    }
-    const name =
-      typeof req.body.displayName === 'string'
-        ? req.body.displayName.trim()
-        : '';
-    const country =
-      typeof req.body.country === 'string' ? req.body.country.trim() : '';
+router.put(
+  '/',
+  requireAuth,
+  checkRole('learner', 'author'),
+  async (req, res, next) => {
+    try {
+      const user = await Learner.findById(req.user.id);
+      const author = await Author.findById(req.user.id);
+      let role;
+      if (!user) {
+        if (!author) {
+          return res.status(404).json({ error: 'Learner or Author not found' });
+        }
+        role = 'author';
+      } else {
+        role = 'learner';
+      }
 
-    if (name) {
-      user.displayName = name;
-    }
-    if (country) {
-      user.country = country;
-    }
+      const name =
+        typeof req.body.displayName === 'string'
+          ? req.body.displayName.trim()
+          : '';
+      const country =
+        typeof req.body.country === 'string' ? req.body.country.trim() : '';
 
-    const updatedAt = Date();
-    user.updatedAt = updatedAt;
+      const email =
+        typeof req.body.email === 'string'
+          ? req.body.email.lowercase().trim()
+          : '';
 
-    return res.status(201).json({ user });
-  } catch (err) {
-    return next(err);
-  }
-});
+      const bio =
+        role === 'author' && typeof req.body.bio === 'string'
+          ? req.body.bio.trim()
+          : '';
+
+      const updatedAt = Date();
+
+      if (role === 'learner') {
+        if (name) {
+          user.displayName = name;
+        }
+        if (country) {
+          user.country = country;
+        }
+        if (email) {
+          user.email = email;
+        }
+        user.updatedAt = updatedAt;
+      } else {
+        if (name) {
+          author.displayName = name;
+        }
+        if (country) {
+          author.country = country;
+        }
+        if (email) {
+          author.email = email;
+        }
+        if (bio) {
+          author.bio = bio;
+        }
+        author.updatedAt = updatedAt;
+      }
+
+      try {
+        if (role === 'learner') {
+          await user.save();
+        } else {
+          await author.save();
+        }
+      } catch (error) {
+        if (error.name === 'VersionError') {
+          throw new RouteError(
+            409,
+            'Activity changed on another device. Try again.',
+          );
+        }
+
+        throw error;
+      }
+
+      if (role === 'learner') {
+        return res.status(201).json({ user });
+      } else {
+        return res.status(201).json({ author });
+      }
+    } catch (err) {
+      return next(err);
+    }
+  },
+);
 
 /*
 const asyncRoute = (handler) => (req, res, next) => {
