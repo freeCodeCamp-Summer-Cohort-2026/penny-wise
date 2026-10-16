@@ -98,9 +98,9 @@ router.put(
       }
 
       if (role === 'learner') {
-        return res.status(201).json({ user });
+        return res.status(200).json({ user });
       } else {
-        return res.status(201).json({ author });
+        return res.status(200).json({ author });
       }
     } catch (err) {
       return next(err);

@@ -160,6 +160,7 @@ const ProfileForm = ({ user }) => {
   const trimmedName = displayName.trim();
   const trimmedCountry = country.trim();
   const trimmedBio = bio.trim();
+  // const email = user.email ? user.email : '';
   const dirty =
     trimmedName !== (user.displayName ?? '') ||
     trimmedCountry !== (user.country ?? '') ||

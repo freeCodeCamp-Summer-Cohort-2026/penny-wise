@@ -86,9 +86,15 @@ export const submitLessonPage = (courseId, lessonId, pageId, answer, signal) =>
     getSignal(signal),
   );
 
-export const submitProfile = (userId, name, email, country, signal) =>
+export const submitProfile = (body, signal) => {
+  console.log('submitProfile Receive call with: \n');
+  console.log(`Arguments: userId: ${body.userId} displayName: ${body.displayName}
+        country: ${body.country}, bio: ${body.bio}`);
+  // const email = typeof req.body.email === 'string' ? req.body.email.lowercase().trim() : '';
+
   putData(
     `/user`,
-    { displayName: name, email: email, country: country },
+    { displayName: body.displayName, country: body.country, bio: body.bio },
     getSignal(signal),
   );
+};
