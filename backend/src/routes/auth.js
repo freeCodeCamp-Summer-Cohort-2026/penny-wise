@@ -32,6 +32,11 @@ const sanitizeUser = (user) => ({
 
 const serializeCurrentUser = (user) => ({
   ...sanitizeUser(user),
+  ...(user.role === 'author'
+    ? {
+        bio: user.bio,
+      }
+    : {}),
   ...(user.role === 'learner'
     ? {
         experience: user.experience,

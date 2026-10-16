@@ -1,10 +1,5 @@
-// const crypto = require('crypto');
 const express = require('express');
-// const mongoose = require('mongoose');
-// const { User, Learner, Author } = require('../models/User');
 const { Learner, Author } = require('../models/User');
-
-// const { requireAuth, optionalAuth, checkRole } = require('../middleware/auth');
 const { requireAuth, checkRole } = require('../middleware/auth');
 
 const router = express.Router();
@@ -107,12 +102,6 @@ router.put(
     }
   },
 );
-
-/*
-const asyncRoute = (handler) => (req, res, next) => {
-  Promise.resolve(handler(req, res, next)).catch(next);
-};
-*/
 
 router.use((error, req, res, next) => {
   if (error instanceof RouteError) {
