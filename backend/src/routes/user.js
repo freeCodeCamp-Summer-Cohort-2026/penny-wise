@@ -1,5 +1,5 @@
 const express = require('express');
-const { Learner, Author } = require('../models/User');
+const { User, Learner, Author } = require('../models/User');
 const { requireAuth, checkRole } = require('../middleware/auth');
 
 const router = express.Router();
@@ -19,14 +19,11 @@ router.put(
     try {
       const user = await Learner.findById(req.user.id);
       const author = await Author.findById(req.user.id);
-      let role;
+      const role = req.user.role;
       if (!user) {
         if (!author) {
           return res.status(404).json({ error: 'Learner or Author not found' });
         }
-        role = 'author';
-      } else {
-        role = 'learner';
       }
 
       const name =
@@ -38,8 +35,17 @@ router.put(
 
       const email =
         typeof req.body.email === 'string'
-          ? req.body.email.lowercase().trim()
+          ? req.body.email.toLowerCase().trim()
           : '';
+
+      if (email) {
+        const existing = await User.findOne({ email: email.toLowerCase() });
+        if (existing && existing.id !== req.user.id) {
+          return res
+            .status(409)
+            .json({ error: 'An account with that email already exists' });
+        }
+      }
 
       const bio =
         role === 'author' && typeof req.body.bio === 'string'

@@ -191,20 +191,24 @@ const ProfileForm = ({ user }) => {
       },
     });
     const controller = new AbortController();
-    submitProfile(
-      {
-        ...user,
-        userId: user.id,
-        displayName: trimmedName,
-        country: trimmedCountry,
-        ...(user.role === 'author' ? { bio: trimmedBio } : {}),
-      },
-      controller.signal,
-    );
-    setStatus({
-      state: 'success',
-      message: 'Profile saved.',
-    });
+    try {
+      submitProfile(
+        {
+          ...user,
+          userId: user.id,
+          displayName: trimmedName,
+          country: trimmedCountry,
+          ...(user.role === 'author' ? { bio: trimmedBio } : {}),
+        },
+        controller.signal,
+      );
+      setStatus({ state: 'success', message: 'Profile saved.' });
+    } catch (err) {
+      setStatus({
+        state: 'error',
+        message: err.message || 'Failed to save profile.',
+      });
+    }
   };
 
   const handleDiscard = () => {
