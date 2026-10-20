@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CircleUser, Globe, Mail, User } from 'lucide-react';
-import { getCountries, submitProfile } from '../lib/api/penny-wise';
+import { getCountries, getImages, submitProfile } from '../lib/api/penny-wise';
+import PopUp from '../components/PopUp';
+import UploadImage from '../components/UploadImage';
 import { useAuth } from '../lib/useAuth';
 
 const levelTitlePicker = (level) => {
@@ -82,11 +84,14 @@ const ProfilePage = () => {
 const ProfileForm = ({ user }) => {
   const { signIn } = useAuth();
   const [displayName, setDisplayName] = useState(user.displayName ?? '');
+  const [userAvatar, setUserAvatar] = useState(user.profilePic ?? '');
   const [country, setCountry] = useState(user.country ?? '');
   const [bio, setBio] = useState(user.bio ?? '');
   const [countries, setCountries] = useState([]);
+  const [images, setImages] = useState([]);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState(null);
+  const [showPopUp, setShowPopUp] = useState(false);
 
   const loadCountries = useCallback(async (signal) => {
     setStatus('loading');
@@ -121,6 +126,39 @@ const ProfileForm = ({ user }) => {
       controller.abort();
     };
   }, [loadCountries]);
+
+  const loadImages = useCallback(async (signal) => {
+    setStatus('loading');
+    setError(null);
+
+    try {
+      const data = await getImages(user.id, signal);
+      console.log(`ProfilePage Received data: ${data}`);
+      console.log(`First element: ${data[0]}`);
+      setImages(data?.length > 0 ? data.map((x) => x.path) : []);
+
+      console.log(`Images have size =${images.length}`);
+      setStatus('ready');
+    } catch (loadError) {
+      if (signal?.aborted || loadError?.code === 'ERR_CANCELED') return;
+      setError(loadError);
+      setStatus('error');
+      if (process.env.NODE_ENV === 'development') {
+        console.log(error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      loadImages(controller.signal);
+    }, 0);
+    return () => {
+      window.clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [loadImages]);
 
   const stats = useMemo(() => {
     if (!user) return [];
@@ -164,7 +202,8 @@ const ProfileForm = ({ user }) => {
   const dirty =
     trimmedName !== (user.displayName ?? '') ||
     trimmedCountry !== (user.country ?? '') ||
-    (user.role === 'author' && trimmedBio !== (user.bio ?? ''));
+    (user.role === 'author' && trimmedBio !== (user.bio ?? '')) ||
+    userAvatar !== (user.profilePic ?? '');
   const nameError =
     trimmedName.length === 0
       ? 'Display name is required.'
@@ -196,6 +235,7 @@ const ProfileForm = ({ user }) => {
         {
           ...user,
           userId: user.id,
+          profilePic: userAvatar,
           displayName: trimmedName,
           country: trimmedCountry,
           ...(user.role === 'author' ? { bio: trimmedBio } : {}),
@@ -212,10 +252,16 @@ const ProfileForm = ({ user }) => {
   };
 
   const handleDiscard = () => {
+    setUserAvatar(user.profilePic ?? '');
     setDisplayName(user.displayName ?? '');
     setCountry(user.country ?? '');
     setBio(user.bio ?? '');
     setStatus(null);
+  };
+
+  const handleDeleteUserAvatar = () => {
+    setUserAvatar('');
+    console.log('Deleted user profilePic');
   };
 
   const level = user.level ?? 1;
@@ -251,9 +297,9 @@ const ProfileForm = ({ user }) => {
       <div className='mt-6 grid gap-6 lg:grid-cols-[280px_1fr]'>
         {/* Summary card (left, mirrors mockup tab column position) */}
         <aside className='h-fit rounded-2xl border border-(--border) bg-(--bg) p-6 text-center shadow-(--shadow)'>
-          {user.avatar ? (
+          {userAvatar ? (
             <img
-              src={user.avatar}
+              src={userAvatar}
               alt={`${user.displayName}'s avatar`}
               className='mx-auto h-24 w-24 rounded-full border border-(--border) object-cover'
             />
@@ -309,9 +355,9 @@ const ProfileForm = ({ user }) => {
           </h2>
 
           <div className='mt-6 flex flex-wrap items-center gap-4'>
-            {user.avatar ? (
+            {userAvatar ? (
               <img
-                src={user.avatar}
+                src={userAvatar}
                 alt='Current avatar'
                 className='h-16 w-16 rounded-full border border-(--border) object-cover'
               />
@@ -323,25 +369,35 @@ const ProfileForm = ({ user }) => {
             )}
             <div className='flex gap-3'>
               <button
+                onClick={() => setShowPopUp(true)}
                 type='button'
-                disabled
-                title='Avatar upload is not yet available'
-                className='cursor-not-allowed bg-(--accent-bold) px-5 py-2 text-sm font-semibold text-white opacity-50'
+                title='Upload your profile image.'
+                className='bg-(--accent-bold) px-5 py-2 text-sm font-semibold text-white opacity-50'
               >
                 Upload
               </button>
               <button
+                onClick={() => handleDeleteUserAvatar()}
                 type='button'
-                disabled
-                title='Avatar upload is not yet available.'
-                className='cursor-not-allowed border border-(--accent-border) px-5 py-2 text-sm font-semibold text-(--accent-bold) opacity-50'
+                title='Remove your profile image.'
+                className='{!userAvatar ?? cursor-not-allowed} border border-(--accent-border) px-5 py-2 text-sm font-semibold text-(--accent-bold) opacity-50'
               >
                 Remove
               </button>
+              <PopUp
+                showPopUp={showPopUp}
+                closePopUp={() => setShowPopUp(false)}
+              >
+                <UploadImage
+                  callBack={setUserAvatar}
+                  selectedImage={userAvatar}
+                  imageFiles={images}
+                />
+              </PopUp>
             </div>
           </div>
           <p className='mt-2 text-xs text-(--text)'>
-            Avatar upload will be available soon.
+            Manage your profile image.
           </p>
 
           <form onSubmit={handleSubmit} className='mt-6 space-y-5'>
@@ -459,6 +515,17 @@ const ProfileForm = ({ user }) => {
               )}
             </div>
 
+            <div>
+              <input
+                id='userAvatar'
+                name='userAvatar'
+                type='text'
+                value={userAvatar}
+                hidden
+                readOnly
+              />
+            </div>
+
             <div aria-live='polite' className='min-h-6'>
               {status && (
                 <p
@@ -486,9 +553,6 @@ const ProfileForm = ({ user }) => {
                 Discard
               </button>
             </div>
-            <p className='text-xs text-(--text)'>
-              Changes are saved on this device only. Server sync is coming soon.
-            </p>
           </form>
         </section>
       </div>

@@ -92,9 +92,9 @@ function MobileMenuElements({ onNavigate }) {
             className={mobileLinkClass}
           >
             <span className='flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--accent-bg)]'>
-              {auth.user?.avatar ? (
+              {auth.user?.profilePic ? (
                 <img
-                  src={auth.user.avatar}
+                  src={auth.user.profilePic}
                   alt=''
                   className='h-6 w-6 rounded-full object-cover'
                 />
@@ -185,9 +185,9 @@ function DesktopMenuElements() {
           />
           <NavLink to='/profile' aria-label='Profile'>
             <span className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--accent-bg)]'>
-              {auth.user?.avatar ? (
+              {auth.user?.profilePic ? (
                 <img
-                  src={auth.user.avatar}
+                  src={auth.user.profilePic}
                   alt=''
                   className='h-7 w-7 object-cover'
                 />

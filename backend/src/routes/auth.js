@@ -26,7 +26,7 @@ const sanitizeUser = (user) => ({
   displayName: user.displayName,
   role: user.role,
   level: user.level,
-  avatar: user.profilePic,
+  profilePic: user.profilePic,
   country: user.country,
 });
 

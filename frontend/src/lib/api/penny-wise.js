@@ -1,4 +1,5 @@
 import { api, normalizeApiError } from './client';
+import axios from 'axios';
 
 function getSignal(signalOrOptions) {
   if (
@@ -68,6 +69,22 @@ export const getCountries = (signal) =>
 
 export const getCourse = (courseId, signal) =>
   getData(`/courses/${courseId}`, getSignal(signal));
+
+export const getImages = (userId, signal) => {
+  // getData('/images/${userId}', getSignal(signal));
+  try {
+    console.log(
+      `Started getImages userID= ${userId}, ${signal} at lib/api/penny-wise`,
+    );
+    const res = axios.get('http://localhost:5001/images');
+    console.log(`Returning from getImages data= ${res.body}`);
+    return res;
+  } catch (err) {
+    console.error('❌ Fetch error:', err.message);
+  } finally {
+    console.log('Ended getImages at lib/api/penny-wise');
+  }
+};
 
 export const enrollInCourse = (courseId, signal) =>
   postData(`/courses/${courseId}/enroll`, undefined, getSignal(signal));
