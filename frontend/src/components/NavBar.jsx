@@ -15,6 +15,27 @@ const desktopLinkClass = ({ isActive }) =>
 const mobileLinkClass =
   'flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800';
 
+// Shows the user's picture, or the default icon when there is none or it fails
+// to load. Tracking the failed URL (not a boolean) means a new profilePic gets
+// a fresh attempt automatically.
+function UserAvatar({ src, className }) {
+  const [failedSrc, setFailedSrc] = useState(null);
+
+  if (!src || failedSrc === src) {
+    return <CircleUser aria-hidden='true' size={20} />;
+  }
+
+  return (
+    <img
+      key={src}
+      src={src}
+      alt=''
+      onError={() => setFailedSrc(src)}
+      className={className}
+    />
+  );
+}
+
 function Brand({
   to,
   dollarLoaded,
@@ -92,15 +113,10 @@ function MobileMenuElements({ onNavigate }) {
             className={mobileLinkClass}
           >
             <span className='flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--accent-bg)]'>
-              {auth.user?.avatar ? (
-                <img
-                  src={auth.user.avatar}
-                  alt=''
-                  className='h-6 w-6 rounded-full object-cover'
-                />
-              ) : (
-                <CircleUser aria-hidden='true' size={20} />
-              )}
+              <UserAvatar
+                src={auth.user?.profilePic}
+                className='h-6 w-6 rounded-full object-cover'
+              />
             </span>
             Profile
           </NavLink>
@@ -185,15 +201,10 @@ function DesktopMenuElements() {
           />
           <NavLink to='/profile' aria-label='Profile'>
             <span className='flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--accent-bg)]'>
-              {auth.user?.avatar ? (
-                <img
-                  src={auth.user.avatar}
-                  alt=''
-                  className='h-7 w-7 object-cover'
-                />
-              ) : (
-                <CircleUser aria-hidden='true' size={20} />
-              )}
+              <UserAvatar
+                src={auth.user?.profilePic}
+                className='h-full w-full object-cover'
+              />
             </span>
             <span className='hidden xl:inline'>Profile</span>
           </NavLink>

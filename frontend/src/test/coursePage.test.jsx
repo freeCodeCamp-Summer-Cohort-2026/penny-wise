@@ -14,6 +14,7 @@ vi.mock('../lib/api/penny-wise', () => ({
   getCourse: vi.fn(),
   enrollInCourse: vi.fn(),
   getCurrentUser: vi.fn(),
+  clearImageCache: vi.fn(),
   logoutUser: vi.fn().mockResolvedValue({ success: true }),
 }));
 

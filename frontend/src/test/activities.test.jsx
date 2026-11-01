@@ -8,6 +8,10 @@ import BudgetingActivity from '../components/course/BudgetingActivity';
 import WantsNeedsActivity from '../components/course/WantsNeedsActivity';
 import { getActivityAnswerError } from '../utils/activityValidation';
 
+vi.mock('../lib/api/penny-wise', () => ({
+  clearImageCache: vi.fn(),
+}));
+
 const multipleChoicePage = {
   _id: 'mc-1',
   type: 'multiple_choice',

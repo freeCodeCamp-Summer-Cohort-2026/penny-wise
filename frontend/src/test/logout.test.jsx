@@ -9,6 +9,7 @@ import { getCurrentUser, logoutUser } from '../lib/api/penny-wise';
 
 vi.mock('../lib/api/penny-wise', () => ({
   getCurrentUser: vi.fn(),
+  clearImageCache: vi.fn(),
   logoutUser: vi.fn(),
 }));
 

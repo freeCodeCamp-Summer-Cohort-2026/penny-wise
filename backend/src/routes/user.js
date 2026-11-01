@@ -30,6 +30,12 @@ router.put(
         typeof req.body.displayName === 'string'
           ? req.body.displayName.trim()
           : '';
+
+      const profilePic =
+        typeof req.body.profilePic === 'string'
+          ? req.body.profilePic.trim()
+          : '';
+
       const country =
         typeof req.body.country === 'string' ? req.body.country.trim() : '';
 
@@ -58,6 +64,9 @@ router.put(
         if (name) {
           user.displayName = name;
         }
+        if (user.profilePic !== profilePic) {
+          user.profilePic = profilePic;
+        }
         if (country) {
           user.country = country;
         }
@@ -68,6 +77,9 @@ router.put(
       } else {
         if (name) {
           author.displayName = name;
+        }
+        if (author.profilePic !== profilePic) {
+          author.profilePic = profilePic;
         }
         if (country) {
           author.country = country;

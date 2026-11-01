@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g npm@12.2.0
+RUN npm install -g npm@12.2.1
 
 RUN npm install --omit=dev
 
@@ -26,7 +26,7 @@ ENV PORT=5000
 
 COPY package*.json ./
 
-RUN npm install -g npm@12.2.0
+RUN npm install -g npm@12.2.1
 
 RUN npm install
 
