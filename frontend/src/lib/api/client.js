@@ -80,12 +80,9 @@ export function handleApiError(error) {
 }
 
 export const api = axios.create({
-  baseURL,
+  baseURL: baseURL,
   timeout: REQUEST_TIMEOUT_MS,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 });
 
 api.interceptors.response.use(

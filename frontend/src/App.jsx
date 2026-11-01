@@ -24,7 +24,14 @@ export function AppRoutes() {
       <NavBar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/profile' element={<ProfilePage />} />
+        <Route
+          path='/profile'
+          element={
+            <RequireAuth>
+              <ProfilePage />
+            </RequireAuth>
+          }
+        />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/courses' element={<CourseCatalog />} />

@@ -10,6 +10,7 @@ import { getCurrentUser, loginUser, registerUser } from '../lib/api/penny-wise';
 
 vi.mock('../lib/api/penny-wise', () => ({
   getCurrentUser: vi.fn(),
+  clearImageCache: vi.fn(),
   loginUser: vi.fn(),
   logoutUser: vi.fn().mockResolvedValue({ success: true }),
   registerUser: vi.fn(),

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const { Image } = require('../models/Image');
+const { User } = require('../models/User');
 const { requireAuth } = require('../middleware/auth');
 
 const router = express.Router();
@@ -58,8 +59,25 @@ function sendImage(res, image) {
 }
 
 // GET /api/images -> metadata only (imageData is select: false)
-router.get('/', async (req, res) => {
-  const images = await Image.find().sort({ createdAt: -1 }).lean();
+// Learners see their own images; authors see everything not owned by a learner
+// (author-owned images plus legacy images with no owner).
+router.get('/', requireAuth, async (req, res) => {
+  let filter;
+
+  if (req.user.role === 'author') {
+    // Authors are few, so an $in on their ids stays small, unlike a $nin over
+    // every learner. distinct() returns only the ids, not whole user documents.
+    const authorIds = await User.distinct('_id', { role: { $ne: 'learner' } });
+    filter = { $or: [{ owner: { $in: authorIds } }, { owner: null }] };
+  } else {
+    filter = { owner: req.user.id };
+  }
+
+  const images = await Image.find(filter)
+    .select('name contentType size createdAt')
+    .sort({ createdAt: -1 })
+    .lean();
+
   res.json({ images: images.map(serializeImage) });
 });
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CircleUser, Globe, Mail, User } from 'lucide-react';
-import { getCountries, getImages, submitProfile } from '../lib/api/penny-wise';
+import { getCountries, submitProfile } from '../lib/api/penny-wise';
 import PopUp from '../components/PopUp';
 import UploadImage from '../components/UploadImage';
 import { useAuth } from '../lib/useAuth';
@@ -88,7 +88,6 @@ const ProfileForm = ({ user }) => {
   const [country, setCountry] = useState(user.country ?? '');
   const [bio, setBio] = useState(user.bio ?? '');
   const [countries, setCountries] = useState([]);
-  const [images, setImages] = useState([]);
   const [status, setStatus] = useState('loading');
   const [error, setError] = useState(null);
   const [showPopUp, setShowPopUp] = useState(false);
@@ -130,6 +129,7 @@ const ProfileForm = ({ user }) => {
     };
   }, [loadCountries]);
 
+  /*
   const loadImages = useCallback(
     async (signal) => {
       setStatus('loading');
@@ -164,6 +164,7 @@ const ProfileForm = ({ user }) => {
       controller.abort();
     };
   }, [loadImages]);
+*/
 
   const stats = useMemo(() => {
     if (!user) return [];

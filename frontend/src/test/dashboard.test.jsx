@@ -8,6 +8,7 @@ import { getCourses, getCurrentUser } from '../lib/api/penny-wise';
 vi.mock('../lib/api/penny-wise', () => ({
   getCourses: vi.fn(),
   getCurrentUser: vi.fn(),
+  clearImageCache: vi.fn(),
 }));
 
 beforeEach(() => {

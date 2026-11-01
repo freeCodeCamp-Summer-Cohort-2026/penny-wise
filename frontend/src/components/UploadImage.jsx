@@ -1,14 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
+import { getImages, uploadImage } from '../lib/api/penny-wise';
+import { useAuth } from '../lib/useAuth';
 
 // Vite exposes env vars on import.meta.env, not process.env.
 const API_ROOT =
   import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 
-const api = axios.create({ baseURL: API_ROOT, withCredentials: true });
-
-export const imageUrl = (id) => `${API_ROOT}/images/${id}/file`;
+const imageUrl = (id) => `${API_ROOT}/images/${id}/file`;
 
 function UploadImage({ selectedImage, onSelect }) {
   const [file, setFile] = useState(null);
@@ -21,24 +20,33 @@ function UploadImage({ selectedImage, onSelect }) {
   const inputRef = useRef(null);
   const previewRef = useRef(null);
 
-  const fetchImages = useCallback(async (signal) => {
-    try {
-      const { data } = await api.get('/images', { signal });
-      setImages(data.images ?? []);
-      setError('');
-    } catch (err) {
-      if (axios.isCancel(err)) return;
-      setError('Failed to load images.');
-    } finally {
-      if (!signal?.aborted) setLoading(false);
-    }
-  }, []);
+  const { auth } = useAuth();
+  // A string, so the effect below re-runs only when the logged-in user
+  // actually changes, never because auth/user objects were re-created.
+  const userId = auth?.user?.id;
 
   useEffect(() => {
-    const controller = new AbortController();
-    fetchImages(controller.signal);
-    return () => controller.abort();
-  }, [fetchImages]);
+    if (!userId) return undefined;
+    let active = true;
+
+    // getImages caches per user, so reopening the popup does not refetch.
+    getImages(userId)
+      .then((list) => {
+        if (!active) return;
+        setImages(list);
+        setError('');
+      })
+      .catch(() => {
+        if (active) setError('Failed to load images.');
+      })
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [userId]);
 
   // Release the last preview URL when the popup closes.
   useEffect(
@@ -81,19 +89,16 @@ function UploadImage({ selectedImage, onSelect }) {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('image', file);
-
     setUploading(true);
     setError('');
     setMessage('');
 
     try {
-      // No manual Content-Type: the browser adds the multipart boundary.
-      const { data } = await api.post('/images/upload', formData);
-      setMessage(data.message);
-      setImages((prev) => [data.image, ...prev]);
-      onSelect(imageUrl(data.image._id));
+      // uploadImage also adds the new image to the cached list.
+      const image = await uploadImage(userId, file);
+      setMessage('Image uploaded successfully');
+      setImages((prev) => [image, ...prev]);
+      onSelect(imageUrl(image._id));
       clearFile();
     } catch (err) {
       setError(err.response?.data?.error || 'Upload failed, please try again.');

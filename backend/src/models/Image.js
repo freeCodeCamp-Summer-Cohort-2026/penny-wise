@@ -14,6 +14,9 @@ const ImageSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+// Serves GET /api/images: filter by owner, newest first.
+ImageSchema.index({ owner: 1, createdAt: -1 });
+
 const Image = mongoose.model('Image', ImageSchema);
 
 module.exports = { Image };
