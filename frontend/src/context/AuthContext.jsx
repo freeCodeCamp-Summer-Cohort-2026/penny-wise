@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AUTH_EXPIRED_EVENT } from '../lib/api/client';
-import { getCurrentUser, logoutUser } from '../lib/api/penny-wise';
+import {
+  clearImageCache,
+  getCurrentUser,
+  logoutUser,
+} from '../lib/api/penny-wise';
 import { AuthContext } from './auth-context';
 
 export function AuthProvider({ children }) {
@@ -61,6 +65,7 @@ export function AuthProvider({ children }) {
       return;
     } finally {
       setAuth(null);
+      clearImageCache();
     }
   }, []);
 
