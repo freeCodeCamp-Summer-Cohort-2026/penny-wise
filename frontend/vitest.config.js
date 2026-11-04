@@ -10,7 +10,7 @@ export default defineConfig({
     restoreMocks: true,
     clearMocks: true,
     coverage: {
-      provider: 'v8' // or 'istanbul',
+      provider: 'v8', // or 'istanbul'
       include: ['src/**/*.{js,jsx}'],
       exclude: ['**/test/*']
     },
