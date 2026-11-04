@@ -9,5 +9,10 @@ export default defineConfig({
     css: false,
     restoreMocks: true,
     clearMocks: true,
+    coverage: {
+      provider: 'v8' // or 'istanbul',
+      include: ['src/**/*.{js,jsx}'],
+      exclude: ['**/test/*']
+    },
   },
 });
