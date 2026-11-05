@@ -10,7 +10,8 @@ RUN npm install -g npm@12.2.1
 
 RUN npm install --omit=dev
 
-COPY . .
+COPY ./scripts ./scripts
+COPY ./src ./src
 
 EXPOSE 5000
 
@@ -30,6 +31,7 @@ RUN npm install -g npm@12.2.1
 
 RUN npm install
 
-COPY . .
+COPY ./scripts ./scripts
+COPY ./src ./src
 
 CMD [ "npm", "run", "dev" ]
