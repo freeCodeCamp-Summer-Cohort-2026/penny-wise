@@ -8,7 +8,9 @@ RUN npm install -g npm@12.2.1
 
 RUN npm install
 
-COPY . .
+COPY ./index.html ./index.html
+COPY ./public ./public
+COPY ./src ./src
 
 ARG VITE_API_BASE_URL=http://localhost:5000/api
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
@@ -34,7 +36,9 @@ RUN npm install -g npm@12.2.1
 
 RUN npm install
 
-COPY . .
+COPY ./index.html ./index.html
+COPY ./public ./public
+COPY ./src ./src
 
 EXPOSE 5173
 
