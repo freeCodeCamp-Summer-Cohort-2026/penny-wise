@@ -1,16 +1,17 @@
 FROM node:22-slim AS builder
 
+RUN npm install -g npm@12.2.2
+
 WORKDIR /app
 
 COPY package*.json ./
-
-RUN npm install -g npm@12.2.1
 
 RUN npm install
 
 COPY ./index.html ./index.html
 COPY ./public ./public
 COPY ./src ./src
+COPY ./vite.config.js ./vite.config.js
 
 ARG VITE_API_BASE_URL=http://localhost:5000/api
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
@@ -28,17 +29,23 @@ CMD ["nginx", "-g", "daemon off;"]
 
 FROM node:22-slim AS dev
 
+RUN npm install -g npm@12.2.2
+
+RUN addgroup --system nonroot \
+    && adduser --system --group nonroot
+
 WORKDIR /app
 
 COPY package*.json ./
-
-RUN npm install -g npm@12.2.1
 
 RUN npm install
 
 COPY ./index.html ./index.html
 COPY ./public ./public
 COPY ./src ./src
+COPY ./vite.config.js ./vite.config.js
+
+USER nonroot
 
 EXPOSE 5173
 

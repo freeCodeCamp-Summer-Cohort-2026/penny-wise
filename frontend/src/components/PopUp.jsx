@@ -6,7 +6,7 @@ function PopUp({ showPopUp, closePopUp, children }) {
   }
 
   return (
-    <div className='popup-overlay' onClick={closePopUp}>
+    <div className='popup-overlay'>
       <div
         className='PopUp'
         role='dialog'
