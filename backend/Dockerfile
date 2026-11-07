@@ -13,6 +13,7 @@ COPY package*.json ./
 
 RUN npm install --omit=dev
 
+COPY ./.env ./.env
 COPY ./scripts ./scripts
 COPY ./src ./src
 
@@ -39,6 +40,7 @@ COPY package*.json ./
 
 RUN npm install
 
+COPY ./.env ./.env
 COPY ./scripts ./scripts
 COPY ./src ./src
 
