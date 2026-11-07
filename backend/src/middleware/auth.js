@@ -28,7 +28,10 @@ function optionalAuth(req, res, next) {
 
   if (token) {
     try {
-      const payload = jwt.verify(token.toString(), process.env.JWT_SECRET);
+      const payload = jwt.verify(
+        token.toString(),
+        process.env.JWT_SECRET.toString(),
+      );
       req.user = { id: payload.sub, email: payload.email, role: payload.role };
     } catch (err) {
       // Ignore invalid tokens and continue as an anonymous requester.

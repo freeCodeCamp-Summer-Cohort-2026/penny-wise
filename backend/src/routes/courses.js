@@ -165,8 +165,8 @@ async function getLearningState(course, learnerId) {
   );
   const completedSet = new Set(completedLessonIds);
   const activeProgress = await LessonProgress.findOne({
-    learner: learnerId,
-    course: course._id,
+    learner: learnerId.toString(),
+    course: course._id.toString(),
     state: 'in_progress',
   })
     .sort({ updatedAt: -1 })
