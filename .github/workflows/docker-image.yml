@@ -41,6 +41,7 @@ jobs:
 
       - name: Start app with memory limits
         env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
           MONGODB_URI: ${{ env.MONGODB_URI }}
         run: |
           docker compose -f docker-compose-atlas.yml up -d --build --remove-orphans

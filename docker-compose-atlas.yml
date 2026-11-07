@@ -10,6 +10,7 @@ services:
     ports:
       - "5000:5000"
     environment:
+      - JWT_SECRET=${JWT_SECRET:?JWT_SECRET must be set}
       - MONGODB_URI=${MONGODB_URI:?MONGODB_URI must be set}
 
   frontend:

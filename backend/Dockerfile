@@ -13,9 +13,11 @@ COPY package*.json ./
 
 RUN npm install --omit=dev
 
-COPY ./.env ./.env
 COPY ./scripts ./scripts
 COPY ./src ./src
+
+ARG JWT_SECRET=SECRET-CODE-1234
+ENV JWT_SECRET=$JWT_SECRET
 
 USER nonroot
 
@@ -40,9 +42,11 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY ./.env ./.env
 COPY ./scripts ./scripts
 COPY ./src ./src
+
+ARG JWT_SECRET=SECRET-CODE-1234
+ENV JWT_SECRET=$JWT_SECRET
 
 USER nonroot
 
