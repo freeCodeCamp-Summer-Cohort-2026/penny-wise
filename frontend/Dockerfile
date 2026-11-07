@@ -1,6 +1,6 @@
 FROM node:22-slim AS builder
 
-RUN npm install -g npm@12.2.2
+RUN npm install --ignore-scripts -g npm@12.2.2
 
 WORKDIR /app
 
@@ -29,7 +29,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 FROM node:22-slim AS dev
 
-RUN npm install -g npm@12.2.2
+RUN npm install --ignore-scripts -g npm@12.2.2
 
 RUN addgroup --system nonroot \
     && adduser --system --group nonroot

@@ -5,7 +5,7 @@ RUN apt update && apt --no-install-recommends install -y curl
 RUN addgroup --system nonroot \
     && adduser --system --group nonroot
 
-RUN npm install -g npm@12.2.2
+RUN npm install --ignore-scripts -g npm@12.2.2
 
 WORKDIR /app
 
@@ -32,7 +32,7 @@ RUN apt update && apt --no-install-recommends install -y curl
 RUN addgroup --system nonroot \
     && adduser --system --group nonroot
 
-RUN npm install -g npm@12.2.2
+RUN npm install --ignore-scripts -g npm@12.2.2
 
 WORKDIR ./src
 
