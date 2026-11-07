@@ -28,20 +28,22 @@ jobs:
           node-version: "22"
           cache: "npm"
 
-      - name: Build Atlas MongoDB URI
+      - name: Build Atlas MongoDB URI and JWT_SECRET
         env:
           ATLAS_USER: ${{ secrets.ATLAS_USER }}
           ATLAS_PASSWORD: ${{ secrets.ATLAS_PASSWORD }}
           ATLAS_CLUSTER: ${{ secrets.ATLAS_CLUSTER }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: |
           echo "MONGODB_URI=mongodb+srv://${ATLAS_USER}:${ATLAS_PASSWORD}@${ATLAS_CLUSTER}/pennywise?retryWrites=true&w=majority" >> $GITHUB_ENV
+          echo "JWT_SECRET=${JWT_SECRET}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps --prefer-offline
 
       - name: Start app with memory limits
         env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_SECRET: ${{ env.JWT_SECRET }}
           MONGODB_URI: ${{ env.MONGODB_URI }}
         run: |
           docker compose -f docker-compose-atlas.yml up -d --build --remove-orphans
