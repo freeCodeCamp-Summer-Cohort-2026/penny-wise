@@ -27,13 +27,13 @@ router.post('/', requireAuth, checkRole('author'), async (req, res, next) => {
       return res.status(400).json({ error: 'Course name is required' });
     }
 
-    const author = await Author.findById(req.user.id);
+    const author = await Author.findById(req.user.id.toString());
     if (!author) {
       return res.status(404).json({ error: 'Author not found' });
     }
 
     const course = await Course.create({
-      creatorId: req.user.id,
+      creatorId: req.user.id.toString(),
       name,
       lessons: [],
       published: false,
@@ -154,8 +154,8 @@ async function getLearningState(course, learnerId) {
     idEquals(courseId, course._id),
   );
   const completedProgress = await LessonProgress.find({
-    learner: learnerId,
-    course: course._id,
+    learner: learnerId.toString(),
+    course: course._id.toString(),
     state: 'completed',
   })
     .select('lesson')
@@ -689,18 +689,18 @@ router.post(
       req.user.id,
     );
     let progress = await LessonProgress.findOne({
-      learner: req.user.id,
-      course: course._id,
-      lesson: lesson._id,
+      learner: req.user.id.toString(),
+      course: course._id.toString(),
+      lesson: lesson._id.toString(),
     });
     let status = 200;
 
     if (!progress) {
       try {
         progress = await LessonProgress.create({
-          learner: req.user.id,
-          course: course._id,
-          lesson: lesson._id,
+          learner: req.user.id.toString(),
+          course: course._id.toString(),
+          lesson: lesson._id.toString(),
         });
         status = 201;
       } catch (error) {
@@ -709,9 +709,9 @@ router.post(
         }
 
         progress = await LessonProgress.findOne({
-          learner: req.user.id,
-          course: course._id,
-          lesson: lesson._id,
+          learner: req.user.id.toString(),
+          course: course._id.toString(),
+          lesson: lesson._id.toString(),
         });
       }
     }
@@ -737,9 +737,9 @@ router.post(
     validateObjectId(req.params.pageId, 'pageId');
 
     const { course, lesson, pages } = await loadLessonContent(
-      req.params.courseId,
-      req.params.lessonId,
-      req.user.id,
+      req.params.courseId.toString(),
+      req.params.lessonId.toString(),
+      req.user.id.toString(),
     );
     const pageIndex = lesson.pages.findIndex((pageId) =>
       idEquals(pageId, req.params.pageId),
@@ -753,9 +753,9 @@ router.post(
     const { correct, normalized } = gradeAnswer(page, req.body.answer);
     const hash = answerHash(normalized);
     const progress = await LessonProgress.findOne({
-      learner: req.user.id,
-      course: course._id,
-      lesson: lesson._id,
+      learner: req.user.id.toString(),
+      course: course._id.toString(),
+      lesson: lesson._id.toString(),
     });
 
     if (!progress) {

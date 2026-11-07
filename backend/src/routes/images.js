@@ -70,7 +70,7 @@ router.get('/', requireAuth, async (req, res) => {
     const authorIds = await User.distinct('_id', { role: { $ne: 'learner' } });
     filter = { $or: [{ owner: { $in: authorIds } }, { owner: null }] };
   } else {
-    filter = { owner: req.user.id };
+    filter = { owner: req.user.id.toString() };
   }
 
   const images = await Image.find(filter)
