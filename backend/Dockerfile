@@ -1,6 +1,7 @@
 FROM node:22-slim AS prod
 
-RUN apt update && apt --no-install-recommends install -y curl
+RUN apt update && apt --no-install-recommends install -y curl && apt clean \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 RUN addgroup --system nonroot \
     && adduser --system --group nonroot
@@ -27,7 +28,8 @@ CMD ["node", "src/server.js"]
 
 FROM node:22-slim AS dev
 
-RUN apt update && apt --no-install-recommends install -y curl
+RUN apt update && apt --no-install-recommends install -y curl && apt clean \
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
 
 RUN addgroup --system nonroot \
     && adduser --system --group nonroot

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
+// Next rules should be disabled no-unused-vars, react-refresh/only-export-components
 // eslint-disable-next-line
 export const ThemeContext = createContext(undefined);
 
