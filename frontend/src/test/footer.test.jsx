@@ -27,7 +27,7 @@ function renderApp(path) {
           <AppRoutes />
         </AuthProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -48,18 +48,18 @@ describe('footer', () => {
     const footer = getFooter();
 
     expect(
-      footer.getByRole('link', { name: /Course catalog/ }),
+      footer.getByRole('link', { name: /Course catalog/ })
     ).toHaveAttribute('href', '/courses');
     expect(footer.getByRole('link', { name: /^Log in$/ })).toHaveAttribute(
       'href',
-      '/login',
+      '/login'
     );
     expect(footer.getByRole('link', { name: /^Sign up$/ })).toHaveAttribute(
       'href',
-      '/signup',
+      '/signup'
     );
     expect(
-      footer.getByText(new RegExp(`© ${new Date().getFullYear()} Penny Wise`)),
+      footer.getByText(new RegExp(`© ${new Date().getFullYear()} Penny Wise`))
     ).toBeInTheDocument();
   });
 
@@ -69,10 +69,10 @@ describe('footer', () => {
     expect(
       await screen.findByRole('heading', {
         name: 'Find your next money skill',
-      }),
+      })
     ).toBeInTheDocument();
     expect(
-      getFooter().getByRole('link', { name: /Course catalog/ }),
+      getFooter().getByRole('link', { name: /Course catalog/ })
     ).toBeTruthy();
   });
 
@@ -88,11 +88,11 @@ describe('footer', () => {
 
     expect(footer.getByRole('link', { name: /Dashboard/ })).toHaveAttribute(
       'href',
-      '/dashboard',
+      '/dashboard'
     );
     expect(footer.getByRole('link', { name: /My profile/ })).toHaveAttribute(
       'href',
-      '/profile',
+      '/profile'
     );
     expect(footer.queryByRole('link', { name: /^Log in$/ })).toBeNull();
   });

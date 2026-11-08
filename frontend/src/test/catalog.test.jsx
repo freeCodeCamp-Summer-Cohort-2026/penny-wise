@@ -17,7 +17,7 @@ function renderCatalog() {
   return render(
     <MemoryRouter>
       <CourseCatalog />
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -27,7 +27,7 @@ describe('course catalog', () => {
     getCourses.mockReturnValue(
       new Promise((resolve) => {
         resolveCourses = resolve;
-      }),
+      })
     );
 
     renderCatalog();
@@ -51,7 +51,7 @@ describe('course catalog', () => {
     expect(screen.getByText('37 min')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Money Basics/ })).toHaveAttribute(
       'href',
-      '/courses/course-1',
+      '/courses/course-1'
     );
   });
 
@@ -61,7 +61,7 @@ describe('course catalog', () => {
     renderCatalog();
 
     expect(
-      await screen.findByText('No courses are available yet'),
+      await screen.findByText('No courses are available yet')
     ).toBeInTheDocument();
   });
 
@@ -73,11 +73,11 @@ describe('course catalog', () => {
     renderCatalog();
 
     expect(
-      await screen.findByText('Courses could not load'),
+      await screen.findByText('Courses could not load')
     ).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Try again' }));
     expect(
-      await screen.findByText('No courses are available yet'),
+      await screen.findByText('No courses are available yet')
     ).toBeInTheDocument();
     expect(getCourses).toHaveBeenCalledTimes(2);
   });

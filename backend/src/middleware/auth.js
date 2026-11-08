@@ -30,7 +30,7 @@ function optionalAuth(req, res, next) {
     try {
       const payload = jwt.verify(
         token.toString(),
-        process.env.JWT_SECRET.toString(),
+        process.env.JWT_SECRET.toString()
       );
       req.user = { id: payload.sub, email: payload.email, role: payload.role };
     } catch (err) {

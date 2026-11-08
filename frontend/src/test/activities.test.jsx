@@ -80,7 +80,7 @@ describe('controlled activities', () => {
         page={multipleChoicePage}
         answer={{ optionIndex: null }}
         onChange={onChange}
-      />,
+      />
     );
 
     await userEvent.click(screen.getByRole('radio', { name: 'Second' }));
@@ -95,12 +95,12 @@ describe('controlled activities', () => {
         page={matchingPage}
         answer={{ matches: [] }}
         onChange={onChange}
-      />,
+      />
     );
 
     await userEvent.selectOptions(
       screen.getByRole('combobox', { name: 'Definition for save' }),
-      '1',
+      '1'
     );
 
     expect(onChange).toHaveBeenLastCalledWith({
@@ -118,13 +118,13 @@ describe('controlled activities', () => {
       screen.getByText(/\$?1[.,]00(?: US\$)?/, {
         selector: 'dd',
         exact: false,
-      }),
+      })
     ).toBeInTheDocument();
     expect(
       screen.getByText(/\$?4[.,]00(?: US\$)?/, {
         selector: 'dd',
         exact: false,
-      }),
+      })
     ).toBeInTheDocument();
     expect(onChange).toHaveBeenCalledWith({ selectedItemIndexes: [0] });
   });
@@ -136,7 +136,7 @@ describe('controlled activities', () => {
         page={wantsNeedsPage}
         answer={{ classifications: [] }}
         onChange={onChange}
-      />,
+      />
     );
 
     const radios = screen.getAllByRole('radio', { name: 'need' });
@@ -152,15 +152,15 @@ describe('controlled activities', () => {
       getActivityAnswerError(
         'multiple_choice',
         { optionIndex: null },
-        multipleChoicePage,
-      ),
+        multipleChoicePage
+      )
     ).toMatch(/choose one/i);
     expect(
       getActivityAnswerError(
         'matching',
         { matches: [{ wordIndex: 0, definitionIndex: 0 }] },
-        matchingPage,
-      ),
+        matchingPage
+      )
     ).toMatch(/match every/i);
     expect(
       getActivityAnswerError(
@@ -171,22 +171,22 @@ describe('controlled activities', () => {
             { wordIndex: 1, definitionIndex: 0 },
           ],
         },
-        matchingPage,
-      ),
+        matchingPage
+      )
     ).toMatch(/different definition/i);
     expect(
       getActivityAnswerError(
         'budgeting',
         { selectedItemIndexes: [] },
-        budgetingPage,
-      ),
+        budgetingPage
+      )
     ).toMatch(/at least one/i);
     expect(
       getActivityAnswerError(
         'wants_needs',
         { classifications: [] },
-        wantsNeedsPage,
-      ),
+        wantsNeedsPage
+      )
     ).toMatch(/every item/i);
   });
 });

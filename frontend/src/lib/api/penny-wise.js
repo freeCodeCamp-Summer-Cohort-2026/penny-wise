@@ -100,7 +100,7 @@ export async function uploadImage(userId, file) {
   if (imageCache.has(userId)) {
     imageCache.set(
       userId,
-      imageCache.get(userId).then((list) => [data.image, ...list]),
+      imageCache.get(userId).then((list) => [data.image, ...list])
     );
   }
 
@@ -118,14 +118,14 @@ export const startLesson = (courseId, lessonId, signal) =>
   postData(
     `/courses/${courseId}/lessons/${lessonId}/start`,
     undefined,
-    getSignal(signal),
+    getSignal(signal)
   );
 
 export const submitLessonPage = (courseId, lessonId, pageId, answer, signal) =>
   postData(
     `/courses/${courseId}/lessons/${lessonId}/pages/${pageId}/submit`,
     { answer },
-    getSignal(signal),
+    getSignal(signal)
   );
 
 export const submitProfile = (body, signal) =>
@@ -137,5 +137,5 @@ export const submitProfile = (body, signal) =>
       profilePic: body.profilePic,
       bio: body.bio,
     },
-    getSignal(signal),
+    getSignal(signal)
   );

@@ -69,8 +69,7 @@ const ProfilePage = () => {
           </p>
           <Link
             to='/login'
-            className='mt-4 inline-block rounded-lg bg-(--accent-bold) px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.99]'
-          >
+            className='mt-4 inline-block rounded-lg bg-(--accent-bold) px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.99]'>
             Go to Log in
           </Link>
         </section>
@@ -103,7 +102,7 @@ const ProfileForm = ({ user }) => {
         setCountries(
           Array.isArray(data?.countries)
             ? data.countries.map((x) => x.name)
-            : COUNTRY_SUGGESTIONS,
+            : COUNTRY_SUGGESTIONS
         );
         setStatus('ready');
       } catch (loadError) {
@@ -115,7 +114,7 @@ const ProfileForm = ({ user }) => {
         }
       }
     },
-    [error],
+    [error]
   );
 
   useEffect(() => {
@@ -237,7 +236,7 @@ const ProfileForm = ({ user }) => {
     try {
       await submitProfile(
         { ...user, userId: user.id, ...updates },
-        controller.signal,
+        controller.signal
       );
       signIn({ user: { ...user, ...updates } });
       setStatus({ state: 'success', message: 'Profile saved.' });
@@ -335,7 +334,7 @@ const ProfileForm = ({ user }) => {
                       {row.value}
                     </dd>
                   </div>
-                ) : null,
+                ) : null
               )}
             </dl>
           )}
@@ -344,12 +343,10 @@ const ProfileForm = ({ user }) => {
         {/* Personal Information (right, mirrors mockup form card) */}
         <section
           aria-labelledby='personal-info-heading'
-          className='rounded-2xl border border-(--border) bg-(--bg) p-6 shadow-(--shadow) sm:p-8'
-        >
+          className='rounded-2xl border border-(--border) bg-(--bg) p-6 shadow-(--shadow) sm:p-8'>
           <h2
             id='personal-info-heading'
-            className='border-b border-(--border) pb-4 text-lg font-semibold text-(--text-h)'
-          >
+            className='border-b border-(--border) pb-4 text-lg font-semibold text-(--text-h)'>
             Personal Information
           </h2>
 
@@ -371,22 +368,19 @@ const ProfileForm = ({ user }) => {
                 onClick={() => setShowPopUp(true)}
                 type='button'
                 title='Upload your profile image.'
-                className='bg-(--accent-bold) px-5 py-2 text-sm font-semibold text-white opacity-50'
-              >
+                className='bg-(--accent-bold) px-5 py-2 text-sm font-semibold text-white opacity-50'>
                 Upload
               </button>
               <button
                 onClick={() => handleDeleteUserAvatar()}
                 type='button'
                 title='Remove your profile image.'
-                className='{!userAvatar ?? cursor-not-allowed} border border-(--accent-border) px-5 py-2 text-sm font-semibold text-(--accent-bold) opacity-50'
-              >
+                className='{!userAvatar ?? cursor-not-allowed} border border-(--accent-border) px-5 py-2 text-sm font-semibold text-(--accent-bold) opacity-50'>
                 Remove
               </button>
               <PopUp
                 showPopUp={showPopUp}
-                closePopUp={() => setShowPopUp(false)}
-              >
+                closePopUp={() => setShowPopUp(false)}>
                 <UploadImage
                   selectedImage={userAvatar}
                   onSelect={setUserAvatar}
@@ -403,8 +397,7 @@ const ProfileForm = ({ user }) => {
               <div>
                 <label
                   htmlFor='displayName'
-                  className='mb-1.5 block text-sm font-medium text-(--text-h)'
-                >
+                  className='mb-1.5 block text-sm font-medium text-(--text-h)'>
                   Display Name <span aria-hidden='true'>*</span>
                 </label>
                 <div className='relative'>
@@ -436,8 +429,7 @@ const ProfileForm = ({ user }) => {
               <div>
                 <label
                   htmlFor='email'
-                  className='mb-1.5 block text-sm font-medium text-(--text-h)'
-                >
+                  className='mb-1.5 block text-sm font-medium text-(--text-h)'>
                   Email <span aria-hidden='true'>*</span>
                 </label>
                 <div className='relative'>
@@ -462,8 +454,7 @@ const ProfileForm = ({ user }) => {
               <div className='sm:col-span-2'>
                 <label
                   htmlFor='country'
-                  className='mb-1.5 block text-sm font-medium text-(--text-h)'
-                >
+                  className='mb-1.5 block text-sm font-medium text-(--text-h)'>
                   Country
                 </label>
                 <div className='relative'>
@@ -495,8 +486,7 @@ const ProfileForm = ({ user }) => {
                 <div className='sm:col-span-2'>
                   <label
                     htmlFor='bio'
-                    className='mb-1.5 block text-sm font-medium text-(--text-h)'
-                  >
+                    className='mb-1.5 block text-sm font-medium text-(--text-h)'>
                     Bio
                   </label>
                   <textarea
@@ -527,8 +517,7 @@ const ProfileForm = ({ user }) => {
             <div aria-live='polite' className='min-h-6'>
               {status && (
                 <p
-                  className={`text-sm ${status.state === 'error' ? 'text-red-600' : 'text-green-700'}`}
-                >
+                  className={`text-sm ${status.state === 'error' ? 'text-red-600' : 'text-green-700'}`}>
                   {status.message}
                 </p>
               )}
@@ -538,16 +527,14 @@ const ProfileForm = ({ user }) => {
               <button
                 type='submit'
                 disabled={!dirty || Boolean(nameError)}
-                className='rounded-lg bg-(--accent-bold) px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50'
-              >
+                className='rounded-lg bg-(--accent-bold) px-6 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-50'>
                 Save changes
               </button>
               <button
                 type='button'
                 onClick={handleDiscard}
                 disabled={!dirty}
-                className='border border-(--border) bg-(--bg) px-6 py-2.5 text-sm font-semibold text-(--text-h) transition hover:bg-(--code-bg) disabled:cursor-not-allowed disabled:opacity-50'
-              >
+                className='border border-(--border) bg-(--bg) px-6 py-2.5 text-sm font-semibold text-(--text-h) transition hover:bg-(--code-bg) disabled:cursor-not-allowed disabled:opacity-50'>
                 Discard
               </button>
             </div>

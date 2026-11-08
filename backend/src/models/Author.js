@@ -29,7 +29,7 @@ const authorSchema = new mongoose.Schema(
       default: 'default-profile-pic.png',
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 authorSchema.methods.comparePassword = function comparePassword(candidate) {

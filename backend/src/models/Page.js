@@ -25,7 +25,7 @@ const pageSchema = new mongoose.Schema(
   {
     discriminatorKey: 'type',
     collection: 'pages',
-  },
+  }
 );
 
 const Page = mongoose.model('Page', pageSchema);
@@ -39,7 +39,7 @@ const MultipleChoicePage = Page.discriminator(
         isCorrect: { type: Boolean, default: false },
       },
     ],
-  }),
+  })
 );
 
 const MatchingPage = Page.discriminator(
@@ -59,7 +59,7 @@ const MatchingPage = Page.discriminator(
         },
       },
     ],
-  }),
+  })
 );
 
 const BudgetingPage = Page.discriminator(
@@ -73,7 +73,7 @@ const BudgetingPage = Page.discriminator(
         cost: { type: Number, required: true, min: 0 },
       },
     ],
-  }),
+  })
 );
 
 const WantsNeedsPage = Page.discriminator(
@@ -89,7 +89,7 @@ const WantsNeedsPage = Page.discriminator(
         },
       },
     ],
-  }),
+  })
 );
 
 module.exports = {

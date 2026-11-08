@@ -17,7 +17,7 @@ function createApp() {
     cors({
       origin: clientOrigin,
       credentials: true,
-    }),
+    })
   );
   app.use(cookieParser());
   app.use(morgan('dev'));

@@ -35,8 +35,7 @@ export default function RequireAuth({ children, allowedRole }) {
           </p>
           <Link
             to='/courses'
-            className='mt-6 inline-flex bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-          >
+            className='mt-6 inline-flex bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
             Browse courses
           </Link>
         </section>

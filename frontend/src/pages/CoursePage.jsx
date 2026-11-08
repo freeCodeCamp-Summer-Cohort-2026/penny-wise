@@ -49,7 +49,7 @@ export default function CoursePage() {
         setStatus('error');
       }
     },
-    [courseId],
+    [courseId]
   );
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function CoursePage() {
       if (data?.learningState) setLearningState(data.learningState);
     } catch (enrollFailure) {
       setEnrollError(
-        getErrorMessage(enrollFailure, 'Enrollment could not be completed.'),
+        getErrorMessage(enrollFailure, 'Enrollment could not be completed.')
       );
     } finally {
       setEnrolling(false);
@@ -87,8 +87,7 @@ export default function CoursePage() {
         <div
           role='status'
           aria-live='polite'
-          className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-10 text-center shadow-[var(--shadow)]'
-        >
+          className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-10 text-center shadow-[var(--shadow)]'>
           <LoaderCircle
             aria-hidden='true'
             className='mx-auto motion-safe:animate-spin text-[var(--accent)]'
@@ -104,8 +103,7 @@ export default function CoursePage() {
       <main className='mx-auto w-full max-w-6xl px-4 py-10 sm:px-6'>
         <div
           role='alert'
-          className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'
-        >
+          className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'>
           <h1 className='text-2xl font-semibold'>Course unavailable</h1>
           <p className='mt-2'>
             {getErrorMessage(error, 'We could not find that course.')}
@@ -117,15 +115,13 @@ export default function CoursePage() {
                 const controller = new AbortController();
                 void loadCourse(controller.signal);
               }}
-              className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               <RefreshCw aria-hidden='true' size={16} />
               Try again
             </button>
             <Link
               to='/courses'
-              className='inline-flex items-center gap-2 border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='inline-flex items-center gap-2 border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               <ArrowLeft aria-hidden='true' size={16} />
               All courses
             </Link>
@@ -141,8 +137,8 @@ export default function CoursePage() {
     getFallbackBriefLesson(course.name);
   const completedLessonIds = new Set(
     (learningState?.completedLessonIds ?? []).map((id) =>
-      String(getId(id) ?? id),
-    ),
+      String(getId(id) ?? id)
+    )
   );
   const totalLessons = learningState?.totalLessons ?? lessons.length;
   const progressPercent = learningState?.progressPercent ?? 0;
@@ -168,8 +164,7 @@ export default function CoursePage() {
         <Link
           to='/login'
           state={{ from: location }}
-          className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-        >
+          className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
           <LogIn aria-hidden='true' size={17} />
           Log in to enroll
         </Link>
@@ -191,8 +186,7 @@ export default function CoursePage() {
             type='button'
             onClick={handleEnroll}
             disabled={enrolling}
-            className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'
-          >
+            className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
             {enrolling && (
               <LoaderCircle
                 aria-hidden='true'
@@ -206,8 +200,7 @@ export default function CoursePage() {
           {enrollError && (
             <p
               role='alert'
-              className='mt-3 text-sm text-red-700 dark:text-red-300'
-            >
+              className='mt-3 text-sm text-red-700 dark:text-red-300'>
               {enrollError}
             </p>
           )}
@@ -226,8 +219,7 @@ export default function CoursePage() {
     return (
       <Link
         to={`/courses/${courseId}/lessons/${targetLessonId}`}
-        className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-      >
+        className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
         {completed ? 'Review course' : started ? 'Continue' : 'Start course'}
         <ArrowRight aria-hidden='true' size={17} />
       </Link>
@@ -239,8 +231,7 @@ export default function CoursePage() {
       <nav aria-label='Breadcrumb' className='text-sm text-[var(--text)]'>
         <Link
           to='/courses'
-          className='inline-flex items-center gap-1 hover:underline'
-        >
+          className='inline-flex items-center gap-1 hover:underline'>
           <ArrowLeft aria-hidden='true' size={15} />
           Courses
         </Link>
@@ -308,14 +299,12 @@ export default function CoursePage() {
       <section
         id='practice'
         className='mt-10 scroll-mt-24'
-        aria-labelledby='lessons-heading'
-      >
+        aria-labelledby='lessons-heading'>
         <div className='flex flex-wrap items-end justify-between gap-3'>
           <div>
             <h2
               id='lessons-heading'
-              className='text-2xl font-semibold text-[var(--text-h)]'
-            >
+              className='text-2xl font-semibold text-[var(--text-h)]'>
               Lesson outline
             </h2>
             <p className='mt-1 text-[var(--text)]'>
@@ -358,7 +347,7 @@ export default function CoursePage() {
                     </span>
                     <span className='mt-2 block text-xs text-[var(--text)]'>
                       {formatMinutes(
-                        lesson.estimatedDurationOfCompletionInMinutes,
+                        lesson.estimatedDurationOfCompletionInMinutes
                       )}
                       {lesson.experience !== undefined &&
                         ` · ${lesson.experience} XP`}
@@ -378,8 +367,7 @@ export default function CoursePage() {
                   {canOpenLessons && lessonId ? (
                     <Link
                       to={`/courses/${courseId}/lessons/${lessonId}`}
-                      className='flex h-full gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                    >
+                      className='flex h-full gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
                       {content}
                     </Link>
                   ) : (

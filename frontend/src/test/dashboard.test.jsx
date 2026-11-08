@@ -31,7 +31,7 @@ function renderDashboard() {
       <AuthProvider>
         <Dashboard />
       </AuthProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -58,14 +58,14 @@ describe('learner dashboard', () => {
 
     expect(await screen.findByText('Counting value')).toBeInTheDocument();
     expect(
-      screen.getByRole('link', { name: /resume lesson/i }),
+      screen.getByRole('link', { name: /resume lesson/i })
     ).toHaveAttribute('href', '/courses/course-1/lessons/lesson-2');
     expect(screen.getByText('120 XP')).toBeInTheDocument();
     expect(
-      screen.getByText('Lessons completed').parentElement,
+      screen.getByText('Lessons completed').parentElement
     ).toHaveTextContent('1');
     expect(
-      screen.getByText('Courses enrolled').parentElement,
+      screen.getByText('Courses enrolled').parentElement
     ).toHaveTextContent('1');
   });
 
@@ -85,7 +85,7 @@ describe('learner dashboard', () => {
 
     expect(await screen.findByText('Catalog unavailable')).toBeInTheDocument();
     expect(
-      screen.queryByText('No published courses are available right now.'),
+      screen.queryByText('No published courses are available right now.')
     ).not.toBeInTheDocument();
   });
 
@@ -103,10 +103,10 @@ describe('learner dashboard', () => {
     renderDashboard();
 
     expect(
-      await screen.findByText('No lesson is waiting for you'),
+      await screen.findByText('No lesson is waiting for you')
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('link', { name: /browse courses/i }),
+      screen.getByRole('link', { name: /browse courses/i })
     ).toHaveAttribute('href', '/courses');
   });
 });

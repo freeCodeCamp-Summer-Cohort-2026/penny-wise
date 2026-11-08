@@ -62,7 +62,7 @@ export default function Dashboard() {
       setCourses(
         Array.isArray(courseResult.value?.courses)
           ? courseResult.value.courses
-          : [],
+          : []
       );
       setCoursesStatus('ready');
     } else {
@@ -74,7 +74,7 @@ export default function Dashboard() {
     }
 
     const failures = [courseResult, userResult].filter(
-      (result) => result.status === 'rejected',
+      (result) => result.status === 'rejected'
     );
     if (failures.length > 0) {
       setError(failures[0].reason);
@@ -139,8 +139,7 @@ export default function Dashboard() {
         <div
           role='status'
           aria-live='polite'
-          className='mt-8 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8 text-center shadow-[var(--shadow)]'
-        >
+          className='mt-8 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8 text-center shadow-[var(--shadow)]'>
           <RefreshCw
             aria-hidden='true'
             className='mx-auto motion-safe:animate-spin text-[var(--accent)]'
@@ -152,14 +151,12 @@ export default function Dashboard() {
       {status === 'ready' && error && (
         <div
           role='alert'
-          className='mt-8 flex flex-col justify-between gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100 sm:flex-row sm:items-center'
-        >
+          className='mt-8 flex flex-col justify-between gap-4 rounded-2xl border border-amber-300 bg-amber-50 p-5 text-amber-950 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100 sm:flex-row sm:items-center'>
           <p>{getErrorMessage(error)}</p>
           <button
             type='button'
             onClick={retry}
-            className='inline-flex shrink-0 items-center justify-center gap-2 border border-current px-4 py-2 text-sm font-semibold transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:hover:bg-white/10'
-          >
+            className='inline-flex shrink-0 items-center justify-center gap-2 border border-current px-4 py-2 text-sm font-semibold transition hover:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current dark:hover:bg-white/10'>
             <RefreshCw aria-hidden='true' size={16} />
             Try again
           </button>
@@ -171,8 +168,7 @@ export default function Dashboard() {
           <section className='mt-8' aria-labelledby='resume-heading'>
             <h2
               id='resume-heading'
-              className='text-2xl font-semibold text-[var(--text-h)]'
-            >
+              className='text-2xl font-semibold text-[var(--text-h)]'>
               Continue learning
             </h2>
             {resume && resumeLink ? (
@@ -200,8 +196,7 @@ export default function Dashboard() {
                 </div>
                 <Link
                   to={resumeLink}
-                  className='inline-flex shrink-0 items-center justify-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                >
+                  className='inline-flex shrink-0 items-center justify-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
                   Resume lesson
                   <ArrowRight aria-hidden='true' size={17} />
                 </Link>
@@ -217,8 +212,7 @@ export default function Dashboard() {
                 </p>
                 <Link
                   to='/courses'
-                  className='mt-5 inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                >
+                  className='mt-5 inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
                   Browse courses
                   <ArrowRight aria-hidden='true' size={16} />
                 </Link>
@@ -229,8 +223,7 @@ export default function Dashboard() {
           <section className='mt-10' aria-labelledby='stats-heading'>
             <h2
               id='stats-heading'
-              className='text-2xl font-semibold text-[var(--text-h)]'
-            >
+              className='text-2xl font-semibold text-[var(--text-h)]'>
               Your learning stats
             </h2>
             <dl className='mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
@@ -274,8 +267,7 @@ export default function Dashboard() {
               <div>
                 <h2
                   id='courses-heading'
-                  className='text-2xl font-semibold text-[var(--text-h)]'
-                >
+                  className='text-2xl font-semibold text-[var(--text-h)]'>
                   Explore courses
                 </h2>
                 <p className='mt-1 text-[var(--text)]'>
@@ -284,8 +276,7 @@ export default function Dashboard() {
               </div>
               <Link
                 to='/courses'
-                className='inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-              >
+                className='inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
                 View all courses
                 <ArrowRight aria-hidden='true' size={16} />
               </Link>
@@ -303,8 +294,7 @@ export default function Dashboard() {
                       <Link
                         to={id ? `/courses/${id}` : '#'}
                         className='group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                        aria-disabled={!id}
-                      >
+                        aria-disabled={!id}>
                         <h3 className='text-lg font-semibold text-[var(--text-h)]'>
                           {course.name}
                         </h3>
@@ -319,7 +309,7 @@ export default function Dashboard() {
                           <span className='inline-flex items-center gap-1.5'>
                             <Clock3 aria-hidden='true' size={15} />
                             {formatMinutes(
-                              course.totalEstimatedDurationInMinutes,
+                              course.totalEstimatedDurationInMinutes
                             )}
                           </span>
                         </div>

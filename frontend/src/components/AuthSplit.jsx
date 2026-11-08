@@ -29,8 +29,7 @@ export default function AuthSplit({
               {chips.map((chip) => (
                 <div
                   key={chip.title}
-                  className='rounded-xl border border-(--border) bg-(--bg) p-4'
-                >
+                  className='rounded-xl border border-(--border) bg-(--bg) p-4'>
                   <p className='text-sm font-semibold text-(--text-h)'>
                     {chip.title}
                   </p>
@@ -86,8 +85,7 @@ export function TextField({
     <div>
       <label
         htmlFor={id}
-        className='mb-1.5 block text-sm font-medium text-(--text-h)'
-      >
+        className='mb-1.5 block text-sm font-medium text-(--text-h)'>
         {label}
       </label>
       <div className='relative'>
@@ -122,8 +120,7 @@ export function SubmitButton({ loading, children }) {
       <button
         type='submit'
         disabled={loading}
-        className='flex w-full items-center justify-center gap-2 px-4 py-3'
-      >
+        className='flex w-full items-center justify-center gap-2 px-4 py-3'>
         {loading && (
           <LoaderCircle size={18} aria-hidden='true' className='animate-spin' />
         )}

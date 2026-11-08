@@ -78,7 +78,7 @@ function renderLesson() {
           />
         </Routes>
       </AuthProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -123,17 +123,17 @@ describe('lesson player', () => {
     renderLesson();
 
     await userEvent.click(
-      await screen.findByRole('radio', { name: 'A way to trade value' }),
+      await screen.findByRole('radio', { name: 'A way to trade value' })
     );
     await userEvent.click(screen.getByRole('button', { name: 'Check answer' }));
     expect(
-      await screen.findByRole('button', { name: 'Continue' }),
+      await screen.findByRole('button', { name: 'Continue' })
     ).toBeEnabled();
 
     await userEvent.click(screen.getByRole('button', { name: 'Continue' }));
 
     expect(
-      await screen.findByText('What should you do next?'),
+      await screen.findByText('What should you do next?')
     ).toBeInTheDocument();
     expect(screen.getByText('Page 2 of 2')).toBeInTheDocument();
   });
@@ -178,21 +178,21 @@ describe('lesson player', () => {
     renderLesson();
 
     expect(
-      await screen.findByText('Which option describes money?'),
+      await screen.findByText('Which option describes money?')
     ).toBeInTheDocument();
     await userEvent.click(
-      screen.getByRole('radio', { name: 'A picture of money' }),
+      screen.getByRole('radio', { name: 'A picture of money' })
     );
     await userEvent.click(screen.getByRole('button', { name: 'Check answer' }));
     expect(
-      await screen.findByText('Not quite. Try again.'),
+      await screen.findByText('Not quite. Try again.')
     ).toBeInTheDocument();
     expect(
-      screen.getByText('Change your answer and try again.'),
+      screen.getByText('Change your answer and try again.')
     ).toBeInTheDocument();
 
     await userEvent.click(
-      screen.getByRole('radio', { name: 'A way to trade value' }),
+      screen.getByRole('radio', { name: 'A way to trade value' })
     );
     await userEvent.click(screen.getByRole('button', { name: 'Check answer' }));
 
@@ -200,7 +200,7 @@ describe('lesson player', () => {
     expect(screen.getByText('1 / 1')).toBeInTheDocument();
     expect(screen.getByText('10 XP', { selector: 'dd' })).toBeInTheDocument();
     expect(
-      screen.getByRole('link', { name: /continue to next lesson/i }),
+      screen.getByRole('link', { name: /continue to next lesson/i })
     ).toHaveAttribute('href', '/courses/course-1/lessons/lesson-2');
   });
 
@@ -246,7 +246,7 @@ describe('lesson player', () => {
     expect(screen.getByText('Course complete')).toBeInTheDocument();
     expect(screen.getByText('0 XP', { selector: 'dd' })).toBeInTheDocument();
     expect(
-      screen.queryByRole('button', { name: 'Check answer' }),
+      screen.queryByRole('button', { name: 'Check answer' })
     ).not.toBeInTheDocument();
   });
 
@@ -277,8 +277,8 @@ describe('lesson player', () => {
 
     expect(
       await screen.findByText(
-        'We could not confirm that answer. Check your choices and try again.',
-      ),
+        'We could not confirm that answer. Check your choices and try again.'
+      )
     ).toBeInTheDocument();
     expect(answer).toBeChecked();
   });
@@ -316,7 +316,7 @@ describe('lesson player', () => {
     renderLesson();
 
     await userEvent.click(
-      await screen.findByRole('radio', { name: 'A way to trade value' }),
+      await screen.findByRole('radio', { name: 'A way to trade value' })
     );
     await userEvent.click(screen.getByRole('button', { name: 'Check answer' }));
 

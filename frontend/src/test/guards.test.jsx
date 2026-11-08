@@ -28,7 +28,7 @@ function renderApp(path) {
           <AppRoutes />
         </AuthProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -54,7 +54,7 @@ function renderGuard(path, user, allowedRole) {
           <Route path='/login' element={<div>Login destination</div>} />
         </Routes>
       </AuthProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -80,7 +80,7 @@ describe('route guards and legacy redirects', () => {
     renderGuard('/private', { id: 'author', role: 'author' }, 'learner');
 
     expect(
-      await screen.findByText('This area is for learners'),
+      await screen.findByText('This area is for learners')
     ).toBeInTheDocument();
     expect(screen.queryByText('Private destination')).not.toBeInTheDocument();
   });
@@ -96,7 +96,7 @@ describe('route guards and legacy redirects', () => {
     expect(
       await screen.findByRole('heading', {
         name: 'Find your next money skill',
-      }),
+      })
     ).toBeInTheDocument();
   });
 });

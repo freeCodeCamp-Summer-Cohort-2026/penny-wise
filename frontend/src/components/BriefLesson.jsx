@@ -63,8 +63,7 @@ export default function BriefLesson({ lesson }) {
             return (
               <section
                 key={`${section.heading}-${index}`}
-                className='grid gap-4 sm:grid-cols-[3rem_1fr] sm:gap-5'
-              >
+                className='grid gap-4 sm:grid-cols-[3rem_1fr] sm:gap-5'>
                 <div className='flex h-10 w-10 items-center justify-center rounded-2xl bg-[var(--accent-bg)] text-sm font-black text-[var(--accent-bold)] dark:text-[var(--accent)] sm:mt-1'>
                   {String(index + 1).padStart(2, '0')}
                 </div>
@@ -138,8 +137,7 @@ export default function BriefLesson({ lesson }) {
           <a
             href='#practice'
             aria-label='Jump to the practice activity'
-            className='rounded-full border border-[var(--accent-border)] px-4 py-2 font-semibold text-[var(--accent-bold)] transition hover:bg-[var(--accent-bg)] dark:text-[var(--accent)]'
-          >
+            className='rounded-full border border-[var(--accent-border)] px-4 py-2 font-semibold text-[var(--accent-bold)] transition hover:bg-[var(--accent-bg)] dark:text-[var(--accent)]'>
             Jump to practice
           </a>
         </div>

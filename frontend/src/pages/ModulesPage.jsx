@@ -14,7 +14,7 @@ const findRemoteCourse = (courses, module) =>
 
 const getLessonDetails = (remoteCourse, lesson) => {
   const remoteLesson = remoteCourse?.lessons.find(
-    (item) => normalize(item.name) === normalize(lesson.title),
+    (item) => normalize(item.name) === normalize(lesson.title)
   );
 
   return {
@@ -32,8 +32,7 @@ const BriefLessonPreview = ({ lesson, moduleId }) => {
   return (
     <Link
       to={`/modules/${moduleId}/course/1`}
-      className='group grid overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] shadow-[var(--shadow)] transition hover:-translate-y-1 hover:border-[var(--accent-border)] sm:grid-cols-[minmax(0,1fr)_minmax(15rem,0.8fr)]'
-    >
+      className='group grid overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--bg)] shadow-[var(--shadow)] transition hover:-translate-y-1 hover:border-[var(--accent-border)] sm:grid-cols-[minmax(0,1fr)_minmax(15rem,0.8fr)]'>
       <div className='order-2 flex flex-col justify-center p-6 sm:order-1 sm:p-8'>
         <div className='flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-[var(--accent-bold)] dark:text-[var(--accent)]'>
           <span className='inline-flex items-center gap-2 rounded-full bg-[var(--accent-bg)] px-3 py-1.5'>
@@ -79,8 +78,7 @@ const BriefLessonPreview = ({ lesson, moduleId }) => {
 const LessonCard = ({ lesson, moduleId }) => (
   <Link
     to={`/modules/${moduleId}/course/${lesson.id}`}
-    className='group flex min-h-44 flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)]'
-  >
+    className='group flex min-h-44 flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 text-left shadow-sm transition hover:-translate-y-1 hover:border-[var(--accent-border)] hover:shadow-[var(--shadow)]'>
     <div className='flex items-center justify-between gap-3'>
       <span className='rounded-full bg-[var(--accent-bg)] px-3 py-1 text-xs font-bold uppercase tracking-wide text-[var(--accent-bold)] dark:text-[var(--accent)]'>
         Interactive path
@@ -124,8 +122,7 @@ const ModulesPage = () => {
         </h1>
         <Link
           to='/modules'
-          className='mt-4 inline-block rounded-full border border-[var(--accent-border)] px-4 py-2 text-sm font-semibold text-[var(--accent-bold)] dark:text-[var(--accent)]'
-        >
+          className='mt-4 inline-block rounded-full border border-[var(--accent-border)] px-4 py-2 text-sm font-semibold text-[var(--accent-bold)] dark:text-[var(--accent)]'>
           Back to modules
         </Link>
       </main>
@@ -135,19 +132,18 @@ const ModulesPage = () => {
   if (selectedModule) {
     const remoteCourse = findRemoteCourse(courses, selectedModule);
     const remoteBrief = remoteCourse?.lessons.find(
-      (lesson) => lesson.briefLesson,
+      (lesson) => lesson.briefLesson
     )?.briefLesson;
     const briefLesson = remoteBrief || selectedModule.briefLesson;
     const lessonDetails = selectedModule.lessons.map((lesson) =>
-      getLessonDetails(remoteCourse, lesson),
+      getLessonDetails(remoteCourse, lesson)
     );
 
     return (
       <main className='mx-auto w-full max-w-7xl p-4 text-left sm:p-6'>
         <Link
           to='/modules'
-          className='inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--text-h)] hover:underline'
-        >
+          className='inline-flex items-center gap-2 text-sm text-[var(--text)] hover:text-[var(--text-h)] hover:underline'>
           <ArrowRight size={16} className='rotate-180' aria-hidden='true' />
           Back to modules
         </Link>
@@ -172,8 +168,7 @@ const ModulesPage = () => {
               </p>
               <h2
                 id='quick-lesson-heading'
-                className='mt-2 text-2xl font-semibold text-[var(--text-h)]'
-              >
+                className='mt-2 text-2xl font-semibold text-[var(--text-h)]'>
                 Start with a bright idea
               </h2>
             </div>
@@ -197,8 +192,7 @@ const ModulesPage = () => {
               </p>
               <h2
                 id='paths-heading'
-                className='mt-2 text-2xl font-semibold text-[var(--text-h)]'
-              >
+                className='mt-2 text-2xl font-semibold text-[var(--text-h)]'>
                 Interactive learning paths
               </h2>
             </div>
@@ -245,8 +239,7 @@ const ModulesPage = () => {
           return (
             <section
               key={module.id}
-              className='grid gap-5 rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-sm sm:grid-cols-[1fr_1.4fr] sm:items-center sm:p-7'
-            >
+              className='grid gap-5 rounded-3xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-sm sm:grid-cols-[1fr_1.4fr] sm:items-center sm:p-7'>
               <div>
                 <p className='text-xs font-black uppercase tracking-[0.2em] text-[var(--accent-bold)] dark:text-[var(--accent)]'>
                   Module {module.id.toString().padStart(2, '0')}
@@ -259,8 +252,7 @@ const ModulesPage = () => {
                 </p>
                 <Link
                   to={`/modules/${module.id}`}
-                  className='mt-5 inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-bold)] dark:text-[var(--accent)] hover:underline'
-                >
+                  className='mt-5 inline-flex items-center gap-2 text-sm font-bold text-[var(--accent-bold)] dark:text-[var(--accent)] hover:underline'>
                   View module · {module.lessons.length} paths
                   <ArrowRight size={16} aria-hidden='true' />
                 </Link>
@@ -268,8 +260,7 @@ const ModulesPage = () => {
               {briefLesson?.heroImage?.url && (
                 <Link
                   to={`/modules/${module.id}`}
-                  className='group relative min-h-48 overflow-hidden rounded-2xl'
-                >
+                  className='group relative min-h-48 overflow-hidden rounded-2xl'>
                   <img
                     src={briefLesson.heroImage.url}
                     alt={briefLesson.heroImage.alt || ''}

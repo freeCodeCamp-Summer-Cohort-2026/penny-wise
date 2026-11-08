@@ -16,8 +16,7 @@ export default function MultipleChoiceActivity({
           <label
             key={option.index}
             htmlFor={optionId}
-            className='flex cursor-pointer items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition hover:border-[var(--accent-border)] focus-within:ring-2 focus-within:ring-[var(--accent-border)] has-[:checked]:border-[var(--accent)] has-[:checked]:bg-[var(--accent-bg)]'
-          >
+            className='flex cursor-pointer items-start gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition hover:border-[var(--accent-border)] focus-within:ring-2 focus-within:ring-[var(--accent-border)] has-[:checked]:border-[var(--accent)] has-[:checked]:bg-[var(--accent-bg)]'>
             <input
               id={optionId}
               type='radio'

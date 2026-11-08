@@ -38,7 +38,7 @@ function renderSignUp() {
           </Routes>
         </AuthProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -54,7 +54,7 @@ function renderLogin() {
           </Routes>
         </AuthProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -64,7 +64,7 @@ async function fillSignUp() {
   await userEvent.type(screen.getByLabelText(/^password/i), 'PennyWise-123');
   await userEvent.type(
     screen.getByLabelText(/confirm password/i),
-    'PennyWise-123',
+    'PennyWise-123'
   );
   await userEvent.click(screen.getByRole('checkbox'));
   await userEvent.click(screen.getByRole('button', { name: /sign up/i }));
@@ -116,7 +116,7 @@ describe('sign up flow', () => {
     await fillSignUp();
 
     expect(
-      await screen.findByText('An account with that email already exists'),
+      await screen.findByText('An account with that email already exists')
     ).toBeInTheDocument();
     expect(getCurrentUser).toHaveBeenCalledTimes(1);
   });
@@ -157,7 +157,7 @@ describe('log in flow', () => {
     await fillLogin();
 
     expect(
-      await screen.findByText('Invalid email or password'),
+      await screen.findByText('Invalid email or password')
     ).toBeInTheDocument();
   });
 });

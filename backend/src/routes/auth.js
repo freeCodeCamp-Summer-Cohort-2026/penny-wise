@@ -68,16 +68,16 @@ async function getLearningOverview(user) {
       .filter((item) => item.state === 'completed')
       .map(
         (item) =>
-          `${item.learner.toString()}:${item.course.toString()}:${item.lesson.toString()}`,
-      ),
+          `${item.learner.toString()}:${item.course.toString()}:${item.lesson.toString()}`
+      )
   );
   const completedCourseIds = enrolledCourses
     .filter((course) =>
       course.lessons.every((lessonId) =>
         completedPairs.has(
-          `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`,
-        ),
-      ),
+          `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`
+        )
+      )
     )
     .map((course) => course._id);
   const activeProgress = progress.find((item) => item.state === 'in_progress');
@@ -90,22 +90,22 @@ async function getLearningOverview(user) {
       course.lessons.some(
         (lessonId) =>
           !completedPairs.has(
-            `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`,
-          ),
-      ),
+            `${user._id.toString()}:${course._id.toString()}:${lessonId.toString()}`
+          )
+      )
     );
     resumeCourseId = nextCourse?._id || null;
     resumeLessonId =
       nextCourse?.lessons.find(
         (lessonId) =>
           !completedPairs.has(
-            `${user._id.toString()}:${nextCourse._id.toString()}:${lessonId.toString()}`,
-          ),
+            `${user._id.toString()}:${nextCourse._id.toString()}:${lessonId.toString()}`
+          )
       ) || null;
   }
 
   const resumeCourse = enrolledCourses.find(
-    (course) => course._id.toString() === resumeCourseId?.toString(),
+    (course) => course._id.toString() === resumeCourseId?.toString()
   );
   const resumeLesson = resumeLessonId
     ? await Lesson.findById(resumeLessonId).lean()
@@ -127,7 +127,7 @@ async function getLearningOverview(user) {
         progress.find(
           (item) =>
             item.course.toString() === resumeCourse._id.toString() &&
-            item.lesson.toString() === resumeLesson._id.toString(),
+            item.lesson.toString() === resumeLesson._id.toString()
         )?.updatedAt ||
         null,
     };
@@ -176,7 +176,7 @@ function signToken(user) {
     process.env.JWT_SECRET,
     {
       expiresIn: '7d',
-    },
+    }
   );
 }
 

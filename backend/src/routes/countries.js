@@ -31,7 +31,7 @@ router.get(
     });
 
     res.json({ countries: codeNames });
-  }),
+  })
 );
 
 router.use((error, req, res, next) => {

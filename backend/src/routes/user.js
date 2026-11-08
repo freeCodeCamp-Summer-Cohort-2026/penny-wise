@@ -103,7 +103,7 @@ router.put(
         if (error.name === 'VersionError') {
           throw new RouteError(
             409,
-            'Activity changed on another device. Try again.',
+            'Activity changed on another device. Try again.'
           );
         }
 
@@ -118,7 +118,7 @@ router.put(
     } catch (err) {
       return next(err);
     }
-  },
+  }
 );
 
 router.use((error, req, res, next) => {

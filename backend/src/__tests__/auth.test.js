@@ -20,7 +20,7 @@ afterAll(async () => {
 
 function getAuthCookie(response) {
   return response.headers['set-cookie']?.find((cookie) =>
-    cookie.startsWith('authCookie='),
+    cookie.startsWith('authCookie=')
   );
 }
 

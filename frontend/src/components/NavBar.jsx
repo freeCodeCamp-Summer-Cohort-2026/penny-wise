@@ -9,7 +9,7 @@ import { cn } from '../utils/utils';
 const desktopLinkClass = ({ isActive }) =>
   cn(
     'flex h-10 items-center justify-center gap-2 rounded-full px-3 text-sm font-semibold text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800',
-    isActive && 'bg-[var(--accent-bg)] text-[var(--accent)]',
+    isActive && 'bg-[var(--accent-bg)] text-[var(--accent)]'
   );
 
 const mobileLinkClass =
@@ -47,13 +47,11 @@ function Brand({
     <Link
       to={to}
       aria-label='Penny Wise home'
-      className='flex shrink-0 items-center gap-2 rounded-full pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]'
-    >
+      className='flex shrink-0 items-center gap-2 rounded-full pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]'>
       <span className='relative block h-9 w-9 shrink-0'>
         <span
           aria-hidden='true'
-          className='absolute inset-0 flex items-center justify-center text-xl font-black leading-none'
-        >
+          className='absolute inset-0 flex items-center justify-center text-xl font-black leading-none'>
           $
         </span>
         {!dollarFailed && (
@@ -67,7 +65,7 @@ function Brand({
             onError={() => setDollarFailed(true)}
             className={cn(
               'absolute inset-0 h-full w-full object-contain transition-opacity duration-200',
-              dollarLoaded ? 'opacity-100' : 'opacity-0',
+              dollarLoaded ? 'opacity-100' : 'opacity-0'
             )}
           />
         )}
@@ -90,7 +88,7 @@ function MobileMenuElements({ onNavigate }) {
       <NavLink to='/courses' onClick={closeMenu} className={mobileLinkClass}>
         <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
           <BookOpen aria-hidden='true' size={19} />
-        </span>
+        </span>{' '}
         Courses
       </NavLink>
       {auth ? (
@@ -99,25 +97,23 @@ function MobileMenuElements({ onNavigate }) {
             <NavLink
               to='/dashboard'
               onClick={closeMenu}
-              className={mobileLinkClass}
-            >
+              className={mobileLinkClass}>
               <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
                 <House aria-hidden='true' size={19} />
-              </span>
+              </span>{' '}
               Dashboard
             </NavLink>
           )}
           <NavLink
             to='/profile'
             onClick={closeMenu}
-            className={mobileLinkClass}
-          >
+            className={mobileLinkClass}>
             <span className='flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[var(--border)] bg-[var(--accent-bg)]'>
               <UserAvatar
                 src={auth.user?.profilePic}
                 className='h-6 w-6 rounded-full object-cover'
               />
-            </span>
+            </span>{' '}
             Profile
           </NavLink>
           <ThemeToggle
@@ -133,11 +129,10 @@ function MobileMenuElements({ onNavigate }) {
               await navigate('/');
               closeMenu();
             }}
-            className={`${mobileLinkClass} cursor-pointer`}
-          >
+            className={`${mobileLinkClass} cursor-pointer`}>
             <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
               <LogOut aria-hidden='true' size={19} />
-            </span>
+            </span>{' '}
             Log out
           </button>
         </>
@@ -153,15 +148,13 @@ function MobileMenuElements({ onNavigate }) {
             <Link
               to='/login'
               onClick={closeMenu}
-              className='border border-[var(--border)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='border border-[var(--border)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               Log in
             </Link>
             <Link
               to='/signup'
               onClick={closeMenu}
-              className='bg-[var(--accent-bold)] px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='bg-[var(--accent-bold)] px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               Sign up
             </Link>
           </div>
@@ -189,8 +182,7 @@ function DesktopMenuElements() {
             <NavLink
               to='/dashboard'
               className={desktopLinkClass}
-              aria-label='Dashboard'
-            >
+              aria-label='Dashboard'>
               <House aria-hidden='true' size={19} />
               <span className='hidden xl:inline'>Dashboard</span>
             </NavLink>
@@ -216,8 +208,7 @@ function DesktopMenuElements() {
               await signOut();
               await navigate('/');
             }}
-            className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800'
-          >
+            className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800'>
             <LogOut aria-hidden='true' size={19} />
           </button>
         </>
@@ -226,14 +217,12 @@ function DesktopMenuElements() {
           <ThemeToggle className='h-10 w-10 shrink-0' />
           <Link
             to='/login'
-            className='flex h-10 items-center px-3 text-sm font-semibold text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800'
-          >
+            className='flex h-10 items-center px-3 text-sm font-semibold text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800'>
             Log in
           </Link>
           <Link
             to='/signup'
-            className='flex h-10 items-center bg-[var(--accent-bold)] px-4 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-          >
+            className='flex h-10 items-center bg-[var(--accent-bold)] px-4 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
             Sign up
           </Link>
         </>
@@ -263,16 +252,14 @@ export default function NavBar() {
         aria-expanded={isOpen}
         type='button'
         className='flex h-10 w-10 items-center justify-center rounded-full transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800 lg:hidden'
-        onClick={() => setIsOpen((open) => !open)}
-      >
+        onClick={() => setIsOpen((open) => !open)}>
         <Menu aria-hidden='true' />
       </button>
       <div
         className={cn(
           'absolute top-full left-0 right-0 max-h-[calc(100svh-72px)] flex-col gap-1 overflow-y-auto border-b border-[var(--border)] bg-[var(--bg)] p-4 shadow-[var(--nav-shadow)] lg:hidden',
-          isOpen ? 'flex' : 'hidden',
-        )}
-      >
+          isOpen ? 'flex' : 'hidden'
+        )}>
         <MobileMenuElements onNavigate={() => setIsOpen(false)} />
       </div>
     </nav>

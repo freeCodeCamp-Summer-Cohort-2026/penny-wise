@@ -72,10 +72,10 @@ function idEquals(left, right) {
 function orderLessons(course, lessons) {
   const lessonList = lessons instanceof Map ? [...lessons.values()] : lessons;
   const lessonsById = new Map(
-    lessonList.map((lesson) => [lesson._id.toString(), lesson]),
+    lessonList.map((lesson) => [lesson._id.toString(), lesson])
   );
   const orderedLessons = course.lessons.map((lessonId) =>
-    lessonsById.get(lessonId.toString()),
+    lessonsById.get(lessonId.toString())
   );
 
   if (orderedLessons.some((lesson) => !lesson)) {
@@ -109,7 +109,7 @@ function serializeCourse(course, lessons) {
     lessonCount: lessonSummaries.length,
     totalEstimatedDurationInMinutes: lessonSummaries.reduce(
       (total, lesson) => total + lesson.estimatedDurationOfCompletionInMinutes,
-      0,
+      0
     ),
   };
 }
@@ -151,7 +151,7 @@ async function loadLearner(learnerId) {
 async function getLearningState(course, learnerId) {
   const learner = await Learner.findById(learnerId).lean();
   const enrolled = learner.coursesEnrolled.some((courseId) =>
-    idEquals(courseId, course._id),
+    idEquals(courseId, course._id)
   );
   const completedProgress = await LessonProgress.find({
     learner: learnerId.toString(),
@@ -161,7 +161,7 @@ async function getLearningState(course, learnerId) {
     .select('lesson')
     .lean();
   const completedLessonIds = completedProgress.map((progress) =>
-    progress.lesson.toString(),
+    progress.lesson.toString()
   );
   const completedSet = new Set(completedLessonIds);
   const activeProgress = await LessonProgress.findOne({
@@ -172,7 +172,7 @@ async function getLearningState(course, learnerId) {
     .sort({ updatedAt: -1 })
     .lean();
   const nextLessonId = course.lessons.find(
-    (lessonId) => !completedSet.has(lessonId.toString()),
+    (lessonId) => !completedSet.has(lessonId.toString())
   );
   const totalLessons = course.lessons.length;
   const status = !enrolled
@@ -209,7 +209,7 @@ async function loadLessonContent(courseId, lessonId, learnerId) {
   const course = await loadPublishedCourse(courseId);
   const learner = await loadLearner(learnerId);
   const enrolled = learner.coursesEnrolled.some((enrolledCourseId) =>
-    idEquals(enrolledCourseId, course._id),
+    idEquals(enrolledCourseId, course._id)
   );
 
   if (!enrolled) {
@@ -237,7 +237,7 @@ async function loadLessonContent(courseId, lessonId, learnerId) {
   });
   const pagesById = new Map(pages.map((page) => [page._id.toString(), page]));
   const orderedPages = lesson.pages.map((pageId) =>
-    pagesById.get(pageId.toString()),
+    pagesById.get(pageId.toString())
   );
 
   if (orderedPages.some((page) => !page)) {
@@ -357,12 +357,12 @@ function validateMatchingMatches(answer, page) {
   }
 
   const normalized = [...answer.matches].sort(
-    (left, right) => left.wordIndex - right.wordIndex,
+    (left, right) => left.wordIndex - right.wordIndex
   );
   const correct = normalized.every(
     (match) =>
       page.pairs[match.wordIndex].definition ===
-      page.pairs[match.definitionIndex].definition,
+      page.pairs[match.definitionIndex].definition
   );
 
   return { correct, normalized };
@@ -374,7 +374,7 @@ function validateBudgetingAnswer(answer, page) {
   }
 
   const selected = [...answer.selectedItemIndexes].sort(
-    (left, right) => left - right,
+    (left, right) => left - right
   );
   const unique = new Set(selected);
 
@@ -385,18 +385,18 @@ function validateBudgetingAnswer(answer, page) {
       (itemIndex) =>
         !Number.isInteger(itemIndex) ||
         itemIndex < 0 ||
-        itemIndex >= page.availableItems.length,
+        itemIndex >= page.availableItems.length
     )
   ) {
     throw new RouteError(
       400,
-      'Budget item selections must be unique and valid',
+      'Budget item selections must be unique and valid'
     );
   }
 
   const totalCost = selected.reduce(
     (total, itemIndex) => total + page.availableItems[itemIndex].cost,
-    0,
+    0
   );
 
   return {
@@ -425,7 +425,7 @@ function validateWantsNeedsAnswer(answer, page) {
     ) {
       throw new RouteError(
         400,
-        'Item classifications must be unique and valid',
+        'Item classifications must be unique and valid'
       );
     }
 
@@ -433,12 +433,12 @@ function validateWantsNeedsAnswer(answer, page) {
   }
 
   const normalized = [...answer.classifications].sort(
-    (left, right) => left.itemIndex - right.itemIndex,
+    (left, right) => left.itemIndex - right.itemIndex
   );
   const correct = normalized.every(
     (classification) =>
       page.itemsToSort[classification.itemIndex].correctCategory ===
-      classification.category,
+      classification.category
   );
 
   return { correct, normalized };
@@ -523,16 +523,16 @@ async function getCourseCompletion(course, lesson, progress) {
     .select('lesson')
     .lean();
   const completedIds = new Set(
-    completedProgress.map((item) => item.lesson.toString()),
+    completedProgress.map((item) => item.lesson.toString())
   );
   const courseCompleted = course.lessons.every((lessonId) =>
-    completedIds.has(lessonId.toString()),
+    completedIds.has(lessonId.toString())
   );
   let nextLesson = null;
 
   if (!courseCompleted) {
     const nextLessonId = course.lessons.find(
-      (lessonId) => !completedIds.has(lessonId.toString()),
+      (lessonId) => !completedIds.has(lessonId.toString())
     );
     const nextLessonDocument = await Lesson.findById(nextLessonId).lean();
 
@@ -566,7 +566,7 @@ async function finalizeCompletion(course, lesson, progress) {
         },
       },
     },
-    { returnDocument: 'after' },
+    { returnDocument: 'after' }
   );
   const newlyAwarded = Boolean(updatedLearner);
 
@@ -581,7 +581,7 @@ async function finalizeCompletion(course, lesson, progress) {
   const { courseCompleted, nextLesson } = await getCourseCompletion(
     course,
     lesson,
-    progress,
+    progress
   );
 
   return {
@@ -601,7 +601,7 @@ async function buildSubmissionResponse(
   lesson,
   pages,
   progress,
-  result,
+  result
 ) {
   const page = pages[result.pageIndex];
   const response = {
@@ -624,7 +624,7 @@ router.get(
     const lessonIds = courses.flatMap((course) => course.lessons);
     const lessons = await Lesson.find({ _id: { $in: lessonIds } });
     const lessonsById = new Map(
-      lessons.map((lesson) => [lesson._id.toString(), lesson]),
+      lessons.map((lesson) => [lesson._id.toString(), lesson])
     );
     const summaries = courses.map((course) => {
       const orderedLessons = orderLessons(course, lessonsById);
@@ -632,7 +632,7 @@ router.get(
     });
 
     res.json({ courses: summaries });
-  }),
+  })
 );
 
 router.get(
@@ -647,7 +647,7 @@ router.get(
       course: serializeCourse(course, lessons),
       learningState,
     });
-  }),
+  })
 );
 
 router.post(
@@ -658,13 +658,13 @@ router.post(
     const course = await loadPublishedCourse(req.params.courseId);
     const learner = await loadLearner(req.user.id);
     const alreadyEnrolled = learner.coursesEnrolled.some((courseId) =>
-      idEquals(courseId, course._id),
+      idEquals(courseId, course._id)
     );
 
     if (!alreadyEnrolled) {
       await Learner.updateOne(
         { _id: learner._id },
-        { $addToSet: { coursesEnrolled: course._id } },
+        { $addToSet: { coursesEnrolled: course._id } }
       );
     }
 
@@ -675,7 +675,7 @@ router.post(
       course: serializeCourse(course, lessons),
       learningState,
     });
-  }),
+  })
 );
 
 router.post(
@@ -686,7 +686,7 @@ router.post(
     const { course, lesson, pages } = await loadLessonContent(
       req.params.courseId,
       req.params.lessonId,
-      req.user.id,
+      req.user.id
     );
     let progress = await LessonProgress.findOne({
       learner: req.user.id.toString(),
@@ -726,7 +726,7 @@ router.post(
       ...serializePlayer(lesson, pages, progress),
       completion,
     });
-  }),
+  })
 );
 
 router.post(
@@ -739,10 +739,10 @@ router.post(
     const { course, lesson, pages } = await loadLessonContent(
       req.params.courseId.toString(),
       req.params.lessonId.toString(),
-      req.user.id.toString(),
+      req.user.id.toString()
     );
     const pageIndex = lesson.pages.findIndex((pageId) =>
-      idEquals(pageId, req.params.pageId),
+      idEquals(pageId, req.params.pageId)
     );
 
     if (pageIndex === -1) {
@@ -763,7 +763,7 @@ router.post(
     }
 
     let result = progress.pageResults.find((item) =>
-      idEquals(item.pageId, page._id),
+      idEquals(item.pageId, page._id)
     );
 
     if (result?.lastAnswerHash === hash) {
@@ -772,7 +772,7 @@ router.post(
         lesson,
         pages,
         progress,
-        result,
+        result
       );
       return res.json(response);
     }
@@ -780,7 +780,7 @@ router.post(
     if (result?.satisfied || pageIndex !== progress.currentPage) {
       throw new RouteError(
         409,
-        'Answer the current activity before continuing',
+        'Answer the current activity before continuing'
       );
     }
 
@@ -829,7 +829,7 @@ router.post(
       if (error.name === 'VersionError') {
         throw new RouteError(
           409,
-          'Activity changed on another device. Try again.',
+          'Activity changed on another device. Try again.'
         );
       }
 
@@ -841,10 +841,10 @@ router.post(
       lesson,
       pages,
       progress,
-      result,
+      result
     );
     return res.json(response);
-  }),
+  })
 );
 
 router.use((error, req, res, next) => {
