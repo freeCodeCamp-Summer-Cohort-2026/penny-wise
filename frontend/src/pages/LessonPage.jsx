@@ -456,12 +456,15 @@ export default function LessonPage() {
                 />
               )}
               {player.currentPage.audioUrl && (
-                <audio
-                  controls
-                  src={player.currentPage.audioUrl}
-                  aria-label={`Audio for ${player.currentPage.text}`}
-                  className='mt-5 w-full'
-                />
+                <audio>
+                  <track
+                    kind='captions'
+                    controls
+                    src={player.currentPage.audioUrl}
+                    aria-label={`Audio for ${player.currentPage.text}`}
+                    className='mt-5 w-full'
+                  />
+                </audio>
               )}
 
               <div className='mt-7'>
