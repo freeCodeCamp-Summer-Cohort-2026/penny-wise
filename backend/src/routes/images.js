@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const mongoose = require('mongoose');
-const path = require('path');
+const path = require('node:path');
 
 const { Image } = require('../models/Image');
 const { User } = require('../models/User');
@@ -11,7 +11,12 @@ const router = express.Router();
 
 const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // 2 MB, well under MongoDB's 16 MB document limit
 // SVG is left out on purpose: it can carry scripts.
-const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+const ALLOWED_TYPES = new Set([
+  'image/png',
+  'image/jpeg',
+  'image/gif',
+  'image/webp',
+]);
 
 class RouteError extends Error {
   constructor(status, message) {
@@ -26,7 +31,7 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: MAX_IMAGE_BYTES, files: 1 },
   fileFilter: (req, file, cb) => {
-    if (ALLOWED_TYPES.includes(file.mimetype)) {
+    if (ALLOWED_TYPES.has(file.mimetype)) {
       return cb(null, true);
     }
     return cb(

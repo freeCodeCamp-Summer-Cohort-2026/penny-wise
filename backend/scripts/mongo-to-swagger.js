@@ -43,7 +43,7 @@ const header = `{
   } ],
   "tags" : [ `;
 
-var swaggerSchema =
+let swaggerSchema =
   header +
   '\n' +
   JSON.stringify(m2s(Author, options), null, 2) +
