@@ -39,7 +39,7 @@ jobs:
           echo "JWT_SECRET=${JWT_SECRET}" >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps --prefer-offline
+        run: npm install --ignore-scripts --legacy-peer-deps --prefer-offline
 
       - name: Start app with memory limits
         env:

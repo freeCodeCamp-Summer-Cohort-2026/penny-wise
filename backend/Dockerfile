@@ -11,7 +11,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN npm install --ignore-scripts --omit=dev
 
 COPY ./scripts ./scripts
 COPY ./src ./src
@@ -40,7 +40,7 @@ ENV PORT=5000
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --ignore-scripts 
 
 COPY ./scripts ./scripts
 COPY ./src ./src

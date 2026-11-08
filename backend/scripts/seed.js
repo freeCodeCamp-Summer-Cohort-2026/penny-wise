@@ -11,7 +11,7 @@ const LessonProgress = require('../src/models/LessonProgress');
 const { Page } = require('../src/models/Page');
 const Wallet = require('../src/models/wallet');
 
-const DEMO_PASSWORD = 'PennyWise-123';
+const DEMO_PASSWORD = process.env.DEMO_PASSWORD || 'Password-1234';
 const USD_COUNTRY = 'United States'; // Initial designation
 const USD_COUNTRY_NEW = 'United States of America'; // Full designation
 
