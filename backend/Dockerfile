@@ -34,7 +34,7 @@ RUN addgroup --system nonroot \
 
 RUN npm install --ignore-scripts -g npm@12.2.2
 
-WORKDIR ./src
+WORKDIR /src
 
 ENV PORT=5000
 

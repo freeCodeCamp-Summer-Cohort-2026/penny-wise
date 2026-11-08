@@ -12,7 +12,6 @@ function PopUp({ showPopUp, closePopUp, children }) {
         role='dialog'
         aria-modal='true'
         aria-label='Image upload'
-        onClick={(event) => event.stopPropagation()}
       >
         <button
           type='button'

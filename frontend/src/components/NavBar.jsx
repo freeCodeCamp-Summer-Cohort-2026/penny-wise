@@ -130,7 +130,7 @@ function MobileMenuElements({ onNavigate }) {
             type='button'
             onClick={async () => {
               await signOut();
-              navigate('/');
+              await navigate('/');
               closeMenu();
             }}
             className={`${mobileLinkClass} cursor-pointer`}
@@ -214,7 +214,7 @@ function DesktopMenuElements() {
             aria-label='Log out'
             onClick={async () => {
               await signOut();
-              navigate('/');
+              await navigate('/');
             }}
             className='flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-[var(--text-h)] transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] dark:hover:bg-gray-800'
           >
