@@ -123,7 +123,7 @@ export default function LoginPage() {
               checked={remember}
               onChange={(event) => setRemember(event.target.checked)}
               className='h-4 w-4 rounded accent-(--accent-bold)'
-            />
+            />{' '}
             Remember me
           </label>
           <button

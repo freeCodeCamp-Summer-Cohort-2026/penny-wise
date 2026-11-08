@@ -88,7 +88,7 @@ function MobileMenuElements({ onNavigate }) {
       <NavLink to='/courses' onClick={closeMenu} className={mobileLinkClass}>
         <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
           <BookOpen aria-hidden='true' size={19} />
-        </span>
+        </span>{' '}
         Courses
       </NavLink>
       {auth ? (
@@ -100,7 +100,7 @@ function MobileMenuElements({ onNavigate }) {
               className={mobileLinkClass}>
               <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
                 <House aria-hidden='true' size={19} />
-              </span>
+              </span>{' '}
               Dashboard
             </NavLink>
           )}
@@ -113,7 +113,7 @@ function MobileMenuElements({ onNavigate }) {
                 src={auth.user?.profilePic}
                 className='h-6 w-6 rounded-full object-cover'
               />
-            </span>
+            </span>{' '}
             Profile
           </NavLink>
           <ThemeToggle
@@ -132,7 +132,7 @@ function MobileMenuElements({ onNavigate }) {
             className={`${mobileLinkClass} cursor-pointer`}>
             <span className='flex h-6 w-6 shrink-0 items-center justify-center'>
               <LogOut aria-hidden='true' size={19} />
-            </span>
+            </span>{' '}
             Log out
           </button>
         </>
