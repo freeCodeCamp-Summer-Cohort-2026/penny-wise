@@ -27,7 +27,7 @@ function renderApp(path) {
           <AppRoutes />
         </AuthProvider>
       </ThemeProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -43,7 +43,7 @@ describe('landing page', () => {
     expect(
       await screen.findByRole('heading', {
         name: /Learn through byte-sized lessons and lab/,
-      }),
+      })
     ).toBeInTheDocument();
 
     const startLinks = screen.getAllByRole('link', {
@@ -51,7 +51,7 @@ describe('landing page', () => {
     });
     expect(startLinks[0]).toHaveAttribute('href', '/signup');
     expect(
-      screen.getAllByRole('link', { name: /Browse courses/ })[0],
+      screen.getAllByRole('link', { name: /Browse courses/ })[0]
     ).toHaveAttribute('href', '/courses');
   });
 
@@ -61,7 +61,7 @@ describe('landing page', () => {
     expect(
       await screen.findByRole('heading', {
         name: /Everything you need to get money under control/,
-      }),
+      })
     ).toBeInTheDocument();
 
     for (const topic of [
@@ -74,7 +74,7 @@ describe('landing page', () => {
     }
 
     expect(
-      screen.getAllByRole('heading', { name: 'Get started today' }).length,
+      screen.getAllByRole('heading', { name: 'Get started today' }).length
     ).toBeGreaterThan(0);
   });
 
@@ -82,16 +82,16 @@ describe('landing page', () => {
     renderApp('/');
 
     expect(
-      await screen.findByRole('heading', { name: 'Build your first budget' }),
+      await screen.findByRole('heading', { name: 'Build your first budget' })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'The Big Goal' }),
+      screen.getByRole('heading', { name: 'The Big Goal' })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'The Price Tag' }),
+      screen.getByRole('heading', { name: 'The Price Tag' })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'Life Simulation' }),
+      screen.getByRole('heading', { name: 'Life Simulation' })
     ).toBeInTheDocument();
   });
 
@@ -107,7 +107,7 @@ describe('landing page', () => {
     });
     expect(dashboardLinks[0]).toHaveAttribute('href', '/dashboard');
     expect(
-      screen.queryByRole('link', { name: /Start learning free/ }),
+      screen.queryByRole('link', { name: /Start learning free/ })
     ).not.toBeInTheDocument();
   });
 });

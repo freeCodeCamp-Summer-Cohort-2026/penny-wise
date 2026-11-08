@@ -11,14 +11,12 @@ function PopUp({ showPopUp, closePopUp, children }) {
         className='PopUp'
         role='dialog'
         aria-modal='true'
-        aria-label='Image upload'
-      >
+        aria-label='Image upload'>
         <button
           type='button'
           onClick={closePopUp}
           aria-label='Close'
-          className='popup-close'
-        >
+          className='popup-close'>
           <X aria-hidden='true' size={18} />
         </button>
         {children}

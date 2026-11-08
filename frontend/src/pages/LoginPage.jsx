@@ -65,8 +65,7 @@ export default function LoginPage() {
         { title: 'Goal tracking', sub: 'Watch savings grow' },
       ]}
       mobileTitle='Welcome back'
-      mobileSub='Log in to your account'
-    >
+      mobileSub='Log in to your account'>
       <div className='mb-6 hidden lg:block'>
         <h1 className='m-0 text-[28px] font-semibold tracking-tight text-(--text-h)'>
           Log in
@@ -107,8 +106,7 @@ export default function LoginPage() {
               onClick={() => setShowPassword((value) => !value)}
               aria-label={showPassword ? 'Hide password' : 'Show password'}
               aria-pressed={showPassword}
-              className='absolute top-1/2 right-3 -translate-y-1/2 text-(--text) opacity-70 transition-opacity hover:opacity-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-(--accent)'
-            >
+              className='absolute top-1/2 right-3 -translate-y-1/2 text-(--text) opacity-70 transition-opacity hover:opacity-100 focus-visible:rounded focus-visible:outline-2 focus-visible:outline-(--accent)'>
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
           }
@@ -117,8 +115,7 @@ export default function LoginPage() {
         <div className='flex items-center justify-between text-sm'>
           <label
             htmlFor='remember'
-            className='flex cursor-pointer items-center gap-2 text-(--text)'
-          >
+            className='flex cursor-pointer items-center gap-2 text-(--text)'>
             <input
               type='checkbox'
               id='remember'
@@ -138,8 +135,7 @@ export default function LoginPage() {
                   'Password reset is not available yet. Ask an administrator for help.',
               })
             }
-            className='font-medium text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'
-          >
+            className='font-medium text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'>
             Forgot password?
           </button>
         </div>
@@ -155,8 +151,7 @@ export default function LoginPage() {
         <Link
           to='/signup'
           state={location.state}
-          className='font-semibold text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'
-        >
+          className='font-semibold text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'>
           Create an account
         </Link>
       </p>

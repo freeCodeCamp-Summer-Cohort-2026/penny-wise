@@ -10,7 +10,7 @@ export default function WantsNeedsActivity({
   const updateCategory = (itemIndex, category) => {
     const next = [
       ...classifications.filter(
-        (classification) => classification.itemIndex !== itemIndex,
+        (classification) => classification.itemIndex !== itemIndex
       ),
       { itemIndex, category },
     ].sort((left, right) => left.itemIndex - right.itemIndex);
@@ -24,13 +24,12 @@ export default function WantsNeedsActivity({
       </legend>
       {items.map((item) => {
         const current = classifications.find(
-          (classification) => classification.itemIndex === item.index,
+          (classification) => classification.itemIndex === item.index
         );
         return (
           <div
             key={item.index}
-            className='rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4'
-          >
+            className='rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4'>
             <p className='mb-3 font-medium text-[var(--text-h)]'>{item.name}</p>
             <div className='flex flex-wrap gap-4'>
               {['need', 'want'].map((category) => {
@@ -39,8 +38,7 @@ export default function WantsNeedsActivity({
                   <label
                     key={category}
                     htmlFor={inputId}
-                    className='flex cursor-pointer items-center gap-2 text-[var(--text)]'
-                  >
+                    className='flex cursor-pointer items-center gap-2 text-[var(--text)]'>
                     <input
                       id={inputId}
                       type='radio'

@@ -60,8 +60,7 @@ export default function CourseCatalog() {
         <div className='mb-5 flex items-center justify-between gap-4'>
           <h2
             id='catalog-heading'
-            className='text-2xl font-semibold text-[var(--text-h)]'
-          >
+            className='text-2xl font-semibold text-[var(--text-h)]'>
             All courses
           </h2>
           {status === 'ready' && (
@@ -75,8 +74,7 @@ export default function CourseCatalog() {
           <div
             role='status'
             aria-live='polite'
-            className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8 text-center shadow-[var(--shadow)]'
-          >
+            className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-8 text-center shadow-[var(--shadow)]'>
             <RefreshCw
               aria-hidden='true'
               className='mx-auto motion-safe:animate-spin text-[var(--accent)]'
@@ -88,8 +86,7 @@ export default function CourseCatalog() {
         {status === 'error' && (
           <div
             role='alert'
-            className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'
-          >
+            className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'>
             <h3 className='font-semibold'>Courses could not load</h3>
             <p className='mt-2'>
               {error?.error ||
@@ -99,8 +96,7 @@ export default function CourseCatalog() {
             <button
               type='button'
               onClick={retry}
-              className='mt-5 inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='mt-5 inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               <RefreshCw aria-hidden='true' size={16} />
               Try again
             </button>
@@ -131,8 +127,7 @@ export default function CourseCatalog() {
                   <Link
                     to={courseId ? `/courses/${courseId}` : '#'}
                     className='group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg)] shadow-[var(--shadow)] transition hover:-translate-y-1 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                    aria-disabled={!courseId}
-                  >
+                    aria-disabled={!courseId}>
                     <div className='relative flex h-40 items-center justify-center overflow-hidden bg-[var(--accent-bg)]'>
                       <img
                         src={LessonArtwork}
@@ -160,7 +155,7 @@ export default function CourseCatalog() {
                         <span className='inline-flex items-center gap-1.5'>
                           <Clock3 aria-hidden='true' size={16} />
                           {formatMinutes(
-                            course.totalEstimatedDurationInMinutes,
+                            course.totalEstimatedDurationInMinutes
                           )}
                         </span>
                       </div>

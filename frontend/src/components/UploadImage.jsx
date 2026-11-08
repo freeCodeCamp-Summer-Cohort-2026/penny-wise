@@ -53,7 +53,7 @@ function UploadImage({ selectedImage, onSelect }) {
     () => () => {
       if (previewRef.current) URL.revokeObjectURL(previewRef.current);
     },
-    [],
+    []
   );
 
   const replacePreview = (nextFile) => {
@@ -147,8 +147,7 @@ function UploadImage({ selectedImage, onSelect }) {
             type='button'
             className='upload-btn'
             onClick={handleUpload}
-            disabled={uploading || !file}
-          >
+            disabled={uploading || !file}>
             {uploading ? 'Uploading...' : 'Upload'}
           </button>
         </div>
@@ -168,8 +167,7 @@ function UploadImage({ selectedImage, onSelect }) {
                 key={img._id}
                 onClick={() => onSelect(url)}
                 aria-pressed={isSelected}
-                className={`gallery-item${isSelected ? ' selected' : ''}`}
-              >
+                className={`gallery-item${isSelected ? ' selected' : ''}`}>
                 <img
                   src={url}
                   alt={img.name}

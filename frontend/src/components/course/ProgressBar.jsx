@@ -17,8 +17,7 @@ export default function ProgressBar({
         aria-valuemax='100'
         aria-valuenow={percent}
         aria-valuetext={valueText}
-        className='h-2.5 overflow-hidden rounded-full bg-[var(--code-bg)]'
-      >
+        className='h-2.5 overflow-hidden rounded-full bg-[var(--code-bg)]'>
         <div
           className='h-full rounded-full bg-[var(--accent)] transition-[width] duration-300'
           style={{ width: `${percent}%` }}

@@ -70,10 +70,10 @@ describe('API auth and errors', () => {
 
     expect(error.status).toBe(502);
     expect(error.message).toBe(
-      'The server is temporarily unavailable. Please try again in a moment.',
+      'The server is temporarily unavailable. Please try again in a moment.'
     );
     expect(error.error).toBe(
-      'The server is temporarily unavailable. Please try again in a moment.',
+      'The server is temporarily unavailable. Please try again in a moment.'
     );
   });
 
@@ -85,7 +85,7 @@ describe('API auth and errors', () => {
 
     expect(error.status).toBeNull();
     expect(error.message).toBe(
-      'The server is taking too long to respond. Please try again.',
+      'The server is taking too long to respond. Please try again.'
     );
   });
 
@@ -96,7 +96,7 @@ describe('API auth and errors', () => {
 
     expect(error.status).toBeNull();
     expect(error.message).toBe(
-      'We could not reach the server. Check your connection and try again.',
+      'We could not reach the server. Check your connection and try again.'
     );
   });
 
@@ -118,7 +118,7 @@ describe('API auth and errors', () => {
       'lesson-1',
       'page-1',
       { optionIndex: 1 },
-      controller.signal,
+      controller.signal
     );
     await logoutUser(controller.signal);
 
@@ -134,19 +134,19 @@ describe('API auth and errors', () => {
       undefined,
       {
         signal: controller.signal,
-      },
+      }
     );
     expect(post).toHaveBeenNthCalledWith(
       2,
       '/courses/course-1/lessons/lesson-1/start',
       undefined,
-      { signal: controller.signal },
+      { signal: controller.signal }
     );
     expect(post).toHaveBeenNthCalledWith(
       3,
       '/courses/course-1/lessons/lesson-1/pages/page-1/submit',
       { answer: { optionIndex: 1 } },
-      { signal: controller.signal },
+      { signal: controller.signal }
     );
     expect(post).toHaveBeenNthCalledWith(4, '/auth/logout', undefined, {
       signal: controller.signal,

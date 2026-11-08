@@ -12,7 +12,7 @@ export default function BudgetingActivity({
   const spend = items.reduce(
     (total, item) =>
       selectedSet.has(item.index) ? total + Number(item.cost) : total,
-    0,
+    0
   );
   const startingAmount = Number(page?.startingAmount) || 0;
   const targetSavings = Number(page?.targetSavings) || 0;
@@ -57,8 +57,7 @@ export default function BudgetingActivity({
             <label
               key={item.index}
               htmlFor={itemId}
-              className='flex cursor-pointer items-center justify-between gap-4 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition hover:border-[var(--accent-border)] focus-within:ring-2 focus-within:ring-[var(--accent-border)] has-[:checked]:border-[var(--accent)] has-[:checked]:bg-[var(--accent-bg)]'
-            >
+              className='flex cursor-pointer items-center justify-between gap-4 rounded-xl border border-[var(--border)] bg-[var(--bg)] p-4 transition hover:border-[var(--accent-border)] focus-within:ring-2 focus-within:ring-[var(--accent-border)] has-[:checked]:border-[var(--accent)] has-[:checked]:bg-[var(--accent-bg)]'>
               <span className='flex items-center gap-3'>
                 <input
                   id={itemId}

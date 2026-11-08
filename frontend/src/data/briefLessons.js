@@ -14,7 +14,7 @@ export const fallbackBriefLessons = {
     heroImage: image(
       'photo-1579621970563-ebec7560ff3e',
       'A person planning a budget beside a laptop',
-      'Money helps turn a plan into a choice.',
+      'Money helps turn a plan into a choice.'
     ),
     sections: [
       {
@@ -23,7 +23,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1526304640581-d334cdbbf45e',
           'Coins and banknotes arranged on a table',
-          'Different forms can carry one shared idea.',
+          'Different forms can carry one shared idea.'
         ),
       },
       {
@@ -32,7 +32,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1556742049-0cfed4f6a45d',
           'A person making a contactless payment',
-          'Even digital payments rely on a shared promise.',
+          'Even digital payments rely on a shared promise.'
         ),
       },
     ],
@@ -48,7 +48,7 @@ export const fallbackBriefLessons = {
     heroImage: image(
       'photo-1542838132-92c53300491e',
       'A colourful market with fresh choices on display',
-      'Every choice has a story behind its price.',
+      'Every choice has a story behind its price.'
     ),
     sections: [
       {
@@ -57,7 +57,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1441986300917-64674bd600d8',
           'A shop display with clothing and accessories',
-          'A want can be fun without being essential.',
+          'A want can be fun without being essential.'
         ),
       },
       {
@@ -66,7 +66,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1495474472287-4d71bcdd2085',
           'A warm drink and notebook on a study table',
-          'A thoughtful maybe can be the best answer.',
+          'A thoughtful maybe can be the best answer.'
         ),
       },
     ],
@@ -82,7 +82,7 @@ export const fallbackBriefLessons = {
     heroImage: image(
       'photo-1579621970563-ebec7560ff3e',
       'A person reviewing a savings plan',
-      'A goal becomes real when it has a number and a date.',
+      'A goal becomes real when it has a number and a date.'
     ),
     sections: [
       {
@@ -91,7 +91,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1517842645767-c639042777db',
           'A notebook with a goal written on the page',
-          'Specific goals are easier to revisit.',
+          'Specific goals are easier to revisit.'
         ),
       },
       {
@@ -100,7 +100,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1554224155-6726b3ff858f',
           'A calculator, notebook, and financial notes',
-          'A realistic plan protects your motivation.',
+          'A realistic plan protects your motivation.'
         ),
       },
     ],
@@ -116,7 +116,7 @@ export const fallbackBriefLessons = {
     heroImage: image(
       'photo-1521737711867-e3b97375f902',
       'A group of people working together around a table',
-      'A price can tell a story about time and effort.',
+      'A price can tell a story about time and effort.'
     ),
     sections: [
       {
@@ -125,7 +125,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1524178232363-1fb2b075b655',
           'A learner taking notes in a classroom',
-          'Skills grow through time and practice.',
+          'Skills grow through time and practice.'
         ),
       },
       {
@@ -134,7 +134,7 @@ export const fallbackBriefLessons = {
         image: image(
           'photo-1517245386807-bb43f82c33c4',
           'People collaborating around a shared workspace',
-          'A fair exchange makes the effort visible.',
+          'A fair exchange makes the effort visible.'
         ),
       },
     ],

@@ -56,7 +56,7 @@ function renderCourse(learningState, user = null) {
           <Route path='/courses/:courseId' element={<CoursePage />} />
         </Routes>
       </AuthProvider>
-    </MemoryRouter>,
+    </MemoryRouter>
   );
 }
 
@@ -69,7 +69,7 @@ describe('course detail enrollment states', () => {
     renderCourse(null);
 
     expect(
-      await screen.findByRole('link', { name: /log in to enroll/i }),
+      await screen.findByRole('link', { name: /log in to enroll/i })
     ).toHaveAttribute('href', '/login');
     expect(screen.getByText('What is money?')).toBeInTheDocument();
   });
@@ -100,15 +100,15 @@ describe('course detail enrollment states', () => {
         firstLessonId: 'lesson-1',
         resumeLessonId: 'lesson-1',
       },
-      auth,
+      auth
     );
 
     await userEvent.click(
-      await screen.findByRole('button', { name: 'Enroll' }),
+      await screen.findByRole('button', { name: 'Enroll' })
     );
 
     expect(
-      await screen.findByRole('link', { name: 'Start course' }),
+      await screen.findByRole('link', { name: 'Start course' })
     ).toHaveAttribute('href', '/courses/course-1/lessons/lesson-1');
     expect(enrollInCourse).toHaveBeenCalledWith('course-1');
   });
@@ -125,11 +125,11 @@ describe('course detail enrollment states', () => {
         firstLessonId: 'lesson-1',
         resumeLessonId: 'lesson-1',
       },
-      { id: 'learner', role: 'learner' },
+      { id: 'learner', role: 'learner' }
     );
 
     expect(
-      await screen.findByRole('link', { name: 'Continue' }),
+      await screen.findByRole('link', { name: 'Continue' })
     ).toHaveAttribute('href', '/courses/course-1/lessons/lesson-1');
   });
 
@@ -145,11 +145,11 @@ describe('course detail enrollment states', () => {
         firstLessonId: 'lesson-1',
         resumeLessonId: 'lesson-2',
       },
-      { id: 'learner', role: 'learner' },
+      { id: 'learner', role: 'learner' }
     );
 
     expect(
-      await screen.findByRole('link', { name: 'Continue' }),
+      await screen.findByRole('link', { name: 'Continue' })
     ).toHaveAttribute('href', '/courses/course-1/lessons/lesson-2');
     const progress = screen.getByRole('progressbar', {
       name: /Money Basics progress/i,
@@ -168,12 +168,12 @@ describe('course detail enrollment states', () => {
         firstLessonId: 'lesson-1',
         resumeLessonId: 'lesson-1',
       },
-      { id: 'learner', role: 'learner' },
+      { id: 'learner', role: 'learner' }
     );
 
     expect(await screen.findByText('Course complete')).toBeInTheDocument();
     expect(
-      screen.getByRole('link', { name: 'Review course' }),
+      screen.getByRole('link', { name: 'Review course' })
     ).toBeInTheDocument();
   });
 
@@ -184,10 +184,10 @@ describe('course detail enrollment states', () => {
     });
 
     expect(
-      await screen.findByText(/only learners can enroll/i),
+      await screen.findByText(/only learners can enroll/i)
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole('button', { name: 'Enroll' }),
+      screen.queryByRole('button', { name: 'Enroll' })
     ).not.toBeInTheDocument();
   });
 });

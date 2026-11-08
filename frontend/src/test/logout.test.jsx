@@ -27,24 +27,24 @@ describe('auth navigation', () => {
             <NavBar />
           </AuthProvider>
         </ThemeProvider>
-      </MemoryRouter>,
+      </MemoryRouter>
     );
 
     const logoutButton = (
       await screen.findAllByRole('button', { name: /log out/i })
     )[0];
     expect(
-      screen.getAllByRole('link', { name: /dashboard/i }).length,
+      screen.getAllByRole('link', { name: /dashboard/i }).length
     ).toBeGreaterThan(0);
 
     await userEvent.click(logoutButton);
 
     expect(logoutUser).toHaveBeenCalledTimes(1);
     expect(
-      screen.queryByRole('link', { name: /dashboard/i }),
+      screen.queryByRole('link', { name: /dashboard/i })
     ).not.toBeInTheDocument();
     expect(
-      screen.getAllByRole('link', { name: /log in/i }).length,
+      screen.getAllByRole('link', { name: /log in/i }).length
     ).toBeGreaterThan(0);
   });
 });

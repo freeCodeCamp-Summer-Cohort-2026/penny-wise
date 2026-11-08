@@ -40,13 +40,11 @@ export default function Footer() {
             <Link
               to='/'
               aria-label='Penny Wise home'
-              className='inline-flex items-center gap-2 rounded-full pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]'
-            >
+              className='inline-flex items-center gap-2 rounded-full pr-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent)]'>
               <span className='relative block h-9 w-9 shrink-0'>
                 <span
                   aria-hidden='true'
-                  className='absolute inset-0 flex items-center justify-center text-xl font-black leading-none'
-                >
+                  className='absolute inset-0 flex items-center justify-center text-xl font-black leading-none'>
                   $
                 </span>
                 <img

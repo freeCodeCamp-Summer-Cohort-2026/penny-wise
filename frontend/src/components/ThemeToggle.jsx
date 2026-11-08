@@ -18,11 +18,9 @@ export default function ThemeToggle({
       onClick={toggleTheme}
       title={actionLabel}
       aria-label={actionLabel}
-      className={`relative flex items-center justify-center rounded-full transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${className}`}
-    >
+      className={`relative flex items-center justify-center rounded-full transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${className}`}>
       <span
-        className={`relative flex items-center justify-center ${iconClassName}`}
-      >
+        className={`relative flex items-center justify-center ${iconClassName}`}>
         <Sun
           size={20}
           className={`absolute transition-all duration-300 ${

@@ -68,7 +68,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
     setProgress(nextProgress);
     setCurrentPageIndex(nextIndex);
     setAnswer(
-      createEmptyAnswer(nextPages[nextIndex]?.type, nextPages[nextIndex]),
+      createEmptyAnswer(nextPages[nextIndex]?.type, nextPages[nextIndex])
     );
     setFeedback(null);
     setError(null);
@@ -78,9 +78,9 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
             nextLesson,
             nextPages,
             nextProgress,
-            data?.completion,
+            data?.completion
           )
-        : null,
+        : null
     );
   }, []);
 
@@ -114,7 +114,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
         setStatus('error');
       }
     },
-    [applyPlayer, courseId, learnerId, lessonId],
+    [applyPlayer, courseId, learnerId, lessonId]
   );
 
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
       setAnswer(nextAnswer);
       if (feedbackType) setFeedback(null);
     },
-    [feedback, submitting],
+    [feedback, submitting]
   );
 
   const reconcile = useCallback(
@@ -151,14 +151,14 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
         const data = await startLesson(courseId, lessonId);
         const nextProgress = data?.progress ?? null;
         const pageResult = (nextProgress?.pageResults ?? []).find(
-          (item) => String(item?.pageId) === String(submittedPageId),
+          (item) => String(item?.pageId) === String(submittedPageId)
         );
         const accepted = pageResult?.satisfied === true;
         const reconciledCompleted =
           nextProgress?.state === 'completed' ||
           data?.completion?.completed === true;
         const submittedPageIndex = (data?.pages ?? []).findIndex(
-          (page) => String(getPageId(page)) === String(submittedPageId),
+          (page) => String(getPageId(page)) === String(submittedPageId)
         );
 
         applyPlayer(data);
@@ -174,9 +174,9 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
                   data.lesson,
                   data.pages ?? [],
                   nextProgress,
-                  data.completion,
+                  data.completion
                 )
-              : (data.completion ?? null),
+              : (data.completion ?? null)
           );
           setFeedback({
             type: 'correct',
@@ -207,7 +207,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
         setReconciling(false);
       }
     },
-    [applyPlayer, courseId, lessonId],
+    [applyPlayer, courseId, lessonId]
   );
 
   const submit = useCallback(async () => {
@@ -216,7 +216,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
     const validationError = getActivityAnswerError(
       currentPage.type,
       answer,
-      currentPage,
+      currentPage
     );
     if (validationError) {
       setFeedback({ type: 'error', message: validationError });
@@ -255,9 +255,9 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
                 data?.lesson ?? lesson,
                 pages,
                 nextProgress,
-                data?.completion,
+                data?.completion
               )
-            : (data?.completion ?? null),
+            : (data?.completion ?? null)
         );
         setFeedback({
           type: 'correct',
@@ -350,7 +350,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
       submit,
       submitting,
       totalPages,
-    ],
+    ]
   );
 
   return player;

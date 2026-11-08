@@ -163,8 +163,7 @@ export default function LandingPage() {
           </p>
           <h2
             id='benefits-heading'
-            className='mt-3 text-3xl font-semibold tracking-tight text-[var(--text-h)] sm:text-4xl'
-          >
+            className='mt-3 text-3xl font-semibold tracking-tight text-[var(--text-h)] sm:text-4xl'>
             Everything you need to get money under control
           </h2>
           <p className='mt-4 text-lg text-[var(--text)]'>
@@ -178,14 +177,12 @@ export default function LandingPage() {
           {BENEFITS.map(({ icon: Icon, title, description }) => (
             <li
               key={title}
-              className='flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)]'
-            >
+              className='flex gap-4 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)]'>
               <span
                 className={cn(
                   'flex h-11 w-11 shrink-0 items-center justify-center rounded-xl',
-                  'bg-[var(--accent-bg)] text-[var(--accent)]',
-                )}
-              >
+                  'bg-[var(--accent-bg)] text-[var(--accent)]'
+                )}>
                 <Icon aria-hidden='true' size={20} />
               </span>
               <div>
@@ -209,8 +206,7 @@ export default function LandingPage() {
             </p>
             <h2
               id='topics-heading'
-              className='mt-3 text-3xl font-semibold tracking-tight text-[var(--text-h)] sm:text-4xl'
-            >
+              className='mt-3 text-3xl font-semibold tracking-tight text-[var(--text-h)] sm:text-4xl'>
               Pick the money problem you want solved
             </h2>
             <p className='mt-4 text-lg text-[var(--text)]'>

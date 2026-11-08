@@ -60,8 +60,7 @@ const SignUp = () => {
       onClick={() => setShow((v) => !v)}
       aria-label={show ? 'Hide password' : 'Show password'}
       aria-pressed={show}
-      className='absolute top-1/2 right-3 -translate-y-1/2 text-(--text) opacity-70 transition-opacity hover:opacity-100'
-    >
+      className='absolute top-1/2 right-3 -translate-y-1/2 text-(--text) opacity-70 transition-opacity hover:opacity-100'>
       {show ? <EyeOff size={18} /> : <Eye size={18} />}
     </button>
   );
@@ -78,8 +77,7 @@ const SignUp = () => {
         { title: 'Learn by doing', sub: 'Bite-size lessons' },
       ]}
       mobileTitle='Sign up'
-      mobileSub='Hi! Create your account'
-    >
+      mobileSub='Hi! Create your account'>
       <div className='mb-6 hidden lg:block'>
         <h1 className='m-0 text-[28px] font-semibold tracking-tight text-(--text-h)'>
           Sign up
@@ -148,8 +146,7 @@ const SignUp = () => {
 
         <label
           htmlFor='terms'
-          className='flex cursor-pointer items-start gap-2 text-sm text-(--text)'
-        >
+          className='flex cursor-pointer items-start gap-2 text-sm text-(--text)'>
           <input
             type='checkbox'
             id='terms'
@@ -163,8 +160,7 @@ const SignUp = () => {
               href='https://github.com/freeCodeCamp/terms-of-service/blob/master/index.html'
               className='mx-1 underline'
               target='_blank'
-              rel='noopener noreferrer'
-            >
+              rel='noopener noreferrer'>
               Terms
             </a>{' '}
             and{' '}
@@ -172,8 +168,7 @@ const SignUp = () => {
               href='https://privacy-policy.freecodecamp.org/'
               className='mx-1 underline'
               target='_blank'
-              rel='noopener noreferrer'
-            >
+              rel='noopener noreferrer'>
               Privacy Policy
             </a>
             .
@@ -191,8 +186,7 @@ const SignUp = () => {
         <Link
           to='/login'
           state={location.state}
-          className='font-semibold text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'
-        >
+          className='font-semibold text-(--accent) hover:underline focus-visible:rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--accent)'>
           Log in
         </Link>
       </p>

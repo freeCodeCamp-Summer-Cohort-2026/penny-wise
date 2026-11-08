@@ -65,7 +65,7 @@ export function handleApiError(error) {
   const normalized = normalizeApiError(error);
   const requestUrl = error?.config?.url || '';
   const isAuthEntry = ['/auth/login', '/auth/register'].some((path) =>
-    requestUrl.includes(path),
+    requestUrl.includes(path)
   );
 
   if (
@@ -87,5 +87,5 @@ export const api = axios.create({
 
 api.interceptors.response.use(
   (response) => response,
-  (error) => Promise.reject(handleApiError(error)),
+  (error) => Promise.reject(handleApiError(error))
 );

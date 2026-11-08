@@ -43,8 +43,7 @@ function ProgressMessage({ feedback }) {
         isCorrect
           ? 'text-green-700 dark:text-green-300'
           : 'text-red-700 dark:text-red-300'
-      }`}
-    >
+      }`}>
       {isCorrect ? (
         <CheckCircle2 aria-hidden='true' size={17} />
       ) : (
@@ -78,8 +77,7 @@ function LessonOutline({ course, courseId, lessonId, completedIds }) {
                       : complete
                         ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                         : 'bg-[var(--code-bg)] text-[var(--text)]'
-                  }`}
-                >
+                  }`}>
                   {complete ? (
                     <Check aria-hidden='true' size={14} />
                   ) : (
@@ -92,7 +90,7 @@ function LessonOutline({ course, courseId, lessonId, completedIds }) {
                   </span>
                   <span className='mt-0.5 block text-xs text-[var(--text)]'>
                     {formatMinutes(
-                      lesson.estimatedDurationOfCompletionInMinutes,
+                      lesson.estimatedDurationOfCompletionInMinutes
                     )}
                   </span>
                 </span>
@@ -107,8 +105,7 @@ function LessonOutline({ course, courseId, lessonId, completedIds }) {
                     aria-current={active ? 'step' : undefined}
                     className={`flex items-start gap-3 rounded-xl p-2 transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] ${
                       active ? 'bg-[var(--accent-bg)]' : ''
-                    }`}
-                  >
+                    }`}>
                     {content}
                   </Link>
                 ) : (
@@ -134,7 +131,7 @@ function CompletionSummary({
   const pages = progress?.totalPages ?? completion?.totalPages ?? 0;
   const score = Number(completion?.score ?? progress?.score ?? 0);
   const firstAttemptResults = (progress?.pageResults ?? []).filter(
-    (result) => result.firstAttemptCorrect === true,
+    (result) => result.firstAttemptCorrect === true
   ).length;
   const firstAttemptPercent = pages
     ? Math.round((firstAttemptResults / pages) * 100)
@@ -157,8 +154,7 @@ function CompletionSummary({
           <h2
             ref={headingRef}
             tabIndex='-1'
-            className='mt-2 text-3xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-          >
+            className='mt-2 text-3xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
             You finished {lesson?.name}
           </h2>
           <p className='mt-2 text-[var(--text)]'>
@@ -203,16 +199,14 @@ function CompletionSummary({
         {nextLessonId && !courseCompleted && (
           <Link
             to={`/courses/${courseId}/lessons/${nextLessonId}`}
-            className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-          >
+            className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
             Continue to next lesson
             <ArrowRight aria-hidden='true' size={17} />
           </Link>
         )}
         <Link
           to={`/courses/${courseId}`}
-          className='inline-flex items-center gap-2 border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-        >
+          className='inline-flex items-center gap-2 border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
           Back to course
         </Link>
       </div>
@@ -264,8 +258,8 @@ export default function LessonPage() {
 
   const completedIds = new Set(
     (learningState?.completedLessonIds ?? []).map((id) =>
-      String(getId(id) ?? id),
-    ),
+      String(getId(id) ?? id)
+    )
   );
   const currentPageNumber = player.currentPageIndex + 1;
   const pagePercent = player.totalPages
@@ -275,7 +269,7 @@ export default function LessonPage() {
   const courseLessons = Array.isArray(course?.lessons) ? course.lessons : [];
   const courseLessonCount = courseLessons.length;
   const currentLessonIndex = courseLessons.findIndex(
-    (lesson) => String(getId(lesson)) === String(lessonId),
+    (lesson) => String(getId(lesson)) === String(lessonId)
   );
   const fallbackNextLesson =
     currentLessonIndex >= 0 ? courseLessons[currentLessonIndex + 1] : undefined;
@@ -305,8 +299,7 @@ export default function LessonPage() {
         <div
           role='status'
           aria-live='polite'
-          className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-10 text-center shadow-[var(--shadow)]'
-        >
+          className='rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-10 text-center shadow-[var(--shadow)]'>
           <LoaderCircle
             aria-hidden='true'
             className='mx-auto motion-safe:animate-spin text-[var(--accent)]'
@@ -322,8 +315,7 @@ export default function LessonPage() {
       <main className='mx-auto w-full max-w-6xl px-4 py-10 sm:px-6'>
         <div
           role='alert'
-          className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'
-        >
+          className='rounded-2xl border border-red-300 bg-red-50 p-6 text-red-900 dark:border-red-800 dark:bg-red-950/30 dark:text-red-100'>
           <h1 className='text-2xl font-semibold'>Lesson unavailable</h1>
           <p className='mt-2'>
             {getErrorMessage(player.error, 'We could not load this lesson.')}
@@ -332,15 +324,13 @@ export default function LessonPage() {
             <button
               type='button'
               onClick={() => player.retry()}
-              className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               <RefreshCw aria-hidden='true' size={16} />
               Try again
             </button>
             <Link
               to={`/courses/${courseId}`}
-              className='inline-flex items-center gap-2 border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-            >
+              className='inline-flex items-center gap-2 border border-[var(--border)] px-4 py-2.5 text-sm font-semibold text-[var(--text-h)] transition hover:bg-[var(--code-bg)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
               <ArrowLeft aria-hidden='true' size={16} />
               Back to course
             </Link>
@@ -358,8 +348,7 @@ export default function LessonPage() {
       <nav aria-label='Breadcrumb' className='text-sm text-[var(--text)]'>
         <Link
           to={`/courses/${courseId}`}
-          className='inline-flex items-center gap-1 hover:underline'
-        >
+          className='inline-flex items-center gap-1 hover:underline'>
           <ArrowLeft aria-hidden='true' size={15} />
           {course?.name || 'Course'}
         </Link>
@@ -389,7 +378,7 @@ export default function LessonPage() {
               <span className='inline-flex items-center gap-2'>
                 <Volume2 aria-hidden='true' size={16} />
                 {formatMinutes(
-                  player.lesson.estimatedDurationOfCompletionInMinutes,
+                  player.lesson.estimatedDurationOfCompletionInMinutes
                 )}
               </span>
               {player.lesson.experience !== undefined && (
@@ -448,8 +437,7 @@ export default function LessonPage() {
             <section
               id='practice'
               className='mt-6 scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)] sm:p-8'
-              aria-labelledby='activity-heading'
-            >
+              aria-labelledby='activity-heading'>
               <p className='text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent)]'>
                 One activity at a time
               </p>
@@ -457,8 +445,7 @@ export default function LessonPage() {
                 ref={activityHeadingRef}
                 id='activity-heading'
                 tabIndex='-1'
-                className='mt-2 text-2xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-              >
+                className='mt-2 text-2xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
                 {player.currentPage.text}
               </h2>
               {player.currentPage.imageUrl && (
@@ -500,8 +487,7 @@ export default function LessonPage() {
                     type='button'
                     onClick={player.continueToNext}
                     disabled={player.submitting}
-                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'
-                  >
+                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
                     Continue
                     <ArrowRight aria-hidden='true' size={17} />
                   </button>
@@ -510,8 +496,7 @@ export default function LessonPage() {
                     type='button'
                     onClick={player.submit}
                     disabled={player.submitting || player.reconciling}
-                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'
-                  >
+                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
                     {player.submitting || player.reconciling ? (
                       <LoaderCircle
                         aria-hidden='true'
