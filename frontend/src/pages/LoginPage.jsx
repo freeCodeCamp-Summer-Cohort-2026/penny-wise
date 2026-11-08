@@ -41,7 +41,7 @@ export default function LoginPage() {
       const { user } = await loginUser({ email, password });
       await signIn({ user });
       setStatus({ state: 'success', message: 'Logged in successfully!' });
-      navigate(getDestination(location, user?.role), { replace: true });
+      await navigate(getDestination(location, user?.role), { replace: true });
     } catch (error) {
       setStatus({
         state: 'error',

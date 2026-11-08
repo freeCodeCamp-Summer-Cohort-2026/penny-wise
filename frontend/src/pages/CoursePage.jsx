@@ -55,7 +55,7 @@ export default function CoursePage() {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => {
-      loadCourse(controller.signal);
+      void loadCourse(controller.signal);
     }, 0);
     return () => {
       window.clearTimeout(timeout);
@@ -115,7 +115,7 @@ export default function CoursePage() {
               type='button'
               onClick={() => {
                 const controller = new AbortController();
-                loadCourse(controller.signal);
+                void loadCourse(controller.signal);
               }}
               className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
             >

@@ -121,7 +121,7 @@ const ProfileForm = ({ user }) => {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => {
-      loadCountries(controller.signal);
+      void loadCountries(controller.signal);
     }, 0);
     return () => {
       window.clearTimeout(timeout);

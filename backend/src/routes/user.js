@@ -58,7 +58,7 @@ router.put(
           ? req.body.bio.trim()
           : '';
 
-      const updatedAt = Date();
+      const updatedAt = String(new Date());
 
       if (role === 'learner') {
         if (name) {

@@ -85,7 +85,7 @@ export default function Dashboard() {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => {
-      loadDashboard(controller.signal);
+      void loadDashboard(controller.signal);
     }, 0);
     return () => {
       window.clearTimeout(timeout);
@@ -95,7 +95,7 @@ export default function Dashboard() {
 
   const retry = () => {
     const controller = new AbortController();
-    loadDashboard(controller.signal);
+    void loadDashboard(controller.signal);
   };
 
   const resume = learning?.resume ?? null;

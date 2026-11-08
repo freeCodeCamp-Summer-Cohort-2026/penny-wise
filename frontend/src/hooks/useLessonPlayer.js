@@ -120,7 +120,7 @@ export default function useLessonPlayer(courseId, lessonId, learnerId) {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => {
-      load(controller.signal);
+      void load(controller.signal);
     }, 0);
     return () => {
       window.clearTimeout(timeout);

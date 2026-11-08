@@ -1274,7 +1274,7 @@ async function seed({ mongoUri } = {}) {
   ]);
   await dropLegacyCollections();
 
-  var country = await Country.findOneAndUpdate(
+  let country = await Country.findOneAndUpdate(
     { name: USD_COUNTRY_NEW },
     { name: USD_COUNTRY_NEW, code: 'USA' },
     { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
@@ -1389,8 +1389,10 @@ async function seed({ mongoUri } = {}) {
           availableItems: pageData.availableItems,
           itemsToSort: pageData.itemsToSort,
         });
-        pageIds.push(page._id);
-        pageCount += 1;
+        if (page != null) {
+          pageIds.push(page._id);
+          pageCount += 1;
+        }
       }
 
       lesson.pages = pageIds;

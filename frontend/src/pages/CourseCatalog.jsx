@@ -28,7 +28,7 @@ export default function CourseCatalog() {
   useEffect(() => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => {
-      loadCourses(controller.signal);
+      void loadCourses(controller.signal);
     }, 0);
     return () => {
       window.clearTimeout(timeout);
@@ -38,7 +38,7 @@ export default function CourseCatalog() {
 
   const retry = () => {
     const controller = new AbortController();
-    loadCourses(controller.signal);
+    void loadCourses(controller.signal);
   };
 
   return (
