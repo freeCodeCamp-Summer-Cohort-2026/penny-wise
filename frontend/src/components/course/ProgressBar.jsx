@@ -10,7 +10,8 @@ export default function ProgressBar({
 
   return (
     <div className={className}>
-      <progress
+      <div
+        role='progressbar'
         aria-label={label}
         aria-valuemin='0'
         aria-valuemax='100'
@@ -21,7 +22,7 @@ export default function ProgressBar({
           className='h-full rounded-full bg-[var(--accent)] transition-[width] duration-300'
           style={{ width: `${percent}%` }}
         />
-      </progress>
+      </div>
     </div>
   );
 }

@@ -7,7 +7,11 @@ function PopUp({ showPopUp, closePopUp, children }) {
 
   return (
     <div className='popup-overlay'>
-      <dialog className='PopUp' aria-modal='true' aria-label='Image upload'>
+      <div
+        className='PopUp'
+        role='dialog'
+        aria-modal='true'
+        aria-label='Image upload'>
         <button
           type='button'
           onClick={closePopUp}
@@ -16,7 +20,7 @@ function PopUp({ showPopUp, closePopUp, children }) {
           <X aria-hidden='true' size={18} />
         </button>
         {children}
-      </dialog>
+      </div>
     </div>
   );
 }
