@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const express = require('express');
 const mongoose = require('mongoose');
 const Course = require('../models/Course');
@@ -114,6 +114,17 @@ function serializeCourse(course, lessons) {
   };
 }
 
+function getStatus(enrolled, lenCoursesIds, totalLessons) {
+  if (!enrolled) {
+    return 'not_enrolled';
+  } else {
+    if (lenCoursesIds === totalLessons) {
+      return 'completed';
+    }
+  }
+  return 'in_progress';
+}
+
 async function loadPublishedCourse(courseId) {
   validateObjectId(courseId, 'courseId');
 
@@ -175,11 +186,7 @@ async function getLearningState(course, learnerId) {
     (lessonId) => !completedSet.has(lessonId.toString())
   );
   const totalLessons = course.lessons.length;
-  const status = !enrolled
-    ? 'not_enrolled'
-    : completedLessonIds.length === totalLessons
-      ? 'completed'
-      : 'in_progress';
+  const status = getStatus(enrolled, completedLessonIds.length, totalLessons);
 
   return {
     enrolled,

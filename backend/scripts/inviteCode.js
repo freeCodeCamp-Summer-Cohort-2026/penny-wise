@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const Invite = require('../src/models/AuthorInvite');
 
 async function createInviteCode() {

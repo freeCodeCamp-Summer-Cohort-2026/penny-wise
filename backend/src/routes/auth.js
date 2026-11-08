@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 const rateLimit = require('express-rate-limit');
 const { User, Learner, Author } = require('../models/User');
 const Course = require('../models/Course');
