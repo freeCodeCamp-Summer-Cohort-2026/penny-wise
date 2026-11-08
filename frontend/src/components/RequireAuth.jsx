@@ -8,9 +8,7 @@ export default function RequireAuth({ children, allowedRole }) {
   if (!ready) {
     return (
       <main className='mx-auto w-full max-w-4xl px-4 py-12 text-left'>
-        <p role='status' className='text-[var(--text)]'>
-          Checking your session…
-        </p>
+        <output className='text-[var(--text)]'>Checking your session…</output>
       </main>
     );
   }
