@@ -327,7 +327,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1579621970563-ebec7560ff3e',
       'A person planning a budget beside a laptop',
-      'Money helps turn a plan into a choice.',
+      'Money helps turn a plan into a choice.'
     ),
     sections: [
       {
@@ -336,7 +336,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1526304640581-d334cdbbf45e',
           'Coins and banknotes arranged on a table',
-          'Different forms can carry one shared idea.',
+          'Different forms can carry one shared idea.'
         ),
         note: 'Spot it: value is about what something is useful to people, not only what it costs.',
       },
@@ -346,7 +346,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1556742049-0cfed4f6a45d',
           'A person making a contactless payment',
-          'Even digital payments rely on a shared promise.',
+          'Even digital payments rely on a shared promise.'
         ),
         note: 'Quick check: what would a market look like if nobody trusted the value of the exchange?',
       },
@@ -363,7 +363,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1526304640581-d334cdbbf45e',
       'A close view of coins representing different values',
-      'Shape is only the outside of the story.',
+      'Shape is only the outside of the story.'
     ),
     sections: [
       {
@@ -372,7 +372,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1554224155-6726b3ff858f',
           'A calculator and financial notes on a desk',
-          'Value is the idea behind the object.',
+          'Value is the idea behind the object.'
         ),
       },
       {
@@ -381,7 +381,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1556742049-0cfed4f6a45d',
           'A contactless payment being made at a shop',
-          'The form changes; the exchange is still real.',
+          'The form changes; the exchange is still real.'
         ),
         note: 'Try it: find one physical coin and one digital balance, then name what each does for you.',
       },
@@ -398,7 +398,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1554224155-6726b3ff858f',
       'A calculator beside notes for a quick total',
-      'A clear method beats a fast guess.',
+      'A clear method beats a fast guess.'
     ),
     sections: [
       {
@@ -407,7 +407,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1526304640581-d334cdbbf45e',
           'Coins grouped by size on a table',
-          'Grouping turns a pile into a checklist.',
+          'Grouping turns a pile into a checklist.'
         ),
       },
       {
@@ -416,7 +416,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1556742049-0cfed4f6a45d',
           'A payment being verified at a counter',
-          'A second check protects the first decision.',
+          'A second check protects the first decision.'
         ),
         note: 'Mini challenge: make two totals agree before you spend the money.',
       },
@@ -432,7 +432,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1542838132-92c53300491e',
       'A colourful market with fresh choices on display',
-      'Every choice has a story behind its price.',
+      'Every choice has a story behind its price.'
     ),
     sections: [
       {
@@ -441,7 +441,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1441986300917-64674bd600d8',
           'A shop display with clothing and accessories',
-          'A want can be fun without being essential.',
+          'A want can be fun without being essential.'
         ),
       },
       {
@@ -450,7 +450,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1495474472287-4d71bcdd2085',
           'A warm drink and notebook on a study table',
-          'A thoughtful “maybe” can be the best answer.',
+          'A thoughtful “maybe” can be the best answer.'
         ),
         note: 'Try this: write one need, one want, and one in-between item for your next purchase.',
       },
@@ -467,7 +467,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1556742049-0cfed4f6a45d',
       'A contactless payment and a small purchase at a shop',
-      'The smallest numbers can deserve the most attention.',
+      'The smallest numbers can deserve the most attention.'
     ),
     sections: [
       {
@@ -476,7 +476,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1554224155-6726b3ff858f',
           'A calculator and notes ready for a total',
-          'Keep the decimal places lined up.',
+          'Keep the decimal places lined up.'
         ),
       },
       {
@@ -485,7 +485,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1526304640581-d334cdbbf45e',
           'Coins laid out for counting',
-          'Checking the answer is part of the skill.',
+          'Checking the answer is part of the skill.'
         ),
         note: 'Think: price + change should equal the note you handed over.',
       },
@@ -502,7 +502,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1542838132-92c53300491e',
       'A market stall with bright produce and a shopper choosing',
-      'A plan turns a big choice into smaller ones.',
+      'A plan turns a big choice into smaller ones.'
     ),
     sections: [
       {
@@ -511,7 +511,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1517842645767-c639042777db',
           'A notebook and pen ready for a money plan',
-          'Write the goal where you can see it.',
+          'Write the goal where you can see it.'
         ),
       },
       {
@@ -520,7 +520,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1441986300917-64674bd600d8',
           'A colourful shop with a few highlighted items',
-          'A little clarity keeps a fun choice fun.',
+          'A little clarity keeps a fun choice fun.'
         ),
         note: 'Try this: split your next allowance into save, spend, and give before choosing anything.',
       },
@@ -537,7 +537,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1579621970563-ebec7560ff3e',
       'A person reviewing a savings plan',
-      'A goal becomes real when it has a number and a date.',
+      'A goal becomes real when it has a number and a date.'
     ),
     sections: [
       {
@@ -546,7 +546,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1517842645767-c639042777db',
           'A notebook with a goal written on the page',
-          'Specific goals are easier to revisit.',
+          'Specific goals are easier to revisit.'
         ),
       },
       {
@@ -555,7 +555,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1554224155-6726b3ff858f',
           'A calculator, notebook, and financial notes',
-          'A realistic plan protects your motivation.',
+          'A realistic plan protects your motivation.'
         ),
         note: 'A good goal stretches you without making you feel defeated.',
       },
@@ -572,7 +572,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1517842645767-c639042777db',
       'A notebook and pen on a calm desk',
-      'Tiny steps become a pattern when they are visible.',
+      'Tiny steps become a pattern when they are visible.'
     ),
     sections: [
       {
@@ -581,7 +581,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1526304640581-d334cdbbf45e',
           'A small group of coins ready to be counted',
-          'Even a small coin can move a plan forward.',
+          'Even a small coin can move a plan forward.'
         ),
       },
       {
@@ -590,7 +590,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1579621970563-ebec7560ff3e',
           'A person checking a savings plan',
-          'Visibility turns an intention into a habit.',
+          'Visibility turns an intention into a habit.'
         ),
         note: 'Tiny challenge: save the same small amount three times this week.',
       },
@@ -606,7 +606,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1517842645767-c639042777db',
       'A planner open beside a pen',
-      'Separate spaces make decisions clearer.',
+      'Separate spaces make decisions clearer.'
     ),
     sections: [
       {
@@ -615,7 +615,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1441986300917-64674bd600d8',
           'A shop display with several clearly different choices',
-          'Labels help you compare the job of each choice.',
+          'Labels help you compare the job of each choice.'
         ),
       },
       {
@@ -624,7 +624,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1554224155-6726b3ff858f',
           'A calculator and notes arranged for a simple budget',
-          'A rule turns a bucket into a plan.',
+          'A rule turns a bucket into a plan.'
         ),
         note: 'Try this: write one rule for your future-goal bucket today.',
       },
@@ -641,7 +641,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1521737711867-e3b97375f902',
       'A group of people working together around a table',
-      'A price can tell a story about time and effort.',
+      'A price can tell a story about time and effort.'
     ),
     sections: [
       {
@@ -650,7 +650,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1524178232363-1fb2b075b655',
           'A learner taking notes in a classroom',
-          'Skills grow through time and practice.',
+          'Skills grow through time and practice.'
         ),
       },
       {
@@ -659,7 +659,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1517245386807-bb43f82c33c4',
           'People collaborating around a shared workspace',
-          'A fair exchange makes the effort visible.',
+          'A fair exchange makes the effort visible.'
         ),
         note: 'Try this: estimate the hours behind something you bought today.',
       },
@@ -676,7 +676,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1497366754035-f200968a6e72',
       'A bright shared office with people working at different tables',
-      'The whole work experience is part of the reward.',
+      'The whole work experience is part of the reward.'
     ),
     sections: [
       {
@@ -685,7 +685,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1551836022-d5d88e9218df',
           'People in a friendly work conversation',
-          'Experience is part of the package.',
+          'Experience is part of the package.'
         ),
       },
       {
@@ -694,7 +694,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1524178232363-1fb2b075b655',
           'A person learning in a bright classroom',
-          'A good choice supports the life around the work.',
+          'A good choice supports the life around the work.'
         ),
         note: 'Compare the reward, the demands, and what you want to learn next.',
       },
@@ -711,7 +711,7 @@ const BRIEF_LESSONS = {
     heroImage: unsplashImage(
       'photo-1498050108023-c5249f4df085',
       'A person working at a laptop with a bright screen',
-      'Practice turns an idea into a useful skill.',
+      'Practice turns an idea into a useful skill.'
     ),
     sections: [
       {
@@ -720,7 +720,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1503676260728-1c00da094a0b',
           'A student writing notes at a desk',
-          'Every skill begins with a first attempt.',
+          'Every skill begins with a first attempt.'
         ),
       },
       {
@@ -729,7 +729,7 @@ const BRIEF_LESSONS = {
         image: unsplashImage(
           'photo-1521737711867-e3b97375f902',
           'People sharing ideas around a table',
-          'Feedback helps a skill become shareable.',
+          'Feedback helps a skill become shareable.'
         ),
         note: 'One project can teach you more than a month of passive scrolling.',
       },
@@ -1277,7 +1277,7 @@ async function seed({ mongoUri } = {}) {
   let country = await Country.findOneAndUpdate(
     { name: USD_COUNTRY_NEW },
     { name: USD_COUNTRY_NEW, code: 'USA' },
-    { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
+    { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
   );
 
   /* eslint-disable no-unused-vars */
@@ -1285,7 +1285,7 @@ async function seed({ mongoUri } = {}) {
     country = await Country.findOneAndUpdate(
       { name: USD_COUNTRY },
       { name: USD_COUNTRY_NEW, code: 'USA' },
-      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
   } catch (e) {
     console.log(`Country USA already updated: ${country.name}`);
@@ -1299,7 +1299,7 @@ async function seed({ mongoUri } = {}) {
         name: seedCountry.name,
         code: seedCountry.code,
       },
-      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
     countriesByCode[seedCountry.code] = countryObj;
   }
@@ -1329,7 +1329,7 @@ async function seed({ mongoUri } = {}) {
         longestStreak: 0,
         currentLives: 5,
       },
-      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
     usersByEmail[seedUser.email] = user;
   }
@@ -1346,7 +1346,7 @@ async function seed({ mongoUri } = {}) {
         passwordHash: passwordHash,
         country: country.name,
       },
-      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true },
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
     authorsByEmail[seedAuthor.email] = author;
   }
@@ -1422,13 +1422,13 @@ async function seed({ mongoUri } = {}) {
   console.log('Seed complete.');
   console.log(`  Country : ${country.name}`);
   console.log(
-    `  Money   : ${money.name} (${money.coins.length} coins, ${money.notes.length} notes)`,
+    `  Money   : ${money.name} (${money.coins.length} coins, ${money.notes.length} notes)`
   );
   console.log(`  Users   : ${SEED_USERS.map((u) => u.email).join(', ')}`);
   console.log(`  Author  : ${SEED_AUTHORS.map((u) => u.email).join(', ')}`);
   console.log(`             password: ${DEMO_PASSWORD}`);
   console.log(
-    `  Courses : ${courses.map((c) => c.name).join(', ')} (${lessonCount} lessons, ${pageCount} pages)`,
+    `  Courses : ${courses.map((c) => c.name).join(', ')} (${lessonCount} lessons, ${pageCount} pages)`
   );
   console.log(`  Wallets : ${WALLETS.length}`);
   console.log(`\nNumber of Countries: ${COUNTRIES.length}`);

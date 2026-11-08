@@ -22,7 +22,7 @@ function createToken(user) {
   return jwt.sign(
     { sub: user._id.toString(), email: user.email, role: user.role },
     process.env.JWT_SECRET,
-    { expiresIn: '1h' },
+    { expiresIn: '1h' }
   );
 }
 
@@ -163,7 +163,7 @@ describe('course enrollment', () => {
       await createCourseFixture({ enroll: false });
 
     const anonymous = await request(app).post(
-      `/api/courses/${course._id}/enroll`,
+      `/api/courses/${course._id}/enroll`
     );
     const author = await request(app)
       .post(`/api/courses/${course._id}/enroll`)
@@ -227,7 +227,7 @@ describe('lesson player', () => {
     const submit = (pageId, answer) =>
       request(app)
         .post(
-          `/api/courses/${course._id}/lessons/${lesson._id}/pages/${pageId}/submit`,
+          `/api/courses/${course._id}/lessons/${lesson._id}/pages/${pageId}/submit`
         )
         .set('Cookie', `authCookie=${learnerToken}`)
         .send({ answer });
@@ -331,7 +331,7 @@ describe('lesson player', () => {
 
     const outOfOrder = await request(app)
       .post(
-        `/api/courses/${course._id}/lessons/${lesson._id}/pages/${wantsNeeds._id}/submit`,
+        `/api/courses/${course._id}/lessons/${lesson._id}/pages/${wantsNeeds._id}/submit`
       )
       .set('Cookie', `authCookie=${learnerToken}`)
       .send({
@@ -417,7 +417,7 @@ describe('current learner', () => {
 
       const response = await request(app)
         .post(
-          `/api/courses/${course._id}/lessons/${lesson._id}/pages/${page._id}/submit`,
+          `/api/courses/${course._id}/lessons/${lesson._id}/pages/${page._id}/submit`
         )
         .set('Cookie', `authCookie=${learnerToken}`)
         .send({ answer });

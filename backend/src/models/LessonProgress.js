@@ -48,12 +48,12 @@ const lessonProgressSchema = new mongoose.Schema(
     collection: 'lessonProgresses',
     timestamps: true,
     optimisticConcurrency: true,
-  },
+  }
 );
 
 lessonProgressSchema.index(
   { learner: 1, course: 1, lesson: 1 },
-  { unique: true },
+  { unique: true }
 );
 
 module.exports = mongoose.model('LessonProgress', lessonProgressSchema);

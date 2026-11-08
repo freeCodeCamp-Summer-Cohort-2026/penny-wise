@@ -11,7 +11,7 @@ const ImageSchema = new mongoose.Schema(
     // Excluded from queries by default so listing images never ships the bytes.
     imageData: { type: Buffer, required: true, select: false },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 // Serves GET /api/images: filter by owner, newest first.

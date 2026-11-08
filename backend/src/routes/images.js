@@ -30,7 +30,7 @@ const upload = multer({
       return cb(null, true);
     }
     return cb(
-      new RouteError(415, 'Only PNG, JPEG, GIF or WebP images are allowed'),
+      new RouteError(415, 'Only PNG, JPEG, GIF or WebP images are allowed')
     );
   },
 });
@@ -53,7 +53,7 @@ function sendImage(res, image) {
   res.set('Cache-Control', 'public, max-age=31536000, immutable');
   res.set('X-Content-Type-Options', 'nosniff');
   res.type(
-    image.contentType || path.extname(image.name) || 'application/octet-stream',
+    image.contentType || path.extname(image.name) || 'application/octet-stream'
   );
   res.send(image.imageData);
 }
@@ -84,7 +84,7 @@ router.get('/', requireAuth, async (req, res) => {
 // GET /api/images/uploads/:fileName -> legacy URLs from the old disk flow
 router.get('/uploads/:fileName', async (req, res) => {
   const image = await Image.findOne({ path: req.params.fileName }).select(
-    '+imageData',
+    '+imageData'
   );
   sendImage(res, image);
 });
@@ -121,7 +121,7 @@ router.post(
       message: 'Image uploaded successfully',
       image: serializeImage(image),
     });
-  },
+  }
 );
 
 // Express 5 forwards errors thrown in async handlers here automatically.

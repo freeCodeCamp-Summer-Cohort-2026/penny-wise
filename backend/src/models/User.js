@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     country: { type: String, trim: true },
   },
-  baseOptions,
+  baseOptions
 );
 
 userSchema.methods.comparePassword = function comparePassword(candidate) {
@@ -62,7 +62,7 @@ const Learner = User.discriminator(
         completedAt: { type: Date, default: Date.now },
       },
     ],
-  }),
+  })
 );
 
 const Author = User.discriminator(
@@ -70,7 +70,7 @@ const Author = User.discriminator(
   new mongoose.Schema({
     coursesMade: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
     bio: { type: String, trim: true, maxlength: 500 },
-  }),
+  })
 );
 
 module.exports = { User, Learner, Author };

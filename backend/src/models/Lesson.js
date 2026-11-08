@@ -17,7 +17,7 @@ const briefLessonImageSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { _id: false },
+  { _id: false }
 );
 
 const briefLessonSectionSchema = new mongoose.Schema(
@@ -40,7 +40,7 @@ const briefLessonSectionSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { _id: false },
+  { _id: false }
 );
 
 const briefLessonSchema = new mongoose.Schema(
@@ -81,7 +81,7 @@ const briefLessonSchema = new mongoose.Schema(
       trim: true,
     },
   },
-  { _id: false },
+  { _id: false }
 );
 
 const lessonSchema = new mongoose.Schema(
@@ -115,7 +115,7 @@ const lessonSchema = new mongoose.Schema(
       type: briefLessonSchema,
     },
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 module.exports = mongoose.model('Lesson', lessonSchema);
