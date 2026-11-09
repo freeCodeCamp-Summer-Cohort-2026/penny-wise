@@ -43,9 +43,9 @@ export default function CoursePage() {
         setCourse(data?.course ?? null);
         setLearningState(data?.learningState ?? null);
         setStatus('ready');
-      } catch (loadError) {
-        if (signal?.aborted || loadError?.code === 'ERR_CANCELED') return;
-        setError(loadError);
+      } catch (error) {
+        if (signal?.aborted || error?.code === 'ERR_CANCELED') return;
+        setError(error);
         setStatus('error');
       }
     },
@@ -72,9 +72,9 @@ export default function CoursePage() {
       const data = await enrollInCourse(courseId);
       if (data?.course) setCourse(data.course);
       if (data?.learningState) setLearningState(data.learningState);
-    } catch (enrollFailure) {
+    } catch (error) {
       setEnrollError(
-        getErrorMessage(enrollFailure, 'Enrollment could not be completed.')
+        getErrorMessage(error, 'Enrollment could not be completed.')
       );
     } finally {
       setEnrolling(false);
