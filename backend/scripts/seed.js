@@ -1434,17 +1434,6 @@ async function seed({ mongoUri } = {}) {
   console.log(`\nNumber of Countries: ${COUNTRIES.length}`);
 
   await mongoose.connection.close();
-  return {
-    country,
-    countriesByCode,
-    money,
-    usersByEmail,
-    authorsByEmail,
-    courses,
-    lessonCount,
-    pageCount,
-    walletCount: WALLETS.length,
-  };
 }
 
 module.exports = {
