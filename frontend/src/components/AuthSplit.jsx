@@ -135,11 +135,10 @@ export function FormStatus({ status }) {
   let color = 'text-(--text)';
   if (status.state === 'error') {
     color = 'text-red-600';
-  } else {
-    if (status.state === 'success') {
-      color = 'text-green-700';
-    }
+  } else if (status.state === 'success') {
+    color = 'text-green-700';
   }
+
   return (
     <div aria-live='polite' className='min-h-6'>
       <p className={`text-sm ${color}`}>{status.message}</p>

@@ -175,11 +175,10 @@ const ProfileForm = ({ user }) => {
   let nameError = null;
   if (trimmedName.length === 0) {
     nameError = 'Display name is required.';
-  } else {
-    if (trimmedName.length > 100) {
-      nameError = 'Display name must be 100 characters or less.';
-    }
+  } else if (trimmedName.length > 100) {
+    nameError = 'Display name must be 100 characters or less.';
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (nameError) {

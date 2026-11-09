@@ -117,11 +117,10 @@ function serializeCourse(course, lessons) {
 function getStatus(enrolled, lenCoursesIds, totalLessons) {
   if (!enrolled) {
     return 'not_enrolled';
-  } else {
-    if (lenCoursesIds === totalLessons) {
-      return 'completed';
-    }
+  } else if (lenCoursesIds === totalLessons) {
+    return 'completed';
   }
+
   return 'in_progress';
 }
 

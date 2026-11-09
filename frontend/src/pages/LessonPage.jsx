@@ -71,12 +71,11 @@ function LessonOutline({ course, courseId, lessonId, completedIds }) {
             let activeStyle = 'bg-[var(--code-bg)] text-[var(--text)]';
             if (active) {
               activeStyle = 'bg-[var(--accent-bold)] text-white';
-            } else {
-              if (complete) {
-                activeStyle =
-                  'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-              }
+            } else if (complete) {
+              activeStyle =
+                'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
             }
+
             const content = (
               <>
                 <span
