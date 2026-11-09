@@ -68,16 +68,19 @@ function LessonOutline({ course, courseId, lessonId, completedIds }) {
             const id = getId(lesson);
             const active = isSameId(id, lessonId);
             const complete = completedIds.has(String(id));
+            let activeStyle = 'bg-[var(--code-bg)] text-[var(--text)]';
+            if (active) {
+              activeStyle = 'bg-[var(--accent-bold)] text-white';
+            } else {
+              if (complete) {
+                activeStyle =
+                  'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+              }
+            }
             const content = (
               <>
                 <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
-                    active
-                      ? 'bg-[var(--accent-bold)] text-white'
-                      : complete
-                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                        : 'bg-[var(--code-bg)] text-[var(--text)]'
-                  }`}>
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${activeStyle}`}>
                   {complete ? (
                     <Check aria-hidden='true' size={14} />
                   ) : (

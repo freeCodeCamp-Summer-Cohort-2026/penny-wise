@@ -128,43 +128,6 @@ const ProfileForm = ({ user }) => {
     };
   }, [loadCountries]);
 
-  /*
-  const loadImages = useCallback(
-    async (signal) => {
-      setStatus('loading');
-      setError(null);
-
-      try {
-        const data = await getImages(user.id, signal);
-        console.log(`ProfilePage Received data: ${data}`);
-        console.log(`First element: ${data[0]}`);
-        setImages(data?.length > 0 ? data.map((x) => x.path) : []);
-        console.log(`Images have size =${images.length}`);
-        setStatus('ready');
-      } catch (loadError) {
-        if (signal?.aborted || loadError?.code === 'ERR_CANCELED') return;
-        setError(loadError);
-        setStatus('error');
-        if (process.env.NODE_ENV === 'development') {
-          console.log(error);
-        }
-      }
-    },
-    [user.id, images.length, error],
-  );
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => {
-      loadImages(controller.signal);
-    }, 0);
-    return () => {
-      window.clearTimeout(timeout);
-      controller.abort();
-    };
-  }, [loadImages]);
-*/
-
   const stats = useMemo(() => {
     if (!user) return [];
     const rows = [];
@@ -209,13 +172,14 @@ const ProfileForm = ({ user }) => {
     trimmedCountry !== (user.country ?? '') ||
     (user.role === 'author' && trimmedBio !== (user.bio ?? '')) ||
     userAvatar !== (user.profilePic ?? '');
-  const nameError =
-    trimmedName.length === 0
-      ? 'Display name is required.'
-      : trimmedName.length > 100
-        ? 'Display name must be 100 characters or less.'
-        : null;
-
+  let nameError = null;
+  if (trimmedName.length === 0) {
+    nameError = 'Display name is required.';
+  } else {
+    if (trimmedName.length > 100) {
+      nameError = 'Display name must be 100 characters or less.';
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (nameError) {

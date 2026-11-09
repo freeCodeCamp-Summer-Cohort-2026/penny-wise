@@ -1,12 +1,9 @@
 FROM node:22-slim AS prod
 
 RUN apt update && apt --no-install-recommends install -y curl && apt clean \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
-
-RUN addgroup --system nonroot \
-    && adduser --system --group nonroot
-
-RUN npm install --ignore-scripts -g npm@12.2.2
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
+  addgroup --system nonroot && adduser --system --group nonroot && \
+  npm install --ignore-scripts -g npm@12.2.2
 
 WORKDIR /app
 
@@ -29,12 +26,9 @@ CMD ["node", "src/server.js"]
 FROM node:22-slim AS dev
 
 RUN apt update && apt --no-install-recommends install -y curl && apt clean \
-  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*
-
-RUN addgroup --system nonroot \
-    && adduser --system --group nonroot
-
-RUN npm install --ignore-scripts -g npm@12.2.2
+  && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/* && \
+  addgroup --system nonroot && adduser --system --group nonroot && \
+  npm install --ignore-scripts -g npm@12.2.2
 
 WORKDIR /src
 
