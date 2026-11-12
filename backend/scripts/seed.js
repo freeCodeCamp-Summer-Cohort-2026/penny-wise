@@ -1291,7 +1291,6 @@ async function seed({ mongoUri } = {}) {
     console.log(`Country USA already updated: ${country.name}`);
   }
 
-  const countriesByCode = [];
   for (const seedCountry of COUNTRIES) {
     const countryObj = await Country.findOneAndUpdate(
       { name: seedCountry.name },
@@ -1301,7 +1300,6 @@ async function seed({ mongoUri } = {}) {
       },
       { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
     );
-    countriesByCode[seedCountry.code] = countryObj;
   }
 
   const money = await Money.create({
