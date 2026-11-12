@@ -224,6 +224,15 @@ function CompletionSummary({
   );
 }
 
+function PlayerState({ obj }) {
+  if (obj?.reconciling) {
+    return 'Reconnecting…';
+  } else if (obj?.submitting) {
+    return 'Checking…';
+  }
+  return 'Check answer';
+}
+
 export default function LessonPage() {
   const { courseId, lessonId } = useParams();
   const { auth } = useAuth();
@@ -345,15 +354,6 @@ export default function LessonPage() {
   const briefLesson =
     player.lesson?.briefLesson || getFallbackBriefLesson(course?.name);
 
-  function PlayerState({ obj }) {
-    if (obj?.reconciling) {
-      return 'Reconnecting…';
-    } else if (obj?.submitting) {
-      return 'Checking…';
-    }
-    return 'Check answer';
-  }
-
   function PlayerSummary({ obj }) {
     if (obj.isCompleted) {
       return (
@@ -441,7 +441,7 @@ export default function LessonPage() {
                 ) : (
                   <Check aria-hidden='true' size={17} />
                 )}
-                {PlayerState(player)}
+                {PlayerState({ obj: player })}
               </button>
             )}
             {player.feedback?.type === 'incorrect' && (
