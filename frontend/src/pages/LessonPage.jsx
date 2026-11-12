@@ -345,6 +345,122 @@ export default function LessonPage() {
   const briefLesson =
     player.lesson?.briefLesson || getFallbackBriefLesson(course?.name);
 
+  function PlayerState({ obj }) {
+    if (obj?.reconciling) {
+      return 'Reconnecting…';
+    } else if (obj?.submitting) {
+      return 'Checking…';
+    }
+    return 'Check answer';
+  }
+
+  function PlayerSummary({ obj }) {
+    if (obj.isCompleted) {
+      return (
+        <div className='mt-6'>
+          <CompletionSummary
+            course={course}
+            courseId={courseId}
+            lesson={player.lesson}
+            completion={summaryCompletion}
+            progress={player.progress}
+            headingRef={completionHeadingRef}
+          />
+        </div>
+      );
+    } else if (obj.currentPage) {
+      return (
+        <section
+          id='practice'
+          className='mt-6 scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)] sm:p-8'
+          aria-labelledby='activity-heading'>
+          <p className='text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent)]'>
+            One activity at a time
+          </p>
+          <h2
+            ref={activityHeadingRef}
+            id='activity-heading'
+            tabIndex='-1'
+            className='mt-2 text-2xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
+            {player.currentPage.text}
+          </h2>
+          {player.currentPage.imageUrl && (
+            <img
+              src={player.currentPage.imageUrl}
+              alt={player.currentPage.text}
+              className='mt-5 max-h-64 w-full rounded-xl object-contain'
+            />
+          )}
+          {player.currentPage.audioUrl && (
+            <audio
+              controls
+              src={player.currentPage.audioUrl}
+              aria-label={`Audio for ${player.currentPage.text}`}
+              className='mt-5 w-full'>
+              <track kind='captions' />
+            </audio>
+          )}
+          `
+          <div className='mt-7'>
+            <ActivityRenderer
+              page={player.currentPage}
+              answer={player.answer}
+              onChange={player.changeAnswer}
+              disabled={
+                player.submitting ||
+                player.reconciling ||
+                player.feedback?.type === 'correct'
+              }
+            />
+          </div>
+          <div className='mt-6'>
+            <ProgressMessage feedback={player.feedback} />
+          </div>
+          <div className='mt-6 flex flex-wrap items-center gap-3'>
+            {player.feedback?.type === 'correct' ? (
+              <button
+                type='button'
+                onClick={player.continueToNext}
+                disabled={player.submitting}
+                className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
+                Continue
+                <ArrowRight aria-hidden='true' size={17} />
+              </button>
+            ) : (
+              <button
+                type='button'
+                onClick={player.submit}
+                disabled={player.submitting || player.reconciling}
+                className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
+                {player.submitting || player.reconciling ? (
+                  <LoaderCircle
+                    aria-hidden='true'
+                    size={17}
+                    className='motion-safe:animate-spin'
+                  />
+                ) : (
+                  <Check aria-hidden='true' size={17} />
+                )}
+                {PlayerState(player)}
+              </button>
+            )}
+            {player.feedback?.type === 'incorrect' && (
+              <p className='text-sm text-[var(--text)]'>
+                Change your answer and try again.
+              </p>
+            )}
+          </div>
+        </section>
+      );
+    } else {
+      return (
+        <p className='mt-6 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--bg)] p-6 text-[var(--text)]'>
+          This lesson has no activities yet.
+        </p>
+      );
+    }
+  }
+
   return (
     <main className='mx-auto w-full max-w-7xl px-4 py-8 text-left sm:px-6 sm:py-10'>
       <nav aria-label='Breadcrumb' className='text-sm text-[var(--text)]'>
@@ -424,110 +540,7 @@ export default function LessonPage() {
             </p>
           )}
 
-          {player.isCompleted ? (
-            <div className='mt-6'>
-              <CompletionSummary
-                course={course}
-                courseId={courseId}
-                lesson={player.lesson}
-                completion={summaryCompletion}
-                progress={player.progress}
-                headingRef={completionHeadingRef}
-              />
-            </div>
-          ) : player.currentPage ? (
-            <section
-              id='practice'
-              className='mt-6 scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-6 shadow-[var(--shadow)] sm:p-8'
-              aria-labelledby='activity-heading'>
-              <p className='text-sm font-semibold uppercase tracking-[0.14em] text-[var(--accent)]'>
-                One activity at a time
-              </p>
-              <h2
-                ref={activityHeadingRef}
-                id='activity-heading'
-                tabIndex='-1'
-                className='mt-2 text-2xl font-semibold text-[var(--text-h)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
-                {player.currentPage.text}
-              </h2>
-              {player.currentPage.imageUrl && (
-                <img
-                  src={player.currentPage.imageUrl}
-                  alt={player.currentPage.text}
-                  className='mt-5 max-h-64 w-full rounded-xl object-contain'
-                />
-              )}
-              {player.currentPage.audioUrl && (
-                <audio
-                  controls
-                  src={player.currentPage.audioUrl}
-                  aria-label={`Audio for ${player.currentPage.text}`}
-                  className='mt-5 w-full'>
-                  <track kind='captions' />
-                </audio>
-              )}
-
-              <div className='mt-7'>
-                <ActivityRenderer
-                  page={player.currentPage}
-                  answer={player.answer}
-                  onChange={player.changeAnswer}
-                  disabled={
-                    player.submitting ||
-                    player.reconciling ||
-                    player.feedback?.type === 'correct'
-                  }
-                />
-              </div>
-
-              <div className='mt-6'>
-                <ProgressMessage feedback={player.feedback} />
-              </div>
-
-              <div className='mt-6 flex flex-wrap items-center gap-3'>
-                {player.feedback?.type === 'correct' ? (
-                  <button
-                    type='button'
-                    onClick={player.continueToNext}
-                    disabled={player.submitting}
-                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
-                    Continue
-                    <ArrowRight aria-hidden='true' size={17} />
-                  </button>
-                ) : (
-                  <button
-                    type='button'
-                    onClick={player.submit}
-                    disabled={player.submitting || player.reconciling}
-                    className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)] disabled:cursor-wait disabled:opacity-60'>
-                    {player.submitting || player.reconciling ? (
-                      <LoaderCircle
-                        aria-hidden='true'
-                        size={17}
-                        className='motion-safe:animate-spin'
-                      />
-                    ) : (
-                      <Check aria-hidden='true' size={17} />
-                    )}
-                    {player.reconciling
-                      ? 'Reconnecting…'
-                      : player.submitting
-                        ? 'Checking…'
-                        : 'Check answer'}
-                  </button>
-                )}
-                {player.feedback?.type === 'incorrect' && (
-                  <p className='text-sm text-[var(--text)]'>
-                    Change your answer and try again.
-                  </p>
-                )}
-              </div>
-            </section>
-          ) : (
-            <p className='mt-6 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--bg)] p-6 text-[var(--text)]'>
-              This lesson has no activities yet.
-            </p>
-          )}
+          {PlayerSummary(player)}
         </div>
 
         <LessonOutline
