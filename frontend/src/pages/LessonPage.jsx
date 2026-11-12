@@ -283,7 +283,7 @@ function PlayerSummary({
           <audio
             controls
             src={player.currentPage.audioUrl}
-            aria-label={`Audio for {player.currentPage.text}`}
+            aria-label={`Audio for ${player.currentPage.text}`}
             className='mt-5 w-full'>
             <track kind='captions' />
           </audio>
