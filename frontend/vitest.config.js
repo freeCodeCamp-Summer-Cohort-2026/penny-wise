@@ -11,6 +11,7 @@ export default defineConfig({
     clearMocks: true,
     coverage: {
       provider: 'v8', // or 'istanbul'
+      reporter: ['text', 'json', 'html', 'lcov'],
       include: ['src/**/*.{js,jsx}'],
       exclude: ['**/test/*'],
     },
