@@ -21,6 +21,16 @@ function getErrorMessage(error, fallback) {
   return error?.error || error?.message || fallback;
 }
 
+function courseState(completed, started) {
+  let state = 'Start course';
+  if (completed) {
+    state = 'Review course';
+  } else if (started) {
+    state = 'Continue';
+  }
+  return state;
+}
+
 export default function CoursePage() {
   const { courseId } = useParams();
   const location = useLocation();
@@ -152,11 +162,12 @@ export default function CoursePage() {
   const resumeLessonId = getId(learningState?.resumeLessonId) ?? firstLessonId;
   const isAuthor = auth?.user?.role === 'author';
   const canOpenLessons = enrolled;
-  const targetLessonId = completed
-    ? firstLessonId
-    : started
-      ? resumeLessonId
-      : firstLessonId;
+  let targetLessonId = firstLessonId;
+  if (completed) {
+    targetLessonId = firstLessonId;
+  } else if (started) {
+    targetLessonId = resumeLessonId;
+  }
 
   const action = (() => {
     if (!auth) {
@@ -220,7 +231,7 @@ export default function CoursePage() {
       <Link
         to={`/courses/${courseId}/lessons/${targetLessonId}`}
         className='inline-flex items-center gap-2 bg-[var(--accent-bold)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-bold-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'>
-        {completed ? 'Review course' : started ? 'Continue' : 'Start course'}
+        {courseState(completed, started)}
         <ArrowRight aria-hidden='true' size={17} />
       </Link>
     );
