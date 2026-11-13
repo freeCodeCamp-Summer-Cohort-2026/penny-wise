@@ -37,6 +37,56 @@ function StatCard({ icon: Icon, label, value }) {
   );
 }
 
+function courseSection(coursesStatus, courses) {
+  if (coursesStatus === 'ready' && courses.length === 0) {
+    return (
+      <p className='mt-5 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--bg)] p-6 text-[var(--text)]'>
+        No published courses are available right now.
+      </p>
+    );
+  } else if (coursesStatus === 'ready') {
+    return (
+      <ul className='mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+        {courses.slice(0, 6).map((course, index) => {
+          const id = getId(course);
+          return (
+            <li key={id ?? index}>
+              <Link
+                to={id ? `/courses/${id}` : '#'}
+                className='group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
+                aria-disabled={!id}>
+                <h3 className='text-lg font-semibold text-[var(--text-h)]'>
+                  {course.name}
+                </h3>
+                <div className='mt-4 flex flex-wrap gap-3 text-sm text-[var(--text)]'>
+                  <span className='inline-flex items-center gap-1.5'>
+                    <BookOpen aria-hidden='true' size={15} />
+                    {course.lessonCount ?? course.lessons?.length ?? 0} lessons
+                  </span>
+                  <span className='inline-flex items-center gap-1.5'>
+                    <Clock3 aria-hidden='true' size={15} />
+                    {formatMinutes(course.totalEstimatedDurationInMinutes)}
+                  </span>
+                </div>
+                <span className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]'>
+                  View course
+                  <ArrowRight
+                    aria-hidden='true'
+                    size={16}
+                    className='transition group-hover:translate-x-1'
+                  />
+                </span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  } else {
+    return null;
+  }
+}
+
 export default function Dashboard() {
   const { auth } = useAuth();
   const [status, setStatus] = useState('loading');
@@ -281,52 +331,7 @@ export default function Dashboard() {
                 <ArrowRight aria-hidden='true' size={16} />
               </Link>
             </div>
-            {coursesStatus === 'ready' && courses.length === 0 ? (
-              <p className='mt-5 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--bg)] p-6 text-[var(--text)]'>
-                No published courses are available right now.
-              </p>
-            ) : coursesStatus === 'ready' ? (
-              <ul className='mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
-                {courses.slice(0, 6).map((course, index) => {
-                  const id = getId(course);
-                  return (
-                    <li key={id ?? index}>
-                      <Link
-                        to={id ? `/courses/${id}` : '#'}
-                        className='group flex h-full flex-col rounded-2xl border border-[var(--border)] bg-[var(--bg)] p-5 shadow-[var(--shadow)] transition hover:-translate-y-0.5 hover:shadow-[var(--nav-shadow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]'
-                        aria-disabled={!id}>
-                        <h3 className='text-lg font-semibold text-[var(--text-h)]'>
-                          {course.name}
-                        </h3>
-                        <div className='mt-4 flex flex-wrap gap-3 text-sm text-[var(--text)]'>
-                          <span className='inline-flex items-center gap-1.5'>
-                            <BookOpen aria-hidden='true' size={15} />
-                            {course.lessonCount ??
-                              course.lessons?.length ??
-                              0}{' '}
-                            lessons
-                          </span>
-                          <span className='inline-flex items-center gap-1.5'>
-                            <Clock3 aria-hidden='true' size={15} />
-                            {formatMinutes(
-                              course.totalEstimatedDurationInMinutes
-                            )}
-                          </span>
-                        </div>
-                        <span className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)]'>
-                          View course
-                          <ArrowRight
-                            aria-hidden='true'
-                            size={16}
-                            className='transition group-hover:translate-x-1'
-                          />
-                        </span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : null}
+            {courseSection(coursesStatus, courses)}
           </section>
         </>
       )}

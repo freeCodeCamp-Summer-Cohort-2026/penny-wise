@@ -9,6 +9,36 @@ const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 
 const imageUrl = (id) => `${API_ROOT}/images/${id}/file`;
 
+function ImagesGallery({ loading, images, selectedImage, onSelect }) {
+  if (loading) {
+    return <p>Loading images...</p>;
+  } else if (images.length > 0) {
+    return images.map((img) => {
+      const url = imageUrl(img._id);
+      const isSelected = url === selectedImage;
+
+      return (
+        <button
+          type='button'
+          key={img._id}
+          onClick={() => onSelect(url)}
+          aria-pressed={isSelected}
+          className={`gallery-item${isSelected ? ' selected' : ''}`}>
+          <img
+            src={url}
+            alt={img.name}
+            loading='lazy'
+            className='gallery-img'
+          />
+          <p>{img.name}</p>
+        </button>
+      );
+    });
+  } else {
+    return <p>No images uploaded yet.</p>;
+  }
+}
+
 function UploadImage({ selectedImage, onSelect }) {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -154,33 +184,12 @@ function UploadImage({ selectedImage, onSelect }) {
       </div>
 
       <div className='gallery'>
-        {loading ? (
-          <p>Loading images...</p>
-        ) : images.length > 0 ? (
-          images.map((img) => {
-            const url = imageUrl(img._id);
-            const isSelected = url === selectedImage;
-
-            return (
-              <button
-                type='button'
-                key={img._id}
-                onClick={() => onSelect(url)}
-                aria-pressed={isSelected}
-                className={`gallery-item${isSelected ? ' selected' : ''}`}>
-                <img
-                  src={url}
-                  alt={img.name}
-                  loading='lazy'
-                  className='gallery-img'
-                />
-                <p>{img.name}</p>
-              </button>
-            );
-          })
-        ) : (
-          <p>No images uploaded yet.</p>
-        )}
+        <ImagesGallery
+          loading={loading}
+          images={images}
+          selectedImage={selectedImage}
+          onSelect={onSelect}
+        />
       </div>
     </div>
   );

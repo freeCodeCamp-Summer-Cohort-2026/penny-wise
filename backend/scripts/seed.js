@@ -1292,7 +1292,7 @@ async function seed({ mongoUri } = {}) {
   }
 
   for (const seedCountry of COUNTRIES) {
-    const countryObj = await Country.findOneAndUpdate(
+    await Country.findOneAndUpdate(
       { name: seedCountry.name },
       {
         name: seedCountry.name,
