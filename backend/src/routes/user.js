@@ -11,51 +11,45 @@ class RouteError extends Error {
   }
 }
 
-function updateFields(
-  role,
-  user,
-  author,
-  name,
-  profilePic,
-  country,
-  email,
-  bio
-) {
-  const updatedAt = String(new Date());
+const updatedAt = String(new Date());
 
-  if (role === 'learner') {
-    if (name) {
-      user.displayName = name;
-    }
-    if (user.profilePic !== profilePic) {
-      user.profilePic = profilePic;
-    }
-    if (country) {
-      user.country = country;
-    }
-    if (email) {
-      user.email = email;
-    }
-    user.updatedAt = updatedAt;
-  } else {
-    if (name) {
-      author.displayName = name;
-    }
-    if (author.profilePic !== profilePic) {
-      author.profilePic = profilePic;
-    }
-    if (country) {
-      author.country = country;
-    }
-    if (email) {
-      author.email = email;
-    }
-    if (bio) {
-      author.bio = bio;
-    }
-    author.updatedAt = updatedAt;
+function updateUserFields(user, name, profilePic, country, email) {
+  if (name) {
+    user.displayName = name;
   }
-  return { user, author };
+  if (user.profilePic !== profilePic) {
+    user.profilePic = profilePic;
+  }
+  if (country) {
+    user.country = country;
+  }
+  if (email) {
+    user.email = email;
+  }
+  user.updatedAt = updatedAt;
+
+  return user;
+}
+
+function updateAuthorFields(author, name, profilePic, country, email, bio) {
+  if (name) {
+    author.displayName = name;
+  }
+  if (author.profilePic !== profilePic) {
+    author.profilePic = profilePic;
+  }
+  if (country) {
+    author.country = country;
+  }
+  if (email) {
+    author.email = email;
+  }
+  if (bio) {
+    author.bio = bio;
+  }
+  author.updatedAt = updatedAt;
+
+  return author;
 }
 
 router.put(
@@ -67,6 +61,7 @@ router.put(
       let user = await Learner.findById(req.user.id);
       let author = await Author.findById(req.user.id);
       const role = req.user.role;
+
       if (!user) {
         if (!author) {
           return res.status(404).json({ error: 'Learner or Author not found' });
@@ -105,21 +100,19 @@ router.put(
           ? req.body.bio.trim()
           : '';
 
-      ({ user, author } = updateFields(
-        role,
-        user,
-        author,
-        name,
-        profilePic,
-        country,
-        email,
-        bio
-      ));
-
       try {
         if (role === 'learner') {
+          user = updateUserFields(user, name, profilePic, country, email);
           await user.save();
         } else {
+          author = updateAuthorFields(
+            author,
+            name,
+            profilePic,
+            country,
+            email,
+            bio
+          );
           await author.save();
         }
       } catch (error) {
