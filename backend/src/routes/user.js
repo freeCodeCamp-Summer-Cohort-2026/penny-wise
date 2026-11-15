@@ -55,7 +55,7 @@ function updateFields(
     }
     author.updatedAt = updatedAt;
   }
-  return (user, author);
+  return { user, author };
 }
 
 router.put(
@@ -105,17 +105,16 @@ router.put(
           ? req.body.bio.trim()
           : '';
 
-      (user,
-        (author = updateFields(
-          role,
-          user,
-          author,
-          name,
-          profilePic,
-          country,
-          email,
-          bio
-        )));
+      ({ user, author } = updateFields(
+        role,
+        user,
+        author,
+        name,
+        profilePic,
+        country,
+        email,
+        bio
+      ));
 
       try {
         if (role === 'learner') {
