@@ -11,8 +11,6 @@ class RouteError extends Error {
   }
 }
 
-const updatedAt = String(new Date());
-
 function updateUserFields(user, name, profilePic, country, email) {
   if (name) {
     user.displayName = name;
@@ -26,7 +24,7 @@ function updateUserFields(user, name, profilePic, country, email) {
   if (email) {
     user.email = email;
   }
-  user.updatedAt = updatedAt;
+  user.updatedAt = String(new Date());
 
   return user;
 }
@@ -47,7 +45,7 @@ function updateAuthorFields(author, name, profilePic, country, email, bio) {
   if (bio) {
     author.bio = bio;
   }
-  author.updatedAt = updatedAt;
+  author.updatedAt = String(new Date());
 
   return author;
 }
