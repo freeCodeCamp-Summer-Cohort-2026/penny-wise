@@ -11,14 +11,61 @@ class RouteError extends Error {
   }
 }
 
+function updateFields(
+  role,
+  user,
+  author,
+  name,
+  profilePic,
+  country,
+  email,
+  bio
+) {
+  const updatedAt = String(new Date());
+
+  if (role === 'learner') {
+    if (name) {
+      user.displayName = name;
+    }
+    if (user.profilePic !== profilePic) {
+      user.profilePic = profilePic;
+    }
+    if (country) {
+      user.country = country;
+    }
+    if (email) {
+      user.email = email;
+    }
+    user.updatedAt = updatedAt;
+  } else {
+    if (name) {
+      author.displayName = name;
+    }
+    if (author.profilePic !== profilePic) {
+      author.profilePic = profilePic;
+    }
+    if (country) {
+      author.country = country;
+    }
+    if (email) {
+      author.email = email;
+    }
+    if (bio) {
+      author.bio = bio;
+    }
+    author.updatedAt = updatedAt;
+  }
+  return { user, author };
+}
+
 router.put(
   '/',
   requireAuth,
   checkRole('learner', 'author'),
   async (req, res, next) => {
     try {
-      const user = await Learner.findById(req.user.id);
-      const author = await Author.findById(req.user.id);
+      let user = await Learner.findById(req.user.id);
+      let author = await Author.findById(req.user.id);
       const role = req.user.role;
       if (!user) {
         if (!author) {
@@ -58,40 +105,16 @@ router.put(
           ? req.body.bio.trim()
           : '';
 
-      const updatedAt = String(new Date());
-
-      if (role === 'learner') {
-        if (name) {
-          user.displayName = name;
-        }
-        if (user.profilePic !== profilePic) {
-          user.profilePic = profilePic;
-        }
-        if (country) {
-          user.country = country;
-        }
-        if (email) {
-          user.email = email;
-        }
-        user.updatedAt = updatedAt;
-      } else {
-        if (name) {
-          author.displayName = name;
-        }
-        if (author.profilePic !== profilePic) {
-          author.profilePic = profilePic;
-        }
-        if (country) {
-          author.country = country;
-        }
-        if (email) {
-          author.email = email;
-        }
-        if (bio) {
-          author.bio = bio;
-        }
-        author.updatedAt = updatedAt;
-      }
+      ({ user, author } = updateFields(
+        role,
+        user,
+        author,
+        name,
+        profilePic,
+        country,
+        email,
+        bio
+      ));
 
       try {
         if (role === 'learner') {
