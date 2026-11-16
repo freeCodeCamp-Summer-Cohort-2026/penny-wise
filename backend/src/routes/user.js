@@ -50,6 +50,11 @@ function updateAuthorFields(author, name, profilePic, country, email, bio) {
   return author;
 }
 
+function trimmedString(value) {
+  const result = typeof value === 'string' ? value.trim() : '';
+  return result;
+}
+
 router.put(
   '/',
   requireAuth,
@@ -66,18 +71,11 @@ router.put(
         }
       }
 
-      const name =
-        typeof req.body.displayName === 'string'
-          ? req.body.displayName.trim()
-          : '';
+      const name = trimmedString(req.body.displayName);
 
-      const profilePic =
-        typeof req.body.profilePic === 'string'
-          ? req.body.profilePic.trim()
-          : '';
+      const profilePic = trimmedString(req.body.profilePic);
 
-      const country =
-        typeof req.body.country === 'string' ? req.body.country.trim() : '';
+      const country = trimmedString(req.body.country);
 
       const email =
         typeof req.body.email === 'string'
@@ -93,16 +91,12 @@ router.put(
         }
       }
 
-      const bio =
-        role === 'author' && typeof req.body.bio === 'string'
-          ? req.body.bio.trim()
-          : '';
-
       try {
         if (role === 'learner') {
           user = updateUserFields(user, name, profilePic, country, email);
           await user.save();
         } else {
+          const bio = trimmedString(req.body.bio);
           author = updateAuthorFields(
             author,
             name,
