@@ -51,7 +51,7 @@ function updateAuthorFields(author, name, profilePic, country, email, bio) {
 }
 
 function trimmedString({ value, lower = false }) {
-  if (value && typeof value === 'string') {
+  if (typeof value === 'string') {
     if (lower) {
       return value.toLowerCase();
     } else {
@@ -86,7 +86,7 @@ router.put(
       const email = trimmedString({ value: req.body.email, lower: true });
 
       if (email) {
-        const existing = await User.findOne({ email: email });
+        const existing = await User.findOne({ email: email.toString() });
         if (existing && existing.id !== req.user.id) {
           return res
             .status(409)
