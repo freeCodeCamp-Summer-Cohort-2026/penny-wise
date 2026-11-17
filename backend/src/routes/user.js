@@ -50,9 +50,15 @@ function updateAuthorFields(author, name, profilePic, country, email, bio) {
   return author;
 }
 
-function trimmedString(value) {
-  const result = typeof value === 'string' ? value.trim() : '';
-  return result;
+function trimmedString({ value, lower = false }) {
+  if (value && typeof value === 'string') {
+    if (lower) {
+      return value.toLowerCase();
+    } else {
+      return value;
+    }
+  }
+  return '';
 }
 
 router.put(
@@ -71,19 +77,16 @@ router.put(
         }
       }
 
-      const name = trimmedString(req.body.displayName);
+      const name = trimmedString({ value: req.body.displayName });
 
-      const profilePic = trimmedString(req.body.profilePic);
+      const profilePic = trimmedString({ value: req.body.profilePic });
 
-      const country = trimmedString(req.body.country);
+      const country = trimmedString({ value: req.body.country });
 
-      const email =
-        typeof req.body.email === 'string'
-          ? req.body.email.toLowerCase().trim()
-          : '';
+      const email = trimmedString({ value: req.body.email, lower: true });
 
       if (email) {
-        const existing = await User.findOne({ email: email.toLowerCase() });
+        const existing = await User.findOne({ email: email });
         if (existing && existing.id !== req.user.id) {
           return res
             .status(409)
@@ -96,7 +99,7 @@ router.put(
           user = updateUserFields(user, name, profilePic, country, email);
           await user.save();
         } else {
-          const bio = trimmedString(req.body.bio);
+          const bio = trimmedString({ value: req.body.bio });
           author = updateAuthorFields(
             author,
             name,
